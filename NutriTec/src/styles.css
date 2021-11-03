@@ -1,0 +1,52 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "Poppins";
+  src: local("Poppins"), url(./assets/Poppins.ttf) format("truetype");
+}
+:root {
+  --buttonColor: #eeffe4;
+  --containerColor: #cbf7b0;
+  --itemColor: #3f6328;
+  --selectButtonColor: #d7e7ce;
+}
+
+html,
+body {
+  height: 100%;
+
+  background-color: var(--buttonColor);
+  background-image: url("../../NutriTec/src/assets/img.png");
+  background-repeat: repeat;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.text {
+  font-family: Poppins;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  font-weight: 100;
+}
+.mainViewContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.card {
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+}
+.myInput {
+  background: none !important;
+  border: none;
+  outline: none;
+  font-family: Poppins;
+  color: var(--itemColor) !important;
+}
+.hline {
+  border-bottom: 3px solid var(--itemColor) !important;
+}
