@@ -1,1 +1,93 @@
-<p>home works!</p>
+<div class="mainViewContainer">
+    <div *ngIf="user" class="verticalContainer">
+        <div class="logoText">
+            <img class="logox" src="../../../assets/user.svg" alt="">
+            <div class="text">No importa cuán despacio vayas mientras sigas en constante movimiento. -Confucio</div>
+
+        </div>
+        <div class="card optionDialog">
+            <div class="TitleText">¿Qué deseas hacer?</div>
+            <div class="optionContainer">
+                <div class="card optionCard">
+                    <mat-icon class="optionIcon">fastfood</mat-icon>
+                    <div class="text optionText">Agregar Receta</div>
+                </div>
+                <div class="card optionCard">
+                    <mat-icon class="optionIcon">qr_code_2</mat-icon>
+                    <div class="text optionText">Agregar producto</div>
+                </div>
+                <div class="card optionCard">
+                    <mat-icon class="optionIcon">accessibility</mat-icon>
+                    <div class="text optionText">Agregar producto</div>
+                </div>
+                <div class="card optionCard">
+                    <mat-icon class="optionIcon">event</mat-icon>
+                    <div class="text optionText">NutriPlan</div>
+                </div>
+                <div class="card optionCard">
+                    <mat-icon class="optionIcon">straighten</mat-icon>
+                    <div class="text optionText">Mediciones</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--Vista de Doctor-->
+    <div *ngIf="doctor" class="verticalContainer">
+        <div class="logoText">
+            <img class="logox" src="../../../assets/doctorsvg.svg" alt="">
+            <div class="text">Donde quiera que se ama el arte de la medicina se ama también a la humanidad.-Platón</div>
+
+        </div>
+        <div class="card optionDialog">
+            <div class="TitleText">¿Qué deseas hacer?</div>
+            <div class="optionContainer">
+                <div class="card optionCard">
+                    <mat-icon class="optionIcon">fastfood</mat-icon>
+                    <div class="text optionText">Agregar Receta</div>
+                </div>
+                <div class="card optionCard">
+                    <mat-icon class="optionIcon">qr_code_2</mat-icon>
+                    <div class="text optionText">Agregar producto</div>
+                </div>
+                <div class="card optionCard">
+                    <mat-icon class="optionIcon">people</mat-icon>
+                    <div class="text optionText">Gestionar asociados</div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!--Vista de Admin-->
+    <div *ngIf="admin" class="verticalContainer">
+        <div class="logoText">
+            <img class="logox" src="../../../assets/engineer.svg" alt="">
+            <div class="text">El presente es de ellos; el futuro, para lo que realmente trabajé, es mío.
+                -Nikola Tesla.</div>
+
+        </div>
+        <div class="card optionDialog">
+            <div class="TitleText">¿Qué deseas hacer?</div>
+            <div class="optionContainer">
+                <div class="card optionCard">
+                    <mat-icon class="optionIcon">fastfood</mat-icon>
+                    <div class="text optionText">Aprobar Recetas</div>
+                </div>
+                <div class="card optionCard">
+                    <mat-icon class="optionIcon">qr_code_2</mat-icon>
+                    <div class="text optionText">Aprobar Productos</div>
+                </div>
+                <div class="card optionCard">
+                    <mat-icon class="optionIcon">credit_card</mat-icon>
+                    <div class="text optionText">Gestionar Cobros</div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>

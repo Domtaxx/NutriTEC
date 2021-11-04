@@ -1,1 +1,23 @@
-<p>pages works!</p>
+<div class="navBarContainer">
+    <div class="navBar">
+        <img class="logo" src="../../assets/logoTxt.svg" alt="">
+
+        <div class="nameLogo" [matMenuTriggerFor]="menu">
+            <div class="text  nameText">
+                    Adrian González
+            </div>
+            <div class="circle">
+                <mat-icon style="color: #3f6328;">person</mat-icon>
+            </div>
+        </div>
+    </div>
+
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item style="display: flex; align-items: center;" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <div class="text"> Salir </div>
+        </button>
+      </mat-menu>
+
+</div>
+<router-outlet></router-outlet>

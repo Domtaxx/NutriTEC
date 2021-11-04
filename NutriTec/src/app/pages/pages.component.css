@@ -1,0 +1,46 @@
+.navBarContainer {
+  display: flex;
+  display: flex;
+  justify-content: center;
+  height: 10%;
+}
+.navBar {
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: 88%;
+  border-bottom: 2px solid #3f6328;
+  justify-content: space-between;
+}
+.logo {
+  width: 30%;
+}
+.logo:hover {
+  cursor: pointer;
+}
+.nameLogo {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.nameText {
+  border-bottom: 2px solid #3f6328;
+  color: #3f6328;
+  font-style: italic;
+  font-weight: 600;
+}
+.circle {
+  border-radius: 100%;
+  background-color: var(--containerColor);
+  width: 6vh;
+  height: 6vh;
+  margin-left: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nameLogo:hover {
+  filter: invert(0.1);
+  cursor: pointer;
+}
