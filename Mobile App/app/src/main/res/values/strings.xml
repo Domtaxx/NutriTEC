@@ -15,4 +15,7 @@
     <string name="title_activity_today_meals">TodayMeals</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="inputProduct">Ingrese Producto</string>
+    <string name="ProductListLabel">Productos Agregados</string>
+    <string name="recipe_title">Agregar Receta</string>
 </resources>
