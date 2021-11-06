@@ -7,14 +7,14 @@
 
     <fragment
         android:id="@+id/navigation_daily_meals"
-        android:name="ac.cr.tec.NutriTec.fragments.DailyDietFragment"
-        android:label="Recipes"
-        tools:layout="@layout/fragment_recipes_management" />
+        android:name="ac.cr.tec.NutriTec.fragments.DailyMealFragment"
+        android:label="DailyMeal"
+        tools:layout="@layout/fragment_daily_meal" />
     <fragment
         android:id="@+id/navigation_recipes"
-        android:name="ac.cr.tec.NutriTec.fragments.RecipesManagementFragment"
-        android:label="DailyMeal"
-        tools:layout="@layout/fragment_recipes_management" />
+        android:name="ac.cr.tec.NutriTec.fragments.RecipesFragment"
+        android:label="Recipes"
+        tools:layout="@layout/fragment_recipes" />
     <fragment
         android:id="@+id/navigation_profile"
         android:name="ac.cr.tec.NutriTec.fragments.ProfileFragment"

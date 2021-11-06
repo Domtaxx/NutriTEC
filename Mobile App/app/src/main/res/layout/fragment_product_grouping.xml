@@ -6,30 +6,18 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:background="@color/lighter_green"
-    tools:context=".fragments.RecipesManagementFragment">
+    tools:context=".fragments.ProductsGroupingFragment">
 
     <TextView
         android:id="@+id/Product_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="@string/inputProduct"
         android:textColor="@color/dark_green"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.224"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_title" />
-
-    <TextView
-        android:id="@+id/recipe_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/recipe_title"
-        android:textColor="@color/dark_green"
-        android:textSize="26sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,7 +39,7 @@
         android:id="@+id/add_product_button"
         android:layout_width="45dp"
         android:layout_height="53dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         app:backgroundTint="@android:color/transparent"
         app:icon="@drawable/add"
         app:iconGravity="textStart"
@@ -64,9 +52,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/hl"
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:layout_height="2dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:background="@color/dark_green"
         android:backgroundTint="@color/dark_green"
         app:layout_constraintEnd_toEndOf="parent"

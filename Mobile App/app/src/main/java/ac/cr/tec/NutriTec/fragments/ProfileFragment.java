@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import ac.cr.tec.NutriTec.R;
 
@@ -25,6 +26,15 @@ public class ProfileFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private TextView HeightText;
+    private TextView WaistText;
+    private TextView WeightText;
+    private TextView HipsText;
+    private TextView IMCText;
+    private TextView NapeText;
+    private final String heightUnit="m";
+    private final String bodyMeasureUnits="cm";
+    private final String weightMeasureUnits="kg";
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -60,7 +70,43 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View view=inflater.inflate(R.layout.fragment_profile, container, false);
+        getInstances(view);
+        return view;
     }
+    public void getInstances(View view){
+        HeightText=view.findViewById(R.id.profile_height);
+        WaistText=view.findViewById(R.id.profile_waist_size);
+        WeightText=view.findViewById(R.id.profile_weight);
+        HipsText=view.findViewById(R.id.profile_hips);
+        IMCText=view.findViewById(R.id.profile_IMC);
+        NapeText=view.findViewById(R.id.profile_nape);
+    }
+    public void updateHeightText(String heightMeasure){
+        String newText= getString(R.string.profile_height)+" "+heightMeasure+heightUnit;
+        HeightText.setText(newText);
+    }
+    public void updateWaistText(String waistMeasure){
+        String newText= getString(R.string.profile_waist)+" "+waistMeasure+bodyMeasureUnits;
+        WaistText.setText(newText);
+    }
+    public void updateWeightText(String weight){
+        String newText= getString(R.string.profile_weight)+" "+weight+weight;
+        WeightText.setText(newText);
+    }
+    public void updateHipsText(String hipsMeasure){
+        String newText= getString(R.string.profile_hips)+" "+hipsMeasure+bodyMeasureUnits;
+       HipsText.setText(newText);
+    }
+    public void updateIMCText(String IMC){
+        String newText= getString(R.string.profile_IMC)+" "+IMC;
+        IMCText.setText(newText);
+    }
+    public void updateNapeText(String napeMeasure){
+        String newText= getString(R.string.profile_nape)+" "+napeMeasure+bodyMeasureUnits;
+        IMCText.setText(newText);
+    }
+
+
+
 }

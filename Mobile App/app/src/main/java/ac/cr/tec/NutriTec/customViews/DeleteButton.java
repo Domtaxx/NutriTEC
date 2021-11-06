@@ -47,4 +47,8 @@ public class DeleteButton extends LinearLayout {
     public void setOnClickListener(@Nullable OnClickListener l) {
         button.setOnClickListener(l);
     }
+    public void setButtonText(String text){
+        button.setText(text);
+
+    }
 }

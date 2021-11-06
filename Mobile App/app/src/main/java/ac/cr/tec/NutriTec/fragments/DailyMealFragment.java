@@ -2,20 +2,26 @@ package ac.cr.tec.NutriTec.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import ac.cr.tec.NutriTec.R;
+import ac.cr.tec.NutriTec.viewModel.productListViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link DailyDietFragment#newInstance} factory method to
+ * Use the {@link DailyMealFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DailyDietFragment extends Fragment {
+public class DailyMealFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,8 +31,11 @@ public class DailyDietFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private TextView mealTimeName;
+    private productListViewModel viewModel;
 
-    public DailyDietFragment() {
+
+    public DailyMealFragment() {
         // Required empty public constructor
     }
 
@@ -36,11 +45,11 @@ public class DailyDietFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment DailyDietFragment.
+     * @return A new instance of fragment DailyMealFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static DailyDietFragment newInstance(String param1, String param2) {
-        DailyDietFragment fragment = new DailyDietFragment();
+    public static DailyMealFragment newInstance(String param1, String param2) {
+        DailyMealFragment fragment = new DailyMealFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +70,17 @@ public class DailyDietFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_daily_diet, container, false);
+        View view=inflater.inflate(R.layout.fragment_daily_meal, container, false);;
+        mealTimeName=view.findViewById(R.id.meal_name);
+        return view;
+    }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        viewModel=new ViewModelProvider(this).get(productListViewModel.class);
+        viewModel.getProductList().observe(getViewLifecycleOwner(),element->{
+            //Log.d("IMPORTANTE",element.toString());
+            //mealTimeName.setText(element.get(0));
+        });
     }
 }
