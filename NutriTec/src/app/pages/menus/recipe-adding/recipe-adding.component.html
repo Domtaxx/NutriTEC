@@ -1,0 +1,124 @@
+<div class="mainView">
+
+
+    <div class="textAndIcon">
+        <div class="text Title">Agregar Receta</div>
+        <div><mat-icon class="icon">fastfood</mat-icon></div>
+        
+    </div>
+
+    <div class="spacer"></div>
+
+<!--Encabezados-->
+    <div class="columHeaders">
+        <div class="text inputText" style="margin-right: 16vh;">Nombre</div>
+        <div class="text inputText">tamaño  (g/ml) </div>
+        <div class="text inputText">energía (Kcal)</div>
+        <div class="text inputText">grasa  (g)</div>
+    </div>
+<!--Productos que componen la receta-->
+    <div class="scrollCardContainer">
+        <div *ngFor='let product of selectedProducts' class="card productCard">
+            <div style="width: 21%;" class="text inputText">{{product.pname}}</div>
+            <div style="width: 16%;" class="text inputText">{{product.tamano}}</div>
+            <div style="width: 13%;" class="text inputText">{{product.energia}}</div>
+            <div style="width: 18%;" class="text inputText">{{product.grasa}}</div>
+            <mat-icon class="inputText cancelButton" (click)="removeProduct(product)">cancel</mat-icon>
+        </div>
+    </div>
+        <div class="iconContainer">
+            <mat-icon (click)="openSearchBox()" class="circle">add_circle</mat-icon>
+        </div>
+        
+        <div class="spacer" style="  margin-bottom: 2%;"></div>
+        <div class="buttonContainer">
+            <div class="card nextButton" (click)="searching=false ;finishing=true;">
+                <div class="text inputText" >Siguiente</div>    
+            </div>
+        </div>
+
+</div>
+
+<!--PANEL DE BUSQUEDA-->
+<div class="card searchingBox" *ngIf="searching">
+    <div style="height: 20%; margin-left: 1vh;">
+        <div class="text Title">Buscar Producto</div>
+    </div>
+    <div style="height: 10%;">
+        <div class="textAndInput " style="width: 100%; ">
+
+            <mat-icon class="inputText">search</mat-icon>
+            <div style="display: flex; width: 100%;">
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%; " [value]="search"  (input)="search = $any( $event.target).value"class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <mat-icon (click)="searchProduct()" class="searchButton inputText">arrow_forward</mat-icon>
+            </div>
+        </div>
+     </div>
+
+    <div class="searchResults">
+        <div *ngFor="let product of searchResult" class="card productCard" style="width: 80%;"  (click)="selectSearchProduct(product)" >
+            <div style="width: 100%;">
+                <div class="text inputText">{{product.pname}}</div>
+
+            </div>
+            
+        </div>
+
+    </div>
+
+
+    <div class="buttonSpace">
+     
+    </div>
+</div>
+
+
+<!--PANEL DE creación-->
+<div class="card searchingBox" *ngIf="finishing">
+
+    <div style="height: 20%; margin-left: 1vh;">
+        <div class="text Title">Verificar Receta</div>
+    </div>
+    <div class="spacer"></div>
+    <div style="height: 60%; display: flex; flex-direction: column;">
+        <div class="text inputText lp">
+            tamaño de la porción:  21.4 (g/ml) 
+        </div>
+        <div class="text inputText lp">
+            grasa:  44 (g)
+        </div>
+        <div class="text inputText lp" >
+            sodio:  12 (mg)
+        </div>
+    
+        <div class="text inputText lp">
+            carbohidratos: 133(g)
+        </div>
+        <div class="text inputText lp">
+            proteína:  14 (g)
+        </div>
+        <div class="text inputText lp">
+            Calcio: 23 (mg)
+        </div>
+        <div class="text inputText lp">
+            Hierro: 33(mg)
+        </div>
+
+    </div>  
+    <div class="spacer"></div>
+    <div class="buttonSpace">
+        <div class="card nextButton" (click)="finishing=false; ">
+            <div class="text inputText">Cancelar</div>
+        </div>
+        <div class="card nextButton"(click)="submit()">
+            <div class="text inputText" >Siguiente</div>
+        </div>
+    </div>
+    
+    
+    
+    
+</div>

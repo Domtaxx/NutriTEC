@@ -1,0 +1,129 @@
+<div class="mainView">
+    <div class="textAndIcon">
+        <div class="text Title">Agregar Producto</div>
+        <div><mat-icon class="icon">qr_code_2</mat-icon></div>
+        
+    </div>
+    <div class="spacer"></div>
+
+
+    <div class="textAndInput">
+        <div class="text inputText" >Código de barras</div>    
+        <div class="InputContainer"style="width: 30%;">
+            <input style="width: 100%; " [value]="codBarras"  (input)="codBarras = $any( $event.target).value"class="myInput"  type="text">
+            <div class="inputLine"></div>
+        </div>
+    </div>
+
+    <div class="textAndInput">
+        <div class="text inputText" >Descripción</div>    
+        <div class="InputContainer"style="width: 90%;">
+            <input style="width: 100%;"  [value]="descripcion"  (input)="descripcion = $any( $event.target).value"class="myInput"  type="text">
+            <div class="inputLine"></div>
+        </div>
+    </div>
+    <div class="spacer"></div>
+
+    <div class="dataContainer">
+
+        <div class="dataColumn">
+            <div class="dataCell" >
+                <div class="text inputText"  >Energia</div>    
+                <div class="InputContainer smallInput">
+                    <input  [value]="energia"  (input)="energia = $any( $event.target).value"class="myInput myInputOverride"   type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText" >Kcal</div>    
+            </div>
+
+
+            <div class="dataCell" >
+                <div class="text inputText" >Grasa</div>    
+                <div class="InputContainer smallInput">
+                    <input  [value]="grasa"  (input)="grasa = $any( $event.target).value"class="myInput myInputOverride"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText" >g</div>    
+            </div>
+
+
+            <div class="dataCell" >
+                <div class="text inputText" >Hierro</div>    
+                <div class="InputContainer smallInput">
+                    <input  [value]="hierro"  (input)="hierro = $any( $event.target).value"class="myInput myInputOverride"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText" >mg</div>    
+            </div>
+
+
+            <div class="dataCell" >
+                <div class="text inputText" >Calcio</div>    
+                <div class="InputContainer smallInput">
+                    <input  [value]="calcio"  (input)="calcio = $any( $event.target).value"class="myInput myInputOverride"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText" >mg</div>    
+            </div>
+
+        </div>
+
+
+
+
+        <div class="dataColumn">
+
+            <div class="dataCell" >
+                <div class="text inputText" >Sodio</div>    
+                <div class="InputContainer smallInput">
+                    <input  [value]="sodio"  (input)="sodio = $any( $event.target).value"class="myInput myInputOverride"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText" >mg</div>    
+            </div>
+
+            <div class="dataCell" >
+                <div class="text inputText" >Proteína</div>    
+                <div class="InputContainer smallInput">
+                    <input  [value]="proteina"  (input)="proteina = $any( $event.target).value"class="myInput myInputOverride"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText" >g</div>    
+            </div>
+
+
+            <div class="dataCell" >
+                <div class="text inputText" >Carbohidratos</div>    
+                <div class="InputContainer smallInput">
+                    <input  [value]="carbohidratos"  (input)="carbohidratos = $any( $event.target).value"class="myInput myInputOverride"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText" >g</div>    
+            </div>
+
+
+            <div class="dataCell" >
+                <div class="text inputText" >Tamaño</div>    
+                <div class="InputContainer smallInput">
+                    <input  [value]="tamano"  (input)="tamano = $any( $event.target).value"class="myInput myInputOverride"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText" >g/ml</div>    
+            </div>
+        </div>
+
+        <div class="spacer" style="  margin-bottom: 2%;"></div>
+
+
+        <div class="buttonContainer">
+            <div class="card nextButton" (click)="submit()">
+                <div class="text inputText" >Siguiente</div>    
+            </div>
+    
+        </div>
+    </div>
+    
+
+
+
+</div>

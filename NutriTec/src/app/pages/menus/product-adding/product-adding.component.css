@@ -1,0 +1,97 @@
+.mainView {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  align-content: center;
+  height: 70vh;
+}
+.icon {
+  color: var(--itemColor);
+  transform: scale(4);
+  margin-top: 50%;
+}
+.textAndIcon {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 94%;
+  height: 15%;
+  align-items: flex-start;
+}
+
+.Title {
+  font-size: 260%;
+  color: var(--itemColor);
+  margin-top: 2%;
+}
+.InputContainer {
+}
+.textAndInput {
+  display: flex;
+  align-items: center;
+  width: 94%;
+  margin-bottom: 2%;
+}
+.inputText {
+  font-size: 142%;
+  font-weight: 700;
+  color: var(--itemColor);
+  width: auto;
+  margin-right: 3%;
+  margin-left: 3%;
+  white-space: nowrap;
+}
+.spacer {
+  margin-top: 3%;
+  margin-bottom: 5%;
+  width: 94%;
+  border-bottom: 0.1px solid #bbe2a2 !important;
+}
+.inputLine {
+  border-bottom: 0.5px solid var(--itemColor) !important;
+}
+.dataContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.dataColumn {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+}
+.dataCell {
+  width: 100%;
+  height: 12%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.smallInput {
+  width: 20%;
+}
+
+.myInputOverride {
+  font-size: 3vh !important;
+  font-weight: bold !important;
+}
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  width: 94%;
+}
+.nextButton {
+  width: 21vh;
+  height: 6vh;
+  background-color: var(--buttonColor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nextButton:hover {
+  cursor: pointer;
+  background-color: var(--selectButtonColor);
+}

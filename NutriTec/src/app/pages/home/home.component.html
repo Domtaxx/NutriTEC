@@ -8,12 +8,12 @@
         <div class="card optionDialog">
             <div class="TitleText">¿Qué deseas hacer?</div>
             <div class="optionContainer">
-                <div class="card optionCard">
+                <div class="card optionCard" (click)="openAddRecipe()">
                     <mat-icon class="optionIcon">fastfood</mat-icon>
                     <div class="text optionText">Agregar Receta</div>
                 </div>
-                <div class="card optionCard">
-                    <mat-icon class="optionIcon">qr_code_2</mat-icon>
+                <div class="card optionCard"(click)="openAddProduct()">
+                    <mat-icon class="optionIcon" >qr_code_2</mat-icon>
                     <div class="text optionText">Agregar producto</div>
                 </div>
                 <div class="card optionCard">
@@ -43,11 +43,11 @@
         <div class="card optionDialog">
             <div class="TitleText">¿Qué deseas hacer?</div>
             <div class="optionContainer">
-                <div class="card optionCard">
+                <div class="card optionCard" (click)="openAddRecipe()">
                     <mat-icon class="optionIcon">fastfood</mat-icon>
                     <div class="text optionText">Agregar Receta</div>
                 </div>
-                <div class="card optionCard">
+                <div class="card optionCard" (click)="openAddProduct()">
                     <mat-icon class="optionIcon">qr_code_2</mat-icon>
                     <div class="text optionText">Agregar producto</div>
                 </div>
