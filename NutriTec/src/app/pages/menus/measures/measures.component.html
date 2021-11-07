@@ -1,0 +1,216 @@
+<div class="mainView">
+
+
+    <div class="textAndIcon">
+        <div class="text Title">Mediciones</div>
+        
+    </div>
+    <div class="buttons">
+        
+        <div *ngIf="today" class="card menuButton" style=" width: 8vh;">
+            <div class="text inputText">Hoy</div>
+        </div>
+
+        <div *ngIf="!today" (click)="openToday()" class="card menuButtonDisabled" style=" width: 8vh;">
+            <div class="text inputText">Hoy</div>
+        </div>
+
+
+
+        <div  *ngIf="history"  class="card menuButton" style=" width: 15vh;">
+            <div class="text inputText">Historial</div>
+        </div>
+
+        <div  *ngIf="!history" (click)="openHistory()" class="card menuButtonDisabled" style=" width: 15vh;">
+            <div class="text inputText">Historial</div>
+        </div>
+        
+
+
+    </div>
+    <div class="spacer"></div>
+    <!--TODAY-->
+    <div *ngIf="today"  style="height: 80%; width: 100%; display: flex; flex-direction: column; align-items: center;">
+        <div class="dataColumn" style="width: 50%;">
+
+            <div class="dataCell">
+                <div class="text inputText">Peso</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%; "class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">Kg</div>
+            </div>
+
+            <div class="dataCell">
+                <div class="text inputText">IMC</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%; "class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">Kg/m2</div>
+            </div>
+
+            <div class="dataCell">
+                <div class="text inputText">Músculo</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%; "class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">%</div>
+            </div>
+
+            <div class="dataCell">
+                <div class="text inputText">Grasa</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%; "class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">%</div>
+            </div>
+
+            <div class="dataCell">
+                <div class="text inputText">Cintura</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%; "class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">cm</div>
+            </div>
+
+            <div class="dataCell">
+                <div class="text inputText">Cuello</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%; "class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">cm</div>
+            </div>
+
+            <div class="dataCell">
+                <div class="text inputText">Caderas</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%; "class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">cm</div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!--History-->
+
+    <div *ngIf="history"  class="verticalHistory" >
+
+        <div *ngFor="let measureData of measures" class="dataColumn" style="width: 50%;">
+
+            <div class="dataCell">
+                <div class="text inputText">Fecha: </div>
+                <div class="text inputText">12/12/12</div>
+            </div>
+            <div class="dataCell">
+                <div class="text inputText">Peso</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%; "class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">Kg</div>
+            </div>
+
+            <div class="dataCell">
+                <div class="text inputText">IMC</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%; "class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">Kg/m2</div>
+            </div>
+
+            <div class="dataCell">
+                <div class="text inputText">Músculo</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%; "class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">%</div>
+            </div>
+
+            <div class="dataCell">
+                <div class="text inputText">Grasa</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%; "class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">%</div>
+            </div>
+
+            <div class="dataCell">
+                <div class="text inputText">Cintura</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%; "class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">cm</div>
+            </div>
+
+            <div class="dataCell">
+                <div class="text inputText">Cuello</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%; "class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">cm</div>
+            </div>
+
+            <div class="dataCell">
+                <div class="text inputText">Caderas</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%; "class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">cm</div>
+            </div>
+            <div class="spacer"></div>
+            <div style="margin-bottom: 13%;"></div>
+        </div>
+
+    </div>
+
+
+    <div class="spacer" style="margin-bottom: 0;"></div>
+    <div class="buttonContainer" style="height: 10%;">
+        <div class="card nextButton" (click)="searching=false ;finishing=true;">
+            <div class="text inputText" >Siguiente</div>    
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

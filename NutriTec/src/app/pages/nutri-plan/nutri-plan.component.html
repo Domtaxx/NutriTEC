@@ -1,1 +1,241 @@
-<p>nutri-plan works!</p>
+<div class="mainView">
+
+
+    <div class="textAndIcon">
+        <div class="text Title">NutriSalud</div>
+        
+    </div>
+    <div class="buttons">
+        
+        <div *ngIf="today" class="card menuButton" style=" width: 8vh;">
+            <div class="text inputText">Hoy</div>
+        </div>
+
+        <div *ngIf="!today" (click)="openToday()" class="card menuButtonDisabled" style=" width: 8vh;">
+            <div class="text inputText">Hoy</div>
+        </div>
+
+
+
+        <div  *ngIf="history"  class="card menuButton" style=" width: 15vh;">
+            <div class="text inputText">Historial</div>
+        </div>
+
+        <div  *ngIf="!history" (click)="openHistory()" class="card menuButtonDisabled" style=" width: 15vh;">
+            <div class="text inputText">Historial</div>
+        </div>
+        
+
+        
+        <div *ngIf="plan" class="card menuButton" style=" width: 30vh;">
+            <div class="text inputText">Plan De comidas</div>
+        </div>
+
+        <div *ngIf="!plan" (click)="openPlan()" class="card menuButtonDisabled" style=" width: 30vh;">
+            <div class="text inputText">Plan De comidas</div>
+        </div>
+
+
+    </div>
+    <div class="spacer"></div>
+    <!--TODAY-->
+    <div *ngIf="today" class="horizontalColumnContainer">
+
+        
+        <div *ngFor="let tfood of tFoods.meals" class="column">
+            <div class="text inputText">{{tfood.name}}</div>
+            <div class="scrollCardContainer">
+            
+                <div *ngFor='let product of tfood.foods' class="card productCard">
+                    <div style="width: 50%;" class="text inputText">{{product.pname}}</div>
+                    <div style="width: 40%;" class="text dataText">{{product.energia}} Kcal</div>
+                    <mat-icon style="width: 10%;" class="inputText cancelButton" (click)="removeProduct(product,tfood)">cancel</mat-icon>
+                </div>
+            </div>
+
+            <div class="iconContainer">
+                <mat-icon (click)="openSearchBox(tfood)" class="circle">add_circle</mat-icon>
+            </div>
+        </div>
+    </div>
+
+
+    <!--History-->
+
+    <div *ngIf="history" class="verticalHistory">
+
+        <div class="historyData"*ngFor="let tFoods of foodHistory">
+            <div class="text dataText" style="margin-left: 0%; margin-bottom: 1%;">Fecha {{tFoods.date}}</div>
+            <div  class="horizontalColumnContainer">
+
+                <div *ngFor="let tfood of tFoods.meals" class="column">
+                    <div class="text inputText">{{tfood.name}}</div>
+                    <div class="scrollCardContainer">
+                    
+                        <div *ngFor='let product of tfood.foods' class="card productCard" style="background-color: #a3d486cf !important;">
+                            <div style="width: 50%;" class="text inputText">{{product.pname}}</div>
+                            <div style="width: 40%;" class="text dataText">{{product.energia}} Kcal</div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="card feedBackBox">
+                <img class="logox" src="../../../assets/doctorsvg.svg" alt="">
+                <div class="feedBackText">{{tFoods.feedBack}}</div>
+            </div>
+            <div class="spacer" style="margin-bottom: 3%; width: 100%;height: 21px;margin-top: 3%;"></div>
+        </div>    
+    </div>
+
+    <!--plan-->
+
+    <div *ngIf="plan" class="verticalHistory">
+
+        <div *ngIf="foodPlan" class="historyData">
+
+            <div class="text dataText" style="margin-left: 0%; margin-bottom: 1%;">Fecha {{foodPlan.date}}</div>
+            <div  class="horizontalColumnContainer">
+
+                <div *ngFor="let tfood of foodPlan.meals" class="column">
+                    <div class="text inputText">{{tfood.name}}</div>
+                    <div class="scrollCardContainer">
+                    
+                        <div *ngFor='let product of tfood.foods' class="card productCard" style="background-color: #a3d486cf !important;">
+                            <div style="width: 50%;" class="text inputText">{{product.pname}}</div>
+                            <div style="width: 40%;" class="text dataText">{{product.energia}} Kcal</div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="card feedBackBox">
+                <img class="logox" src="../../../assets/doctorsvg.svg" alt="">
+                <div class="feedBackText">{{foodPlan.feedBack}}</div>
+            </div>
+
+            <div class="spacer" style="margin-bottom: 3%; width: 100%;height: 21px;margin-top: 3%;"></div>
+
+        </div>    
+
+        <div *ngIf="!foodPlan" style="    display: flex;justify-content: center;align-items: center;height: 100%;">
+            <img src="../../../assets/noPlan.svg" alt="">
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--PANEL DE BUSQUEDA-->
+<div class="card searchingBox" *ngIf="searching">
+    <div style="height: 20%; margin-left: 1vh;">
+        <div class="text Title">Buscar Producto</div>
+    </div>
+    <div style="height: 10%;">
+        <div class="textAndInput " style="width: 100%; ">
+
+            <mat-icon class="inputText">search</mat-icon>
+            <div style="display: flex; width: 100%;">
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%; " [value]="search"  (input)="search = $any( $event.target).value"class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <mat-icon (click)="searchProduct()" class="searchButton inputText">arrow_forward</mat-icon>
+            </div>
+        </div>
+     </div>
+
+    <div class="searchResults">
+        <div *ngFor="let product of searchResult" class="card productCard" style="width: 80%;"  (click)="selectSearchProduct(product)" >
+            <div style="width: 100%;">
+                <div class="text inputText">{{product.pname}}</div>
+
+            </div>
+            
+        </div>
+
+    </div>
+
+
+    <div class="buttonSpace">
+     
+    </div>
+</div>
+
+
+<!--PANEL DE creación-->
+<div class="card searchingBox" *ngIf="finishing">
+
+    <div style="height: 20%; margin-left: 1vh;">
+        <div class="text Title">Verificar Receta</div>
+    </div>
+    <div class="spacer"></div>
+    <div style="height: 60%; display: flex; flex-direction: column;">
+        <div class="text inputText lp">
+            tamaño de la porción:  21.4 (g/ml) 
+        </div>
+        <div class="text inputText lp">
+            grasa:  44 (g)
+        </div>
+        <div class="text inputText lp" >
+            sodio:  12 (mg)
+        </div>
+    
+        <div class="text inputText lp">
+            carbohidratos: 133(g)
+        </div>
+        <div class="text inputText lp">
+            proteína:  14 (g)
+        </div>
+        <div class="text inputText lp">
+            Calcio: 23 (mg)
+        </div>
+        <div class="text inputText lp">
+            Hierro: 33(mg)
+        </div>
+
+    </div>  
+    <div class="spacer"></div>
+    <div class="buttonSpace">
+        <div class="card nextButton" (click)="finishing=false; ">
+            <div class="text inputText">Cancelar</div>
+        </div>
+        <div class="card nextButton"(click)="submit()">
+            <div class="text inputText" >Siguiente</div>
+        </div>
+    </div>
+    
+    
+    
+    
+</div>

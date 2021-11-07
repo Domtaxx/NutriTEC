@@ -11,7 +11,7 @@ import { RecipeAddingComponent } from './menus/recipe-adding/recipe-adding.compo
 import { NutriPlanComponent } from './nutri-plan/nutri-plan.component';
 import { ClientSectionComponent } from './client-section/client-section.component';
 import { RecipeApprovingComponent } from './recipe-approving/recipe-approving.component';
-import { MeasuresComponent } from './measures/measures.component';
+import { MeasuresComponent } from './menus/measures/measures.component';
 import { ProductSearchComponent } from './menus/recipe-adding/product-search/product-search.component';
 @NgModule({
   declarations: [

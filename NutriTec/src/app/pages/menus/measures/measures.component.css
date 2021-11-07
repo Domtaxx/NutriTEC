@@ -6,12 +6,7 @@
   align-content: center;
   height: 70vh;
 }
-.icon {
-  color: var(--itemColor);
-  transform: scale(4);
-  margin-top: 50%;
-  user-select: none;
-}
+
 .textAndIcon {
   display: flex;
   flex-direction: row;
@@ -73,7 +68,7 @@
 .dataColumn {
   display: flex;
   flex-direction: column;
-  width: 33%;
+  width: 100%;
 }
 .dataCell {
   width: 100%;
@@ -81,21 +76,14 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-bottom: 4%;
 }
 
-.smallInput {
-  width: 20%;
-}
-
-.myInputOverride {
-  font-size: 3vh !important;
-  font-weight: bold !important;
-}
 .buttonContainer {
   display: flex;
   justify-content: flex-end;
   width: 94%;
-  margin-top: 4%;
+  margin-top: 1%;
 }
 .nextButton {
   width: 21vh;
@@ -109,9 +97,7 @@
   cursor: pointer;
   background-color: var(--selectButtonColor);
 }
-.columHeaders {
-  display: flex;
-}
+
 .scrollCardContainer {
   display: flex;
   flex-direction: column;
@@ -120,100 +106,18 @@
   width: 100%;
   margin-left: 1%;
 }
-.productCard {
-  background-color: var(--buttonColor) !important;
-  width: 100%;
-  align-items: center;
-  min-height: 72px;
-  margin-top: 1vh;
-  display: flex;
-  justify-content: space-between;
-}
-.productCard:hover {
-}
-.circle {
-  color: var(--itemColor);
-  transform: scale(2);
-  transition: 0.5s;
-}
-.circle:hover {
-  filter: invert(0.2);
-  transform: scale(2.2);
-  transition: 0.5s;
-  cursor: pointer;
-}
-.iconContainer {
-  user-select: none;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-}
-.searchingBox {
-  width: 60vh;
-  height: 70vh;
-  background-color: #dbf3cd;
-  position: absolute;
-  z-index: 3;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-.searchResults {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
 
-  overflow-y: hidden;
-  scroll-behavior: auto;
-  width: 100%;
-  height: 60%;
-}
-.searchButton {
-  background-color: var(--buttonColor);
-  border-radius: 0px 6px 6px 0px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 16%;
-  height: 4vh;
-}
-.searchButton:hover {
-  cursor: pointer;
-  filter: invert(0.1);
-}
 .buttonSpace {
   height: 10%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
-.cancelButton {
-  transform: scale(1.5);
-}
-.cancelButton:hover {
-  filter: invert(0.1);
-  cursor: pointer;
-}
+
 .lp {
   margin-bottom: 1vh;
 }
-.column {
-  display: flex;
-  flex-direction: column;
-  width: 20%;
-  margin-right: 0.4%;
-}
+
 .horizontalColumnContainer {
   display: flex;
   flex-direction: row;
@@ -259,32 +163,19 @@
 .verticalHistory {
   display: flex;
   flex-direction: column;
-  width: 100%;
   overflow-y: auto;
-  height: 60%;
+  height: 80%;
+  width: 100%;
+  align-items: center;
 }
 .historyData {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
-.feedBackBox {
-  width: 100%;
-  height: 15vh;
-  background-color: var(--buttonColor);
-  display: flex;
-}
+
 .logox {
   color: var(--itemColor);
   transform: scale(1.4);
   width: 10%;
-}
-.feedBackText {
-  width: 90%;
-  height: 100%;
-  color: var(--itemColor);
-  font-size: 3vh;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }

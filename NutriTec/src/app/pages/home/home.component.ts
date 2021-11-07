@@ -1,7 +1,9 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MeasuresComponent } from '../menus/measures/measures.component';
 import { ProductAddingComponent } from '../menus/product-adding/product-adding.component';
 import { RecipeAddingComponent } from '../menus/recipe-adding/recipe-adding.component';
+import { NutriPlanComponent } from '../nutri-plan/nutri-plan.component';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +24,7 @@ export class HomeComponent implements OnInit {
   dialogIsOpen: boolean = false;
 
   ngOnInit(): void {
-    this.openAddRecipe();
+    this.openMeasures();
   }
   /**
    * def opens Add Product dialog
@@ -46,6 +48,30 @@ export class HomeComponent implements OnInit {
     this.dialogIsOpen = true;
     let dialogRef = this.dialog.open(RecipeAddingComponent, {
       width: '60%',
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.dialogIsOpen = false;
+    });
+  }
+
+  openNutriPlan() {
+    this.dialogIsOpen = true;
+    let dialogRef = this.dialog.open(NutriPlanComponent, {
+      width: '80%',
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.dialogIsOpen = false;
+    });
+  }
+
+  openMeasures() {
+    this.dialogIsOpen = true;
+    let dialogRef = this.dialog.open(MeasuresComponent, {
+      width: '40%',
       data: {},
     });
 
