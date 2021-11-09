@@ -80,15 +80,15 @@ Create Table [CLIENTE_RECETA](
 	Nombre_receta varchar(128),
 	Correo_cliente varchar(320),
 	Fecha date,
-	Nombre varchar(128),
-	primary key(Nombre_receta,Correo_cliente,Nombre)
+    Tiempo varchar(128),
+	primary key(Nombre_receta,Correo_cliente,Fecha,Tiempo)
 );
 Create Table [CLIENTE_PRODUCTO](
 	Codigo_barras varchar(128),
 	Correo_cliente varchar(320),
 	Fecha date,
-	Nombre varchar(128),
-	primary key(Codigo_barras,Correo_cliente,Nombre)
+    Tiempo varchar(128),
+	primary key(Codigo_barras,Correo_cliente,Fecha,Tiempo)
 );
 Create Table [CLIENTE_PLAN](
 	Nombre_plan varchar(128),
