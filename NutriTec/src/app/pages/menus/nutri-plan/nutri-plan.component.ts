@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SwalService } from 'src/app/services/swalService';
+import { UserService } from 'src/app/services/userService';
 
 @Component({
   selector: 'app-nutri-plan',
@@ -103,11 +104,34 @@ export class NutriPlanComponent implements OnInit {
 
   constructor(
     public me: MatDialogRef<NutriPlanComponent>,
-    private swal: SwalService
+    private swal: SwalService,
+    public uServ: UserService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.uServ.doctor) {
+      this.today = false;
+      this.history = true;
+    }
+  }
+  updateNutriPlan() {
+    if (false) {
+      this.swal.showError(
+        'Error al ingresar los datos',
+        'Datos ingresados insuficientes'
+      );
+      return;
+    }
 
+    const data = {};
+    /**backend call here */
+
+    this.swal.showSuccess(
+      'Plan actualizado!',
+      'El plan se ha actualizado y el cliente podrá verlo'
+    );
+    this.me.close();
+  }
   submit() {
     if (false) {
       this.swal.showError(

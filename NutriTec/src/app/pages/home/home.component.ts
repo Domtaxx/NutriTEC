@@ -3,7 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MeasuresComponent } from '../menus/measures/measures.component';
 import { ProductAddingComponent } from '../menus/product-adding/product-adding.component';
 import { RecipeAddingComponent } from '../menus/recipe-adding/recipe-adding.component';
-import { NutriPlanComponent } from '../nutri-plan/nutri-plan.component';
+import { NutriPlanComponent } from '../menus/nutri-plan/nutri-plan.component';
+import { ClientSectionComponent } from '../menus/client-section/client-section.component';
+import { UserService } from 'src/app/services/userService';
+import { ComService } from 'src/app/services/comService';
 
 @Component({
   selector: 'app-home',
@@ -13,18 +16,20 @@ import { NutriPlanComponent } from '../nutri-plan/nutri-plan.component';
 export class HomeComponent implements OnInit {
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    if (event.code === 'KeyY' && !this.dialogIsOpen) this.swithUserType();
+    if (event.code === 'KeyY' && !this.dialogIsOpen) this.uServ.swithUserType();
   }
 
-  constructor(public dialog: MatDialog) {}
-  user: boolean = true;
-  admin: boolean = false;
-  doctor: boolean = false;
+  constructor(
+    public dialog: MatDialog,
+    public uServ: UserService,
+    public com: ComService
+  ) {}
 
   dialogIsOpen: boolean = false;
 
   ngOnInit(): void {
-    this.openMeasures();
+    this.com.homeComp = this;
+    this.openClientSection();
   }
   /**
    * def opens Add Product dialog
@@ -55,7 +60,9 @@ export class HomeComponent implements OnInit {
       this.dialogIsOpen = false;
     });
   }
-
+  /**
+   * def opens Nutriplan dialog
+   */
   openNutriPlan() {
     this.dialogIsOpen = true;
     let dialogRef = this.dialog.open(NutriPlanComponent, {
@@ -68,6 +75,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  /**
+   * def opens measures dialog
+   */
   openMeasures() {
     this.dialogIsOpen = true;
     let dialogRef = this.dialog.open(MeasuresComponent, {
@@ -80,21 +90,22 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  swithUserType() {
-    if (this.user) {
-      this.user = false;
-      this.admin = true;
-      return;
-    }
-    if (this.admin) {
-      this.admin = false;
-      this.doctor = true;
-      return;
-    }
-    if (this.doctor) {
-      this.doctor = false;
-      this.user = true;
-      return;
-    }
+  /**
+   * def opens client management dialog
+   */
+  openClientSection() {
+    this.dialogIsOpen = true;
+    let dialogRef = this.dialog.open(ClientSectionComponent, {
+      width: '40%',
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.dialogIsOpen = false;
+    });
   }
+
+  /**
+   * ONLY FOR DEVS, SWITCH USER TYPE
+   */
 }

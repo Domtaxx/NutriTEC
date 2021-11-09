@@ -288,3 +288,13 @@
   align-items: center;
   justify-content: flex-start;
 }
+.editIcon {
+  user-select: none;
+  transform: scale(1.4);
+  color: var(--itemColor);
+  white-space: nowrap;
+}
+.editIcon:hover {
+  cursor: pointer;
+  filter: invert(0.4);
+}

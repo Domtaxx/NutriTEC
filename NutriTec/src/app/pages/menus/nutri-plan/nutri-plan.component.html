@@ -7,11 +7,11 @@
     </div>
     <div class="buttons">
         
-        <div *ngIf="today" class="card menuButton" style=" width: 8vh;">
+        <div *ngIf="today &&!this.uServ.doctor" class="card menuButton" style=" width: 8vh;">
             <div class="text inputText">Hoy</div>
         </div>
 
-        <div *ngIf="!today" (click)="openToday()" class="card menuButtonDisabled" style=" width: 8vh;">
+        <div *ngIf="!today &&!this.uServ.doctor" (click)="openToday()" class="card menuButtonDisabled" style=" width: 8vh;">
             <div class="text inputText">Hoy</div>
         </div>
 
@@ -84,7 +84,15 @@
 
             <div class="card feedBackBox">
                 <img class="logox" src="../../../assets/doctorsvg.svg" alt="">
-                <div class="feedBackText">{{tFoods.feedBack}}</div>
+                <textarea readonly *ngIf="!this.uServ.doctor" class="myInput" [value]="foodPlan.feedBack" rows="30" cols="50">                             
+                </textarea>
+                <div *ngIf="this.uServ.doctor" class="InputContainer"style="width: 90%;">
+
+                    <textarea class="myInput" [value]="foodPlan.feedBack" rows="30" cols="50">                             
+                    </textarea>
+
+                </div>
+                
             </div>
             <div class="spacer" style="margin-bottom: 3%; width: 100%;height: 21px;margin-top: 3%;"></div>
         </div>    
@@ -94,7 +102,7 @@
 
     <div *ngIf="plan" class="verticalHistory">
 
-        <div *ngIf="foodPlan" class="historyData">
+        <div *ngIf="foodPlan &&!this.uServ.doctor" class="historyData">
 
             <div class="text dataText" style="margin-left: 0%; margin-bottom: 1%;">Fecha {{foodPlan.date}}</div>
             <div  class="horizontalColumnContainer">
@@ -115,18 +123,54 @@
 
             <div class="card feedBackBox">
                 <img class="logox" src="../../../assets/doctorsvg.svg" alt="">
-                <div class="feedBackText">{{foodPlan.feedBack}}</div>
+                <textarea *ngIf="!this.uServ.doctor" class="myInput" [value]="foodPlan.feedBack" rows="30" cols="50">                             
+                </textarea>
+                <div *ngIf="this.uServ.doctor" class="InputContainer"style="width: 90%;">
+
+                    <textarea class="myInput" [value]="foodPlan.feedBack" rows="30" cols="50">                             
+                    </textarea>
+
+                </div>
+
             </div>
 
             <div class="spacer" style="margin-bottom: 3%; width: 100%;height: 21px;margin-top: 3%;"></div>
 
         </div>    
 
-        <div *ngIf="!foodPlan" style="    display: flex;justify-content: center;align-items: center;height: 100%;">
+        <div *ngIf="!foodPlan &&!this.uServ.doctor" style="    display: flex;justify-content: center;align-items: center;height: 100%;">
             <img src="../../../assets/noPlan.svg" alt="">
         </div>
-    </div>
 
+
+        <div *ngIf="this.uServ.doctor" class="horizontalColumnContainer">
+
+        
+            <div *ngFor="let tfood of tFoods.meals" class="column">
+                <div class="text inputText">{{tfood.name}}</div>
+                <div class="scrollCardContainer">
+                
+                    <div *ngFor='let product of tfood.foods' class="card productCard">
+                        <div style="width: 50%;" class="text inputText">{{product.pname}}</div>
+                        <div style="width: 40%;" class="text dataText">{{product.energia}} Kcal</div>
+                        <mat-icon style="width: 10%;" class="inputText cancelButton" (click)="removeProduct(product,tfood)">cancel</mat-icon>
+                    </div>
+                </div>
+    
+                <div class="iconContainer">
+                    <mat-icon (click)="openSearchBox(tfood)" class="circle">add_circle</mat-icon>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div *ngIf=" plan && this.uServ.doctor" class="buttonContainer">
+        <div class="card nextButton" (click)="updateNutriPlan()">
+            <div class="text inputText" >Siguiente</div>    
+        </div>
+    </div>
 
 </div>
 

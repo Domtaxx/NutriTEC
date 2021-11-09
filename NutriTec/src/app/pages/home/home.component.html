@@ -1,5 +1,5 @@
 <div class="mainViewContainer">
-    <div *ngIf="user" class="verticalContainer">
+    <div *ngIf="this.uServ.user" class="verticalContainer">
         <div class="logoText">
             <img class="logox" src="../../../assets/user.svg" alt="">
             <div class="text">No importa cuán despacio vayas mientras sigas en constante movimiento. -Confucio</div>
@@ -34,7 +34,7 @@
     </div>
 
     <!--Vista de Doctor-->
-    <div *ngIf="doctor" class="verticalContainer">
+    <div *ngIf="this.uServ.doctor" class="verticalContainer">
         <div class="logoText">
             <img class="logox" src="../../../assets/doctorsvg.svg" alt="">
             <div class="text">Donde quiera que se ama el arte de la medicina se ama también a la humanidad.-Platón</div>
@@ -51,7 +51,7 @@
                     <mat-icon class="optionIcon">qr_code_2</mat-icon>
                     <div class="text optionText">Agregar producto</div>
                 </div>
-                <div class="card optionCard">
+                <div class="card optionCard" (click)="openClientSection()">
                     <mat-icon class="optionIcon">people</mat-icon>
                     <div class="text optionText">Gestionar asociados</div>
                 </div>
@@ -62,7 +62,7 @@
     </div>
 
     <!--Vista de Admin-->
-    <div *ngIf="admin" class="verticalContainer">
+    <div *ngIf="this.uServ.admin" class="verticalContainer">
         <div class="logoText">
             <img class="logox" src="../../../assets/engineer.svg" alt="">
             <div class="text">El presente es de ellos; el futuro, para lo que realmente trabajé, es mío.

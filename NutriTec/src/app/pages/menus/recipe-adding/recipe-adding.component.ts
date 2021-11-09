@@ -101,11 +101,17 @@ export class RecipeAddingComponent implements OnInit {
 
     this.searchResult = [];
     for (let i = 0; i < this.products.length; i++) {
-      if (this.products[i].pname === this.search) {
+      if (
+        this.products[i].pname.toLocaleLowerCase() ===
+        this.search.toLocaleLowerCase()
+      ) {
         this.searchResult.push(this.products[i]);
         continue;
       }
-      if (this.products[i].pname[0] === this.search[0]) {
+      if (
+        this.products[i].pname[0].toLocaleLowerCase() ===
+        this.search[0].toLocaleLowerCase()
+      ) {
         this.searchResult.push(this.products[i]);
         continue;
       }
