@@ -36,7 +36,6 @@ namespace NutriTEC_rest.DB_Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=.;Database= NutriTEC;Trusted_Connection=True;");
             }
         }
@@ -48,7 +47,7 @@ namespace NutriTEC_rest.DB_Context
             modelBuilder.Entity<Administrador>(entity =>
             {
                 entity.HasKey(e => e.Correo)
-                    .HasName("PK__ADMINIST__60695A184D24C398");
+                    .HasName("PK__ADMINIST__60695A18B8CA278E");
 
                 entity.ToTable("ADMINISTRADOR");
 
@@ -64,7 +63,7 @@ namespace NutriTEC_rest.DB_Context
             modelBuilder.Entity<Cliente>(entity =>
             {
                 entity.HasKey(e => e.Correo)
-                    .HasName("PK__CLIENTE__60695A18C794188E");
+                    .HasName("PK__CLIENTE__60695A1883A937E9");
 
                 entity.ToTable("CLIENTE");
 
@@ -120,7 +119,7 @@ namespace NutriTEC_rest.DB_Context
             modelBuilder.Entity<ClientePlan>(entity =>
             {
                 entity.HasKey(e => new { e.NombrePlan, e.CorreoCliente, e.Inicio, e.Final })
-                    .HasName("PK__CLIENTE___C410ED0B4B06BD90");
+                    .HasName("PK__CLIENTE___C410ED0B558B5B73");
 
                 entity.ToTable("CLIENTE_PLAN");
 
@@ -153,8 +152,8 @@ namespace NutriTEC_rest.DB_Context
 
             modelBuilder.Entity<ClienteProducto>(entity =>
             {
-                entity.HasKey(e => new { e.CodigoBarras, e.CorreoCliente, e.Nombre })
-                    .HasName("PK__CLIENTE___F2A6FD763D12EC87");
+                entity.HasKey(e => new { e.CodigoBarras, e.CorreoCliente, e.Fecha, e.Tiempo })
+                    .HasName("PK__CLIENTE___C5F30673E6DD435B");
 
                 entity.ToTable("CLIENTE_PRODUCTO");
 
@@ -168,11 +167,11 @@ namespace NutriTEC_rest.DB_Context
                     .IsUnicode(false)
                     .HasColumnName("Correo_cliente");
 
-                entity.Property(e => e.Nombre)
+                entity.Property(e => e.Fecha).HasColumnType("date");
+
+                entity.Property(e => e.Tiempo)
                     .HasMaxLength(128)
                     .IsUnicode(false);
-
-                entity.Property(e => e.Fecha).HasColumnType("date");
 
                 entity.HasOne(d => d.CodigoBarrasNavigation)
                     .WithMany(p => p.ClienteProductos)
@@ -189,8 +188,8 @@ namespace NutriTEC_rest.DB_Context
 
             modelBuilder.Entity<ClienteRecetum>(entity =>
             {
-                entity.HasKey(e => new { e.NombreReceta, e.CorreoCliente, e.Nombre })
-                    .HasName("PK__CLIENTE___19A639D0417DA35D");
+                entity.HasKey(e => new { e.NombreReceta, e.CorreoCliente, e.Fecha, e.Tiempo })
+                    .HasName("PK__CLIENTE___2EF3C2D5C9908844");
 
                 entity.ToTable("CLIENTE_RECETA");
 
@@ -204,11 +203,11 @@ namespace NutriTEC_rest.DB_Context
                     .IsUnicode(false)
                     .HasColumnName("Correo_cliente");
 
-                entity.Property(e => e.Nombre)
+                entity.Property(e => e.Fecha).HasColumnType("date");
+
+                entity.Property(e => e.Tiempo)
                     .HasMaxLength(128)
                     .IsUnicode(false);
-
-                entity.Property(e => e.Fecha).HasColumnType("date");
 
                 entity.HasOne(d => d.CorreoClienteNavigation)
                     .WithMany(p => p.ClienteReceta)
@@ -226,7 +225,7 @@ namespace NutriTEC_rest.DB_Context
             modelBuilder.Entity<Menu>(entity =>
             {
                 entity.HasKey(e => new { e.NombrePlanAlimentacion, e.Nombre })
-                    .HasName("PK__MENU__258DD5E2786ED33E");
+                    .HasName("PK__MENU__258DD5E2089EBAEE");
 
                 entity.ToTable("MENU");
 
@@ -259,7 +258,7 @@ namespace NutriTEC_rest.DB_Context
             modelBuilder.Entity<MenuProducto>(entity =>
             {
                 entity.HasKey(e => new { e.NombrePlanAlimentacion, e.NombreMenu, e.CodigoBarras })
-                    .HasName("PK__MENU_PRO__68E68BBB49383C12");
+                    .HasName("PK__MENU_PRO__68E68BBB1D041541");
 
                 entity.ToTable("MENU_PRODUCTO");
 
@@ -294,7 +293,7 @@ namespace NutriTEC_rest.DB_Context
             modelBuilder.Entity<MenuRecetum>(entity =>
             {
                 entity.HasKey(e => new { e.NombrePlanAlimentacion, e.NombreMenu, e.NombreReceta })
-                    .HasName("PK__MENU_REC__CE0D8B7FB81F7945");
+                    .HasName("PK__MENU_REC__CE0D8B7FDC842D11");
 
                 entity.ToTable("MENU_RECETA");
 
@@ -329,7 +328,7 @@ namespace NutriTEC_rest.DB_Context
             modelBuilder.Entity<Nutricionistum>(entity =>
             {
                 entity.HasKey(e => e.Correo)
-                    .HasName("PK__NUTRICIO__60695A18119A10E4");
+                    .HasName("PK__NUTRICIO__60695A1819244325");
 
                 entity.ToTable("NUTRICIONISTA");
 
@@ -391,7 +390,7 @@ namespace NutriTEC_rest.DB_Context
             modelBuilder.Entity<PlanAlimentacion>(entity =>
             {
                 entity.HasKey(e => e.Nombre)
-                    .HasName("PK__PLAN_ALI__75E3EFCE5E8F135A");
+                    .HasName("PK__PLAN_ALI__75E3EFCECA128F53");
 
                 entity.ToTable("PLAN_ALIMENTACION");
 
@@ -413,7 +412,7 @@ namespace NutriTEC_rest.DB_Context
             modelBuilder.Entity<Producto>(entity =>
             {
                 entity.HasKey(e => e.CodigoBarras)
-                    .HasName("PK__PRODUCTO__4AE489C6E2AF2483");
+                    .HasName("PK__PRODUCTO__4AE489C62C5B1928");
 
                 entity.ToTable("PRODUCTO");
 
@@ -444,7 +443,7 @@ namespace NutriTEC_rest.DB_Context
             modelBuilder.Entity<Recetum>(entity =>
             {
                 entity.HasKey(e => e.Nombre)
-                    .HasName("PK__RECETA__75E3EFCE8AD8E37C");
+                    .HasName("PK__RECETA__75E3EFCEA75C59D0");
 
                 entity.ToTable("RECETA");
 
@@ -466,7 +465,7 @@ namespace NutriTEC_rest.DB_Context
             modelBuilder.Entity<RegistroMedida>(entity =>
             {
                 entity.HasKey(e => new { e.CorreoCliente, e.Fecha })
-                    .HasName("PK__REGISTRO__9849BD534718E73B");
+                    .HasName("PK__REGISTRO__9849BD530E54D556");
 
                 entity.ToTable("REGISTRO_MEDIDAS");
 
