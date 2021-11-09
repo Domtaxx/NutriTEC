@@ -31,12 +31,12 @@
     <div class="spacer"></div>
     <!--TODAY-->
     <div *ngIf="today"  style="height: 80%; width: 100%; display: flex; flex-direction: column; align-items: center;">
-        <div class="dataColumn" style="width: 50%;">
+        <div class="dataColumn" >
 
             <div class="dataCell">
                 <div class="text inputText">Peso</div>
                 <div class="InputContainer"style="width: 76%;">
-                    <input style="width: 100%; "class="myInput"  type="text">
+                    <input style="width: 100%;"  [value]="peso"  (input)="peso = $any( $event.target).value" class="myInput"  type="text">
                     <div class="inputLine"></div>
                 </div>
                 <div class="text inputText">Kg</div>
@@ -45,7 +45,7 @@
             <div class="dataCell">
                 <div class="text inputText">IMC</div>
                 <div class="InputContainer"style="width: 76%;">
-                    <input style="width: 100%; "class="myInput"  type="text">
+                    <input style="width: 100%;" [value]="imc"  (input)="imc = $any( $event.target).value" class="myInput"  type="text">
                     <div class="inputLine"></div>
                 </div>
                 <div class="text inputText">Kg/m2</div>
@@ -54,7 +54,7 @@
             <div class="dataCell">
                 <div class="text inputText">Músculo</div>
                 <div class="InputContainer"style="width: 76%;">
-                    <input style="width: 100%; "class="myInput"  type="text">
+                    <input style="width: 100%;" [value]="musculo"  (input)="musculo = $any( $event.target).value" class="myInput"  type="text">
                     <div class="inputLine"></div>
                 </div>
                 <div class="text inputText">%</div>
@@ -63,7 +63,7 @@
             <div class="dataCell">
                 <div class="text inputText">Grasa</div>
                 <div class="InputContainer"style="width: 76%;">
-                    <input style="width: 100%; "class="myInput"  type="text">
+                    <input style="width: 100%;" [value]="grasa"  (input)="grasa = $any( $event.target).value" class="myInput"  type="text">
                     <div class="inputLine"></div>
                 </div>
                 <div class="text inputText">%</div>
@@ -72,7 +72,7 @@
             <div class="dataCell">
                 <div class="text inputText">Cintura</div>
                 <div class="InputContainer"style="width: 76%;">
-                    <input style="width: 100%; "class="myInput"  type="text">
+                    <input style="width: 100%;" [value]="cintura"  (input)="cintura = $any( $event.target).value" class="myInput"  type="text">
                     <div class="inputLine"></div>
                 </div>
                 <div class="text inputText">cm</div>
@@ -81,7 +81,7 @@
             <div class="dataCell">
                 <div class="text inputText">Cuello</div>
                 <div class="InputContainer"style="width: 76%;">
-                    <input style="width: 100%; "class="myInput"  type="text">
+                    <input style="width: 100%;" [value]="cuello"  (input)="cuello = $any( $event.target).value" class="myInput"  type="text">
                     <div class="inputLine"></div>
                 </div>
                 <div class="text inputText">cm</div>
@@ -90,7 +90,7 @@
             <div class="dataCell">
                 <div class="text inputText">Caderas</div>
                 <div class="InputContainer"style="width: 76%;">
-                    <input style="width: 100%; "class="myInput"  type="text">
+                    <input style="width: 100%;" [value]="caderas"  (input)="caderas = $any( $event.target).value" class="myInput"  type="text">
                     <div class="inputLine"></div>
                 </div>
                 <div class="text inputText">cm</div>
@@ -105,16 +105,16 @@
 
     <div *ngIf="history"  class="verticalHistory" >
 
-        <div *ngFor="let measureData of measures" class="dataColumn" style="width: 50%;">
+        <div *ngFor="let measureData of measures" class="dataColumn" >
 
             <div class="dataCell">
                 <div class="text inputText">Fecha: </div>
-                <div class="text inputText">12/12/12</div>
+                <div class="text inputText">{{measureData.date}}</div>
             </div>
             <div class="dataCell">
                 <div class="text inputText">Peso</div>
                 <div class="InputContainer"style="width: 76%;">
-                    <input style="width: 100%; "class="myInput"  type="text">
+                    <div class="text inputText">{{measureData.peso}}</div>
                     <div class="inputLine"></div>
                 </div>
                 <div class="text inputText">Kg</div>
@@ -123,7 +123,7 @@
             <div class="dataCell">
                 <div class="text inputText">IMC</div>
                 <div class="InputContainer"style="width: 76%;">
-                    <input style="width: 100%; "class="myInput"  type="text">
+                    <div class="text inputText">{{measureData.imc}}</div>
                     <div class="inputLine"></div>
                 </div>
                 <div class="text inputText">Kg/m2</div>
@@ -132,7 +132,7 @@
             <div class="dataCell">
                 <div class="text inputText">Músculo</div>
                 <div class="InputContainer"style="width: 76%;">
-                    <input style="width: 100%; "class="myInput"  type="text">
+                    <div class="text inputText">{{measureData.musculo}}</div>
                     <div class="inputLine"></div>
                 </div>
                 <div class="text inputText">%</div>
@@ -141,7 +141,7 @@
             <div class="dataCell">
                 <div class="text inputText">Grasa</div>
                 <div class="InputContainer"style="width: 76%;">
-                    <input style="width: 100%; "class="myInput"  type="text">
+                    <div class="text inputText">{{measureData.grasa}}</div>
                     <div class="inputLine"></div>
                 </div>
                 <div class="text inputText">%</div>
@@ -150,7 +150,7 @@
             <div class="dataCell">
                 <div class="text inputText">Cintura</div>
                 <div class="InputContainer"style="width: 76%;">
-                    <input style="width: 100%; "class="myInput"  type="text">
+                    <div class="text inputText">{{measureData.cintura}}</div>
                     <div class="inputLine"></div>
                 </div>
                 <div class="text inputText">cm</div>
@@ -159,7 +159,7 @@
             <div class="dataCell">
                 <div class="text inputText">Cuello</div>
                 <div class="InputContainer"style="width: 76%;">
-                    <input style="width: 100%; "class="myInput"  type="text">
+                    <div class="text inputText">{{measureData.cuello}}</div>
                     <div class="inputLine"></div>
                 </div>
                 <div class="text inputText">cm</div>
@@ -168,22 +168,23 @@
             <div class="dataCell">
                 <div class="text inputText">Caderas</div>
                 <div class="InputContainer"style="width: 76%;">
-                    <input style="width: 100%; "class="myInput"  type="text">
+                    <div class="text inputText">{{measureData.caderas}}</div>
                     <div class="inputLine"></div>
                 </div>
                 <div class="text inputText">cm</div>
             </div>
-            <div class="spacer"></div>
+            <div class="spacer" style=" border-bottom: 5px solid #bbe2a2;"></div>
             <div style="margin-bottom: 13%;"></div>
         </div>
 
     </div>
 
 
-    <div class="spacer" style="margin-bottom: 0;"></div>
-    <div class="buttonContainer" style="height: 10%;">
-        <div class="card nextButton" (click)="searching=false ;finishing=true;">
-            <div class="text inputText" >Siguiente</div>    
+    <div  class="spacer" style="margin-bottom: 0; "></div>
+
+    <div *ngIf="today" class="buttonContainer" style="height: 10%;">
+        <div class="card nextButton" (click)="submit()" >
+            <div class="text inputText" >Reportar Medición</div>    
         </div>
     </div>
 
