@@ -6,12 +6,36 @@
   align-content: center;
   height: 70vh;
 }
-.icon {
-  color: var(--itemColor);
-  transform: scale(4);
-  margin-top: 50%;
-  user-select: none;
+
+.scrollCardContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
+.productCard {
+  background-color: var(--buttonColor) !important;
+  min-width: 12vh;
+  align-items: center;
+  min-height: 200px;
+  margin-bottom: 3vh;
+  display: flex;
+  flex-direction: column;
+  transition: 0.5s;
+}
+.productCard:hover {
+  transition: 0.5s;
+  cursor: pointer;
+  filter: invert(0.07);
+}
+.logo {
+  width: 37%;
+}
+.info {
+  color: var(--itemColor);
+  font-size: 3vh;
+}
+
 .textAndIcon {
   display: flex;
   flex-direction: row;
@@ -58,7 +82,7 @@
 .spacer {
   margin-bottom: 1%;
   width: 94%;
-  border-bottom: 0.1px solid #bbe2a2 !important;
+  border-bottom: 0.1px solid #bbe2a2;
 }
 .inputLine {
   border-bottom: 0.5px solid var(--itemColor) !important;
@@ -72,32 +96,26 @@
 .dataColumn {
   display: flex;
   flex-direction: column;
-  width: 33%;
+  width: 100%;
+  align-items: center;
 }
 .dataCell {
-  width: 100%;
+  width: 50%;
   height: 12%;
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-bottom: 4%;
 }
 
-.smallInput {
-  width: 20%;
-}
-
-.myInputOverride {
-  font-size: 3vh !important;
-  font-weight: bold !important;
-}
 .buttonContainer {
   display: flex;
   justify-content: flex-end;
   width: 94%;
-  margin-top: 4%;
+  margin-top: 1%;
 }
 .nextButton {
-  width: 21vh;
+  width: auto;
   height: 6vh;
   background-color: var(--buttonColor);
   display: flex;
@@ -108,110 +126,18 @@
   cursor: pointer;
   background-color: var(--selectButtonColor);
 }
-.columHeaders {
-  display: flex;
-}
-.scrollCardContainer {
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  height: 100%;
-  width: 100%;
-  margin-left: 1%;
-}
-.productCard {
-  background-color: var(--buttonColor) !important;
-  width: 100%;
-  align-items: center;
-  min-height: 72px;
-  margin-top: 1vh;
-  display: flex;
-  justify-content: space-between;
-}
 
-.circle {
-  color: var(--itemColor);
-  transform: scale(2);
-  transition: 0.5s;
-}
-.circle:hover {
-  filter: invert(0.2);
-  transform: scale(2.2);
-  transition: 0.5s;
-  cursor: pointer;
-}
-.iconContainer {
-  user-select: none;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-}
-.searchingBox {
-  width: 60vh;
-  height: 70vh;
-  background-color: #dbf3cd;
-  position: absolute;
-  z-index: 3;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-.searchResults {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-
-  overflow-y: hidden;
-  scroll-behavior: auto;
-  width: 100%;
-  height: 60%;
-}
-.searchButton {
-  background-color: var(--buttonColor);
-  border-radius: 0px 6px 6px 0px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 16%;
-  height: 4vh;
-}
-.searchButton:hover {
-  cursor: pointer;
-  filter: invert(0.1);
-}
 .buttonSpace {
   height: 10%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
-.cancelButton {
-  transform: scale(1.5);
-}
-.cancelButton:hover {
-  filter: invert(0.1);
-  cursor: pointer;
-}
+
 .lp {
   margin-bottom: 1vh;
 }
-.column {
-  display: flex;
-  flex-direction: column;
-  width: 20%;
-  margin-right: 0.4%;
-}
+
 .horizontalColumnContainer {
   display: flex;
   flex-direction: row;
@@ -257,42 +183,23 @@
 .verticalHistory {
   display: flex;
   flex-direction: column;
-  width: 100%;
   overflow-y: auto;
-  height: 60%;
+  height: 80%;
+  width: 100%;
+  align-items: center;
 }
 .historyData {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
-.feedBackBox {
-  width: 100%;
-  height: 15vh;
-  background-color: var(--buttonColor);
-  display: flex;
-}
+
 .logox {
   color: var(--itemColor);
   transform: scale(1.4);
   width: 10%;
 }
-.feedBackText {
-  width: 90%;
-  height: 100%;
+.icon {
+  transform: scale(2);
   color: var(--itemColor);
-  font-size: 3vh;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-.editIcon {
-  user-select: none;
-  transform: scale(1.4);
-  color: var(--itemColor);
-  white-space: nowrap;
-}
-.editIcon:hover {
-  cursor: pointer;
-  filter: invert(0.4);
 }

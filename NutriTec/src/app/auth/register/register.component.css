@@ -14,8 +14,9 @@
   user-select: none;
   pointer-events: none;
 }
-.loginInputContainer {
-  margin-top: 28%;
+.title {
+  color: var(--itemColor);
+  font-size: 3vh;
 }
 .loginInput {
   width: 100%;

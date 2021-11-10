@@ -1,23 +1,36 @@
 <div class="mainViewContainer">
     <div class="card loginBox">
         <img class="logo" src="../../../assets/composedLogo.svg" alt="">
-        <div>
-            <div class="text" ></div>
-            <div class="loginInputContainer"> 
-                <input class="myInput loginInput"  type="text" placeholder=" Inserte su usuario" autocomplete="new-password">
+        <div style="height: 100%;">
+            <div style="height: 15%;" class="text title" >Registro</div>
+
+
+            <div style="height: 15%;" class="loginInputContainer"> 
+                <input class="myInput loginInput"  type="text" placeholder="Nombre" autocomplete="new-password">
                 <div class="hline"></div>
             </div>
+
+            <div style="height: 15%;"  class="loginInputContainer"> 
+                <input class="myInput loginInput"  type="text" placeholder="Apellidos" autocomplete="new-password">
+                <div class="hline"></div>
+            </div>
+
+            <div style="height: 15%;"  class="loginInputContainer"> 
+                <input class="myInput loginInput"  type="text" placeholder="Correo Electrónico" autocomplete="new-password">
+                <div class="hline"></div>
+            </div>
+
+    
             
-            <div class="loginInputContainer"> 
+            <div style="height: 15%;"  class="loginInputContainer"> 
                 <input class="myInput loginInput"  type="password" placeholder=" Inserte su Contraseña" autocomplete="new-password">
                 <div class="hline"></div>
             </div>
+
             
-            <div>
-                <div class="text registerText">¿No tiene una cuenta? </div>
-            </div>
-            <div class="card loginButton" >
-                <div class="text loginText">Ingresar </div>
+
+            <div style="height: 15%;"  class="card loginButton" (click)="nextRegistrationStep()">
+                <div class="text loginText">Registrarse </div>
             </div>
         </div>
 

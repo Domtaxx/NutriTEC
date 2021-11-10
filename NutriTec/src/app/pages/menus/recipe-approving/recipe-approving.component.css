@@ -1,0 +1,123 @@
+.mainView {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  align-content: center;
+  height: 70vh;
+}
+.icon {
+  color: var(--itemColor);
+  transform: scale(4);
+  margin-top: 50%;
+  user-select: none;
+}
+.textAndIcon {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 94%;
+  height: 15%;
+  align-items: flex-start;
+}
+
+.Title {
+  font-size: 260%;
+  color: var(--itemColor);
+  margin-top: 2%;
+  user-select: none;
+}
+
+.inputText {
+  font-size: 142%;
+  font-weight: 100;
+  color: var(--itemColor);
+  width: auto;
+  user-select: none;
+  text-overflow: ellipsis;
+}
+
+.titleDataText {
+  font-size: 102%;
+  font-weight: 100;
+  color: var(--itemColor);
+  width: auto;
+  margin-right: 3%;
+  margin-left: 3%;
+  text-overflow: ellipsis;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  user-select: none;
+  text-align: start;
+}
+
+.dataText {
+  font-size: 142%;
+  font-weight: 200;
+  color: var(--itemColor);
+  width: auto;
+  margin-right: 3%;
+  margin-left: 3%;
+  text-overflow: ellipsis;
+  display: flex;
+  flex-direction: row;
+  user-select: none;
+  justify-content: flex-start;
+  text-align: start;
+}
+
+.spacer {
+  width: 100%;
+  border-bottom: 0.4px solid #bbe2a2 !important;
+}
+
+.scrollCardContainer {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 80%;
+  width: 100%;
+}
+.productCard {
+  background-color: var(--buttonColor) !important;
+  width: 100%;
+  align-items: center;
+  min-height: 172px;
+  margin-bottom: 3vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  margin-bottom: 1%;
+}
+.buttonBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+}
+.circleButton {
+  border-radius: 100%;
+
+  width: 6vh;
+  height: 6vh;
+  margin-right: 3vh;
+  user-select: none;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s;
+}
+.circleButton:hover {
+  transition: 0.5s;
+  cursor: pointer;
+  user-select: none;
+
+  filter: invert(0.3);
+}

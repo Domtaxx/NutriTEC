@@ -9,7 +9,9 @@
   --itemColor: #3f6328;
   --selectButtonColor: #d7e7ce;
 }
-
+::placeholder {
+  color: var(--itemColor);
+}
 html,
 body {
   height: 100%;

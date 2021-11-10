@@ -1,0 +1,76 @@
+<div class="mainView">
+
+
+    <div class="textAndIcon">
+        <div class="text Title">Gestión de Cobro</div>
+        <div><mat-icon class="icon">card</mat-icon></div>
+        
+    </div>
+
+    <div class="spacer"></div>
+
+<!--Encabezados-->
+    <div class=" card columHeaders">
+        <div class="text inputText">Nombre</div>
+        <div class="text inputText">Tipo de Pago </div>
+        <div class="text inputText">Pacientes</div>
+        <div class="text inputText">Descuentos</div>
+        <div class="text inputText">Total</div>
+    </div>
+    
+
+    <div class="scrollCardContainer">
+
+        <div class="separatorCard">
+            <div class="inputText text">Semanal</div>
+        </div>
+
+        <div *ngFor='let doctor of semanalDoctors' class="card doctorCard">
+            <div style="width: 30%;" class="text inputText">{{doctor.name}}</div>
+            <div style="width: 20%;" class="text inputText">{{doctor.billType}}</div>
+            <div style="width: 15%;" class="text inputText">{{doctor.pacients}}</div>
+            <div style="width: 15%;" class="text inputText">{{doctor.descount}}%</div>
+            <div style="width: 20%;" class="text inputText">{{doctor.total}}</div>
+        </div>
+
+        <div class="separatorCard">
+            <div class="inputText text">Mensual</div>
+        </div>
+
+
+       
+
+        <div *ngFor='let doctor of mensualDoctors' class="card doctorCard">
+            <div style="width: 30%;" class="text inputText">{{doctor.name}}</div>
+            <div style="width: 20%;" class="text inputText">{{doctor.billType}}</div>
+            <div style="width: 15%;" class="text inputText">{{doctor.pacients}}</div>
+            <div style="width: 15%;" class="text inputText">{{doctor.descount}}%</div>
+            <div style="width: 20%;" class="text inputText">{{doctor.total}}</div>
+        </div>
+
+
+        <div class="separatorCard">
+            <div class="inputText text">Anual</div>
+        </div>
+        
+        <div *ngFor='let doctor of anualDoctors' class="card doctorCard">
+            <div style="width: 30%;" class="text inputText">{{doctor.name}}</div>
+            <div style="width: 20%;" class="text inputText">{{doctor.billType}}</div>
+            <div style="width: 15%;" class="text inputText">{{doctor.pacients}}</div>
+            <div style="width: 15%;" class="text inputText">{{doctor.descount}}%</div>
+            <div style="width: 20%;" class="text inputText">{{doctor.total}}</div>
+        </div>
+
+
+    </div>
+        
+        <div class="spacer" style="  margin-bottom: 2%;"></div>
+
+
+        <div class="buttonContainer">
+            <div class="card nextButton" (click)="submit()">
+                <div class="text inputText" >Generar Cobro</div>    
+            </div>
+        </div>
+
+</div>

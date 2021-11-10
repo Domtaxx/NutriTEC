@@ -1,0 +1,141 @@
+<div class="mainView" *ngIf="userType<0">
+
+
+    <div class="scrollCardContainer">
+        <div  class="card productCard" (click)="selectUser(1)">
+
+            <img class="logo" src="../../../../assets/user.svg" alt="">   
+            <div class="text info">Usuario</div>              
+        </div>
+        <div  class="card productCard" (click)="selectUser(2)">
+            <img class="logo" src="../../../../assets/doctorsvg.svg" alt="">         
+            <div class="text info">Nutriólogo</div>           
+        </div>
+    </div>
+
+
+    
+
+
+</div>
+
+
+<div class="mainView" style="min-width: 60vh;" *ngIf="userType>0">
+
+
+    <div class="textAndIcon">
+        <div class="text Title">Mediciones</div>
+        <div><mat-icon class="icon">straighten</mat-icon></div>
+        
+    </div>
+
+    <div class="spacer"></div>
+    <!--TODAY-->
+    <div style="height: 80%; width: 100%; display: flex; flex-direction: column; align-items: center;">
+        <div class="dataColumn" >
+
+            <div class="dataCell">
+                <div class="text inputText">Peso</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%;"  [value]="peso"  (input)="peso = $any( $event.target).value" class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">Kg</div>
+            </div>
+
+            <div class="dataCell">
+                <div class="text inputText">IMC</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%;" [value]="imc"  (input)="imc = $any( $event.target).value" class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">Kg/m2</div>
+            </div>
+
+            <div class="dataCell">
+                <div class="text inputText">Músculo</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%;" [value]="musculo"  (input)="musculo = $any( $event.target).value" class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">%</div>
+            </div>
+
+            <div class="dataCell">
+                <div class="text inputText">Grasa</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%;" [value]="grasa"  (input)="grasa = $any( $event.target).value" class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">%</div>
+            </div>
+
+            <div class="dataCell">
+                <div class="text inputText">Cintura</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%;" [value]="cintura"  (input)="cintura = $any( $event.target).value" class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">cm</div>
+            </div>
+
+            <div class="dataCell">
+                <div class="text inputText">Cuello</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%;" [value]="cuello"  (input)="cuello = $any( $event.target).value" class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">cm</div>
+            </div>
+
+            <div class="dataCell">
+                <div class="text inputText">Caderas</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%;" [value]="caderas"  (input)="caderas = $any( $event.target).value" class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">cm</div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <div  class="spacer" style="margin-bottom: 0; "></div>
+
+    <div class="buttonContainer" style="height: 10%;">
+        <div class="card nextButton" (click)="submit()" >
+            <div class="text inputText" >Siguiente</div>    
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

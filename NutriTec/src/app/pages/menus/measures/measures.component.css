@@ -7,6 +7,14 @@
   height: 70vh;
 }
 
+.scrollCardContainer {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 100%;
+  width: 100%;
+  margin-left: 1%;
+}
 .textAndIcon {
   display: flex;
   flex-direction: row;
@@ -22,8 +30,7 @@
   color: var(--itemColor);
   margin-top: 2%;
 }
-.InputContainer {
-}
+
 .textAndInput {
   display: flex;
   align-items: center;
@@ -99,15 +106,6 @@
   background-color: var(--selectButtonColor);
 }
 
-.scrollCardContainer {
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  height: 100%;
-  width: 100%;
-  margin-left: 1%;
-}
-
 .buttonSpace {
   height: 10%;
   display: flex;
@@ -179,4 +177,9 @@
   color: var(--itemColor);
   transform: scale(1.4);
   width: 10%;
+}
+.icon {
+  color: var(--itemColor);
+  transform: scale(4);
+  margin-top: 50%;
 }

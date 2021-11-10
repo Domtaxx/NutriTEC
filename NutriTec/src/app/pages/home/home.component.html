@@ -72,15 +72,15 @@
         <div class="card optionDialog">
             <div class="TitleText">¿Qué deseas hacer?</div>
             <div class="optionContainer">
-                <div class="card optionCard">
+                <div class="card optionCard" (click)="openAproveRecipe()">
                     <mat-icon class="optionIcon">fastfood</mat-icon>
                     <div class="text optionText">Aprobar Recetas</div>
                 </div>
-                <div class="card optionCard">
+                <div class="card optionCard" (click)='openAproveProduct()'>
                     <mat-icon class="optionIcon">qr_code_2</mat-icon>
                     <div class="text optionText">Aprobar Productos</div>
                 </div>
-                <div class="card optionCard">
+                <div class="card optionCard" (click)='openBillManage()'>
                     <mat-icon class="optionIcon">credit_card</mat-icon>
                     <div class="text optionText">Gestionar Cobros</div>
                 </div>

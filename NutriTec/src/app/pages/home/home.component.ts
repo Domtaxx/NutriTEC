@@ -7,6 +7,9 @@ import { NutriPlanComponent } from '../menus/nutri-plan/nutri-plan.component';
 import { ClientSectionComponent } from '../menus/client-section/client-section.component';
 import { UserService } from 'src/app/services/userService';
 import { ComService } from 'src/app/services/comService';
+import { RecipeApprovingComponent } from '../menus/recipe-approving/recipe-approving.component';
+import { ProductApprovingComponent } from '../menus/product-approving/product-approving.component';
+import { BillManageComponent } from '../menus/bill-manage/bill-manage.component';
 
 @Component({
   selector: 'app-home',
@@ -29,7 +32,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.com.homeComp = this;
-    this.openClientSection();
+    this.openBillManage();
   }
   /**
    * def opens Add Product dialog
@@ -105,6 +108,46 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  /**
+   * def opens Add Recipe dialog
+   */
+  openAproveRecipe() {
+    this.dialogIsOpen = true;
+    let dialogRef = this.dialog.open(RecipeApprovingComponent, {
+      width: '60%',
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.dialogIsOpen = false;
+    });
+  }
+  /**
+   * def opens Aprove Prouduct dialog
+   */
+  openAproveProduct() {
+    this.dialogIsOpen = true;
+    let dialogRef = this.dialog.open(ProductApprovingComponent, {
+      width: '60%',
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.dialogIsOpen = false;
+    });
+  }
+
+  openBillManage() {
+    this.dialogIsOpen = true;
+    let dialogRef = this.dialog.open(BillManageComponent, {
+      width: '60%',
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.dialogIsOpen = false;
+    });
+  }
   /**
    * ONLY FOR DEVS, SWITCH USER TYPE
    */
