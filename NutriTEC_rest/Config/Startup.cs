@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Certificate;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -37,6 +38,8 @@ namespace NutriTEC_rest
                     builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
                 })
             );
+            services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme)
+                    .AddCertificate(options => options.AllowedCertificateTypes = CertificateTypes.All);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +53,7 @@ namespace NutriTEC_rest
             }
             app.UseCors(_myCors);
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

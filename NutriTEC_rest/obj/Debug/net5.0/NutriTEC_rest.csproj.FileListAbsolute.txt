@@ -58,3 +58,5 @@ D:\Github Repositorios\NutriTEC\NutriTEC_rest\obj\Debug\net5.0\NutriTEC_rest.dll
 D:\Github Repositorios\NutriTEC\NutriTEC_rest\obj\Debug\net5.0\ref\NutriTEC_rest.dll
 D:\Github Repositorios\NutriTEC\NutriTEC_rest\obj\Debug\net5.0\NutriTEC_rest.pdb
 D:\Github Repositorios\NutriTEC\NutriTEC_rest\obj\Debug\net5.0\NutriTEC_rest.genruntimeconfig.cache
+D:\Github Repositorios\NutriTEC\NutriTEC_rest\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Certificate.dll
+D:\Github Repositorios\NutriTEC\NutriTEC_rest\obj\Debug\net5.0\NutriTEC_rest.csproj.CopyComplete
