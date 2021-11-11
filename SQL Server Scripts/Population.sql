@@ -32,9 +32,9 @@ insert into PRODUCTO
 	(Codigo_barras,Sodio,Energia,Carbohidratos,Tamano,Vitaminas,Descripcion,Estado,Hierro,Calcio,Proteina,Correo_admin)
 values('7501000664221',2.5,100,70.8,186,4,'GALLETA SALADITA GAMESA 186GR','Agotado',2,3.1,0.4,'Admin1@gmail.com');
 
-insert into RECETA(Nombre,Correo_admin)values('Galletas Sabrosas','Admin1@gmail.com');
-insert into RECETA(Nombre,Correo_admin)values('Galletas Exquisitas','Admin2@gmail.com');
-insert into RECETA(Nombre,Correo_admin)values('Galletas Increibles','Admin1@gmail.com');
+insert into RECETA(Nombre,Correo_admin,Aprobado,Correo_creador)values('Galletas Sabrosas','Admin1@gmail.com',1,'mangel12412@gmail.com');
+insert into RECETA(Nombre,Correo_admin,Aprobado,Correo_creador)values('Galletas Exquisitas','Admin2@gmail.com',1,'mangel12412@gmail.com');
+insert into RECETA(Nombre,Correo_admin,Aprobado,Correo_creador)values('Galletas Increibles','Admin1@gmail.com',1,'mangel12412@gmail.com');
 
 insert into REGISTRO_MEDIDAS(Correo_cliente,Cadera,Porcentaje_grasa,Porcentaje_musculo,Cuello,Cintura,Fecha)
 values('mangel12412@gmail.com',60,19,40,35,63,'2020-05-07');
@@ -64,10 +64,10 @@ values('Plan de alimentacion Miguel','Menu#1 Miguel','7501000608249');
 insert into MENU_PRODUCTO(Nombre_plan_alimentacion,Nombre_menu,Codigo_barras)
 values('Plan de alimentacion Miguel','Menu#1 Miguel','7501000664221');
 
-insert into MENU_RECETA(Nombre_plan_alimentacion,Nombre_menu,Nombre_receta)values('Plan de alimentacion Antonio','Menu#1 Antonio','Galletas Sabrosas');
-insert into MENU_RECETA(Nombre_plan_alimentacion,Nombre_menu,Nombre_receta)values('Plan de alimentacion Manuel','Menu#1 Manuel','Galletas Sabrosas');
-insert into MENU_RECETA(Nombre_plan_alimentacion,Nombre_menu,Nombre_receta)values('Plan de alimentacion Manuel','Menu#1 Manuel','Galletas Exquisitas');
-insert into MENU_RECETA(Nombre_plan_alimentacion,Nombre_menu,Nombre_receta)values('Plan de alimentacion Miguel','Menu#1 Miguel','Galletas Increibles');
+insert into MENU_RECETA(Nombre_plan_alimentacion,Nombre_menu,Nombre_receta,Correo_creador)values('Plan de alimentacion Antonio','Menu#1 Antonio','Galletas Sabrosas','mangel12412@gmail.com');
+insert into MENU_RECETA(Nombre_plan_alimentacion,Nombre_menu,Nombre_receta,Correo_creador)values('Plan de alimentacion Manuel','Menu#1 Manuel','Galletas Sabrosas','mangel12412@gmail.com');
+insert into MENU_RECETA(Nombre_plan_alimentacion,Nombre_menu,Nombre_receta,Correo_creador)values('Plan de alimentacion Manuel','Menu#1 Manuel','Galletas Exquisitas','mangel12412@gmail.com');
+insert into MENU_RECETA(Nombre_plan_alimentacion,Nombre_menu,Nombre_receta,Correo_creador)values('Plan de alimentacion Miguel','Menu#1 Miguel','Galletas Increibles','mangel12412@gmail.com');
 
 insert into CLIENTE_PLAN(Nombre_plan,Correo_cliente,Inicio,Final)values('Plan de alimentacion Antonio','Antonio40123@gmail.com','2021-03-10','2021-12-10');
 insert into CLIENTE_PLAN(Nombre_plan,Correo_cliente,Inicio,Final)values('Plan de alimentacion Manuel','manuel0123@gmail.com','2021-04-10','2022-01-10');
@@ -80,6 +80,12 @@ insert into CLIENTE_PRODUCTO(Codigo_barras,Correo_cliente,Fecha,Tiempo)values('7
 insert into CLIENTE_PRODUCTO(Codigo_barras,Correo_cliente,Fecha,Tiempo)values('7501000608249','mangel12412@gmail.com','2021-11-09','Desayuno');
 insert into CLIENTE_PRODUCTO(Codigo_barras,Correo_cliente,Fecha,Tiempo)values('7501000664221','mangel12412@gmail.com','2021-11-09','Desayuno');
 
-insert into CLIENTE_RECETA(Nombre_receta,Correo_cliente,Fecha,Tiempo)values('Galletas Exquisitas','manuel0123@gmail.com','2021-11-09','Desayuno');
-insert into CLIENTE_RECETA(Nombre_receta,Correo_cliente,Fecha,Tiempo)values('Galletas Sabrosas','Antonio40123@gmail.com','2021-11-09','Desayuno');
-insert into CLIENTE_RECETA(Nombre_receta,Correo_cliente,Fecha,Tiempo)values('Galletas Increibles','mangel12412@gmail.com','2021-11-09','Desayuno');
+insert into CLIENTE_RECETA(Nombre_receta,Correo_cliente,Fecha,Tiempo,Correo_creador)values('Galletas Exquisitas','manuel0123@gmail.com','2021-11-09','Desayuno','mangel12412@gmail.com');
+insert into CLIENTE_RECETA(Nombre_receta,Correo_cliente,Fecha,Tiempo,Correo_creador)values('Galletas Sabrosas','Antonio40123@gmail.com','2021-11-09','Desayuno','mangel12412@gmail.com');
+insert into CLIENTE_RECETA(Nombre_receta,Correo_cliente,Fecha,Tiempo,Correo_creador)values('Galletas Increibles','mangel12412@gmail.com','2021-11-09','Desayuno','mangel12412@gmail.com');
+
+insert into RECETA_PRODUCTO(nombre_receta, correo_creador, codigo_barras,cantidad) values ('Galletas Exquisitas','mangel12412@gmail.com','7501000608249',1);
+insert into RECETA_PRODUCTO(nombre_receta, correo_creador, codigo_barras,cantidad) values ('Galletas Sabrosas','mangel12412@gmail.com','7501000608249',4);
+insert into RECETA_PRODUCTO(nombre_receta, correo_creador, codigo_barras,cantidad) values ('Galletas Increibles','mangel12412@gmail.com','7501000608249',1);
+insert into RECETA_PRODUCTO(nombre_receta, correo_creador, codigo_barras,cantidad) values ('Galletas Increibles','mangel12412@gmail.com','7501000664221',2);
+insert into RECETA_PRODUCTO(nombre_receta, correo_creador, codigo_barras,cantidad) values ('Galletas Increibles','mangel12412@gmail.com','7501000608058',3);

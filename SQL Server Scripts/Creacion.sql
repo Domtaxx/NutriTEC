@@ -21,7 +21,9 @@ Create table [ADMINISTRADOR](
 Create table [RECETA](
 	Correo_admin varchar(320),
 	Nombre varchar(128),
-	primary key(Nombre)
+	Correo_creador varchar(320),
+	Aprobado bit,
+	primary key(Nombre,Correo_creador)
 );
 Create table [REGISTRO_MEDIDAS](
 	Correo_cliente varchar(320),
@@ -79,9 +81,10 @@ Create Table [MENU](
 Create Table [CLIENTE_RECETA](
 	Nombre_receta varchar(128),
 	Correo_cliente varchar(320),
+	Correo_creador varchar(320),
 	Fecha date,
     Tiempo varchar(128),
-	primary key(Nombre_receta,Correo_cliente,Fecha,Tiempo)
+	primary key(Nombre_receta,Correo_creador,Correo_cliente,Fecha,Tiempo)
 );
 Create Table [CLIENTE_PRODUCTO](
 	Codigo_barras varchar(128),
@@ -108,7 +111,16 @@ Create Table [MENU_RECETA](
 	Nombre_plan_alimentacion varchar(128),
 	Nombre_menu varchar(128),
 	Nombre_receta varchar(128),
-	primary key(Nombre_plan_alimentacion, Nombre_menu, Nombre_receta)
+	Correo_creador varchar(320),
+	primary key(Nombre_plan_alimentacion, Nombre_menu, Nombre_receta,Correo_creador)
+);
+
+Create Table [RECETA_PRODUCTO](
+	Nombre_receta varchar(128),
+	Correo_creador varchar(320),
+	Codigo_barras varchar(128),
+	cantidad int,
+	primary key(Nombre_receta,Correo_creador,Codigo_barras)
 );
 
 Alter Table [PRODUCTO]
@@ -118,6 +130,10 @@ Foreign key(Correo_admin) References ADMINISTRADOR(Correo);
 Alter Table [RECETA]
 Add Constraint correo_admin_RECETA
 Foreign key(Correo_admin) REFERENCES ADMINISTRADOR(Correo);
+
+Alter Table [RECETA]
+Add Constraint correo_creador_RECETA
+Foreign key(Correo_creador) REFERENCES CLIENTE(Correo);
 
 Alter Table [REGISTRO_MEDIDAS]
 Add Constraint cliente_correo_REGISTRO_MEDIDAS
@@ -140,8 +156,8 @@ Add Constraint Correo_nutri_MENU
 Foreign key(Correo_nutri) References NUTRICIONISTA(Correo);
 
 Alter Table [CLIENTE_RECETA]
-Add Constraint nombre_receta_CLIENTE_RECETA
-Foreign key(Nombre_receta) References RECETA(Nombre);
+Add Constraint receta_CLIENTE_RECETA
+Foreign key(Nombre_receta,Correo_creador) References RECETA(Nombre,Correo_creador);
 
 Alter Table [CLIENTE_RECETA]
 Add Constraint correo_cliente_CLIENTE_RECETA
@@ -176,5 +192,13 @@ Add Constraint menu_MENU_RECETA
 Foreign key (Nombre_plan_alimentacion, Nombre_menu) References MENU(Nombre_plan_alimentacion,Nombre);
 
 Alter Table [MENU_RECETA]
-Add Constraint nombre_receta_MENU_RECETA
-Foreign key(Nombre_receta) References RECETA(Nombre);
+Add Constraint receta_MENU_RECETA
+Foreign key(Nombre_receta,Correo_creador) References RECETA(Nombre,Correo_creador);
+
+Alter TABLE [RECETA_PRODUCTO]
+Add CONSTRAINT receta_RECETA_PRODUCTO
+FOREIGN KEY (Nombre_receta,Correo_creador) REFERENCES RECETA(Nombre,Correo_creador);
+
+Alter TABLE [RECETA_PRODUCTO]
+Add CONSTRAINT codigo_barras_RECETA_PRODUCTO
+FOREIGN KEY (Codigo_barras) REFERENCES PRODUCTO(Codigo_barras);

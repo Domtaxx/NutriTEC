@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NutriTEC_rest.DB_Context;
-using NutriTEC_rest.SQL_Model;
+using NutriTEC_rest.SQL_Model.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,16 +11,16 @@ namespace NutriTEC_rest.Controllers
 {
     [ApiController]
     [Route("Login/Client")]
-    public class LoginController : Controller
+    public class Login_Cliente : Controller
     {
         NutriTECContext Db = new NutriTECContext();
         [HttpGet]
-        public ActionResult Get()
+        public ActionResult Get(string Correo, string Contra)
         {
             try
             {
-                var clients = Db.Clientes.ToList();
-                return Ok(clients);
+                var client = Db.ClientPublics.FromSqlInterpolated($"exec spLoginClient {Correo},{Contra}");
+                return Ok(client);
             }catch (Exception e)
             {
                 return BadRequest(e.Message);
