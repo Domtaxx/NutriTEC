@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace NutriTEC_rest.SQL_Model
+namespace NutriTEC_rest.SQL_Model.Models
 {
-    public partial class ClienteRecetum
+    public partial class ClienteProducto
     {
-        public string NombreReceta { get; set; }
+        public string CodigoBarras { get; set; }
         public string CorreoCliente { get; set; }
         public DateTime Fecha { get; set; }
         public string Tiempo { get; set; }
 
+        public virtual Producto CodigoBarrasNavigation { get; set; }
         public virtual Cliente CorreoClienteNavigation { get; set; }
-        public virtual Recetum NombreRecetaNavigation { get; set; }
     }
 }

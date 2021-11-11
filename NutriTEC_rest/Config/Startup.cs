@@ -15,6 +15,7 @@ namespace NutriTEC_rest
 {
     public class Startup
     {
+        public readonly string _myCors = "MyCors";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -31,6 +32,11 @@ namespace NutriTEC_rest
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "NutriTEC_rest", Version = "v1" });
             });
+            services.AddCors(options =>
+                options.AddPolicy(name: _myCors, builder => {
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                })
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,7 +48,7 @@ namespace NutriTEC_rest
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "NutriTEC_rest v1"));
             }
-
+            app.UseCors(_myCors);
             app.UseRouting();
 
             app.UseAuthorization();
