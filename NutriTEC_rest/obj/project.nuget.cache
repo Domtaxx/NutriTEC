@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "lgfFFp/gXsnlkPbVK/lpyDKUJaqZfZQir73VRDJ0plrip0qrOfakps9DLY/uHd+vCx70k2GaPZCo/NqjgJCKLA==",
+  "dgSpecHash": "jX5d1JQ43OjtOOJfmgg1Wyd/t9Z6x2gitiXnUi073os5PZylxDG6Kvk7Ovpi3/RJqV6va8Nz1l97fWZxK77D+g==",
   "success": true,
   "projectFilePath": "D:\\Github Repositorios\\NutriTEC\\NutriTEC_rest\\NutriTEC_rest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Brian\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\Brian\\.nuget\\packages\\microsoft.aspnetcore.authentication.certificate\\5.0.10\\microsoft.aspnetcore.authentication.certificate.5.0.10.nupkg.sha512",
     "C:\\Users\\Brian\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Brian\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
     "C:\\Users\\Brian\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.0.1\\microsoft.data.sqlclient.sni.runtime.2.0.1.nupkg.sha512",
