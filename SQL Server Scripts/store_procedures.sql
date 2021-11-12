@@ -1,4 +1,4 @@
-alter PROCEDURE dbo.spGetProduct
+CREATE PROCEDURE dbo.spGetProduct
 	@Codigo varchar(128) = '',
 	@Desc varchar(128)= 'a'
 AS
@@ -10,7 +10,7 @@ BEGIN
 END
 GO
 
-alter PROCEDURE dbo.spGetAllProducts
+CREATE PROCEDURE dbo.spGetAllProducts
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -19,7 +19,7 @@ BEGIN
 END
 GO
 
-Alter PROCEDURE dbo.spLoginNutri
+CREATE PROCEDURE dbo.spLoginNutri
 	@email varchar(320),
 	@pass varchar(128)
 AS
@@ -30,7 +30,7 @@ BEGIN
 END
 GO
 
-alter PROCEDURE dbo.spLoginClient
+CREATE PROCEDURE dbo.spLoginClient
 	@email varchar(320),
 	@pass varchar(128)
 AS
