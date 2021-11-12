@@ -3,14 +3,13 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace NutriTEC_rest.SQL_Model.Models
+namespace NutriTEC_rest.SQL_Model
 {
     public partial class Nutricionistum
     {
         public Nutricionistum()
         {
             Clientes = new HashSet<Cliente>();
-            Menus = new HashSet<Menu>();
             PlanAlimentacions = new HashSet<PlanAlimentacion>();
         }
 
@@ -30,7 +29,6 @@ namespace NutriTEC_rest.SQL_Model.Models
         public string Foto { get; set; }
 
         public virtual ICollection<Cliente> Clientes { get; set; }
-        public virtual ICollection<Menu> Menus { get; set; }
         public virtual ICollection<PlanAlimentacion> PlanAlimentacions { get; set; }
     }
 }

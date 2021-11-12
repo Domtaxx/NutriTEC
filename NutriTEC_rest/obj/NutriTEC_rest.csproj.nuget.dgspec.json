@@ -1,24 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Github Repositorios\\NutriTEC\\NutriTEC_rest\\NutriTEC_rest.csproj": {}
+    "C:\\Bases de datos\\NutriTEC\\NutriTEC_rest\\NutriTEC_rest.csproj": {}
   },
   "projects": {
-    "D:\\Github Repositorios\\NutriTEC\\NutriTEC_rest\\NutriTEC_rest.csproj": {
+    "C:\\Bases de datos\\NutriTEC\\NutriTEC_rest\\NutriTEC_rest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Github Repositorios\\NutriTEC\\NutriTEC_rest\\NutriTEC_rest.csproj",
+        "projectUniqueName": "C:\\Bases de datos\\NutriTEC\\NutriTEC_rest\\NutriTEC_rest.csproj",
         "projectName": "NutriTEC_rest",
-        "projectPath": "D:\\Github Repositorios\\NutriTEC\\NutriTEC_rest\\NutriTEC_rest.csproj",
-        "packagesPath": "C:\\Users\\Brian\\.nuget\\packages\\",
-        "outputPath": "D:\\Github Repositorios\\NutriTEC\\NutriTEC_rest\\obj\\",
+        "projectPath": "C:\\Bases de datos\\NutriTEC\\NutriTEC_rest\\NutriTEC_rest.csproj",
+        "packagesPath": "C:\\Users\\luisA\\.nuget\\packages\\",
+        "outputPath": "C:\\Bases de datos\\NutriTEC\\NutriTEC_rest\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Brian\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\luisA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -96,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

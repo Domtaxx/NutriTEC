@@ -75,7 +75,6 @@ Create Table [PLAN_ALIMENTACION](
 Create Table [MENU](
 	Nombre_plan_alimentacion varchar(128),
 	Nombre varchar(128),
-	Correo_nutri varchar(320),
 	primary key(Nombre_plan_alimentacion,Nombre)
 );
 Create Table [CLIENTE_RECETA](

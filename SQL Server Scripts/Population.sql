@@ -47,9 +47,9 @@ insert into PLAN_ALIMENTACION(Nombre,Correo_nutri)values('Plan de alimentacion A
 insert into PLAN_ALIMENTACION(Nombre,Correo_nutri)values('Plan de alimentacion Manuel','Pablo02@gmail.com');
 insert into PLAN_ALIMENTACION(Nombre,Correo_nutri)values('Plan de alimentacion Miguel','Lau01@gmail.com');
 
-insert into MENU(Nombre_plan_alimentacion,Nombre,Correo_nutri)values('Plan de alimentacion Antonio','Menu#1 Antonio','Fernando03@gmail.com');
-insert into MENU(Nombre_plan_alimentacion,Correo_nutri,Nombre)values('Plan de alimentacion Manuel','Pablo02@gmail.com','Menu#1 Manuel');
-insert into MENU(Nombre_plan_alimentacion,Correo_nutri,Nombre)values('Plan de alimentacion Miguel','Lau01@gmail.com','Menu#1 Miguel');
+insert into MENU(Nombre_plan_alimentacion,Nombre)values('Plan de alimentacion Antonio','Menu#1 Antonio');
+insert into MENU(Nombre_plan_alimentacion,Nombre)values('Plan de alimentacion Manuel','Menu#1 Manuel');
+insert into MENU(Nombre_plan_alimentacion,Nombre)values('Plan de alimentacion Miguel','Menu#1 Miguel');
 
 insert into MENU_PRODUCTO(Nombre_plan_alimentacion,Nombre_menu,Codigo_barras)
 values('Plan de alimentacion Antonio','Menu#1 Antonio','7501000608249');
