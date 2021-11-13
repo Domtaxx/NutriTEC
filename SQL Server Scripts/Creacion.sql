@@ -150,10 +150,6 @@ Alter Table [MENU]
 Add Constraint nombre_plan_alimentacion_MENU
 Foreign key (Nombre_plan_alimentacion) References PLAN_ALIMENTACION(Nombre);
 
-Alter Table [MENU]
-Add Constraint Correo_nutri_MENU
-Foreign key(Correo_nutri) References NUTRICIONISTA(Correo);
-
 Alter Table [CLIENTE_RECETA]
 Add Constraint receta_CLIENTE_RECETA
 Foreign key(Nombre_receta,Correo_creador) References RECETA(Nombre,Correo_creador);

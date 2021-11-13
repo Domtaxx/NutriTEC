@@ -92,7 +92,7 @@ returns integer
     end
 GO
 
-drop PROCEDURE  dbo.GetPaymentAmount
+
 Create PROCEDURE dbo.GetPaymentAmount
 @email varchar(320)
 AS
@@ -133,6 +133,29 @@ BEGIN
 END
 GO
 
+Create Procedure dbo.spAddMenuToPlan
+    @plan_name varchar(128),
+    @menu_name varchar(128),
+    @email varchar(320)
+as
+    begin
+        declare @accepted_user as INTEGER;
+        select @accepted_user=count(*) from PLAN_ALIMENTACION
+        where PLAN_ALIMENTACION.Nombre=@plan_name and PLAN_ALIMENTACION.Correo_nutri=@email;
+        if(@accepted_user>0)begin
+            declare @not_exist_menu as INTEGER;
+            select @not_exist_menu=count(*) from MENU
+            where MENU.Nombre=@menu_name and MENU.Nombre_plan_alimentacion=@plan_name;
+            if(@not_exist_menu=0)begin
+                insert into MENU(nombre_plan_alimentacion, nombre)
+                values(@plan_name,@menu_name)
+
+            end
+        end
+        select * from MENU where Nombre=@menu_name;
+    end
+    GO
+exec dbo.spAddMenuToPlan "Proteico","Desayuno","Fernando03@gmail.com"
 Create Procedure dbo.spAddProductToMenu
 @plan_name varchar(128),
 @menu_name varchar(128),
@@ -150,11 +173,25 @@ AS
             if(@existingMenu>0)begin
                 insert into MENU_PRODUCTO (nombre_plan_alimentacion, nombre_menu, codigo_barras)
                 values (@plan_name,@menu_name,@codigo);
-                select * from Producto_public
-                where Codigo_barras=@codigo;
+
             end
-            
+
         end
+        select * from Producto_public
+        where Codigo_barras=@codigo;
 
     end
 Go
+
+create procedure dbo.spGetMenuProducts
+@plan_name varchar(130),
+@menu_name varchar(130)
+AS
+    Begin
+        Select * from
+        MENU_PRODUCTO join Producto_public on (dbo.MENU_PRODUCTO.Codigo_barras=Producto_public.Codigo_barras)
+        where MENU_PRODUCTO.Nombre_plan_alimentacion=@plan_name and MENU_PRODUCTO.Nombre_menu=@menu_name
+    end
+GO
+
+
