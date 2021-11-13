@@ -8,6 +8,6 @@ namespace NutriTEC_rest.SQL_Model.Agrupaciones
     public class MenuEntry
     {
         public string Name { get; set; }
-        public string[] productos;
+        public string[] productos { get; set; }
     }
 }

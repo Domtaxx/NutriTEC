@@ -39,10 +39,19 @@ namespace NutriTEC_rest.Controllers
                 string PlanName = entry.Nombre_Plan;
                 string NutricionistEmail = entry.Correo_Nutricionista;
                 MenuEntry menu = entry.Menu;
-                var result=Db.PlanAlimentacions.FromSqlInterpolated($"exec spAddMenuToPlan {PlanName},{NutricionistEmail},{menu.Name}").ToList();
-                
-                var plan = Db.PlanAlimentacions.Where(R => R.Nombre == PlanName).Where(R => R.CorreoNutri == NutricionistEmail).ToList().ElementAt(0);
-                return Ok(plan);
+                var result=Db.Menus.FromSqlInterpolated($"exec spAddMenuToPlan {PlanName},{menu.Name},{NutricionistEmail}").ToList();
+                foreach(var product in menu.productos)
+                {
+                    try
+                    {
+                        var result1=Db.ProductoPublics.FromSqlInterpolated($"exec spAddProductToMenu {PlanName},{menu.Name},{product},{NutricionistEmail}").ToList();
+                    }
+                    catch (Exception e) { }
+
+                    
+                }
+                //var plan = Db.PlanAlimentacions.Where(R => R.Nombre == PlanName).Where(R => R.CorreoNutri == NutricionistEmail).ToList().ElementAt(0);
+                return Ok(null);
             }
             catch (Exception e)
             {

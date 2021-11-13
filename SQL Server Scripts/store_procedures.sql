@@ -129,14 +129,14 @@ BEGIN
             values (@plan_name,@correo_nutri)
         end
         select * from PLAN_ALIMENTACION
-        where Nombre=@plan_name;
+        where Nombre=@plan_name and Correo_nutri=@correo_nutri;
 END
 GO
 
 Create Procedure dbo.spAddMenuToPlan
-    @plan_name varchar(128),
-    @menu_name varchar(128),
-    @email varchar(320)
+@plan_name varchar(128),
+@menu_name varchar(128),
+@email varchar(320)
 as
     begin
         declare @accepted_user as INTEGER;
@@ -152,10 +152,13 @@ as
 
             end
         end
-        select * from MENU where Nombre=@menu_name;
+        select MENU.Nombre_plan_alimentacion,MENU.Nombre
+        from MENU JOIN PLAN_ALIMENTACION on MENU.Nombre_plan_alimentacion=PLAN_ALIMENTACION.Nombre
+        where MENU.Nombre=@menu_name and MENU.Nombre_plan_alimentacion=@plan_name;
+
     end
-    GO
-exec dbo.spAddMenuToPlan "Proteico","Desayuno","Fernando03@gmail.com"
+GO
+
 Create Procedure dbo.spAddProductToMenu
 @plan_name varchar(128),
 @menu_name varchar(128),
@@ -179,6 +182,7 @@ AS
         end
         select * from Producto_public
         where Codigo_barras=@codigo;
+
 
     end
 Go

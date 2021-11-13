@@ -21,8 +21,8 @@ namespace NutriTEC_rest.Controllers
             
             try
             {
-                var Response = Db.PlanAlimentacions.Where(plan => plan.Nombre == PlanName);
-                return Ok(Response.ToList().ElementAt(0));
+                var Response = Db.Menus.Where(M => M.NombrePlanAlimentacion == PlanName);
+                return Ok(Response.ToList());
             }
             catch (Exception e)
             {
@@ -37,10 +37,8 @@ namespace NutriTEC_rest.Controllers
             try
             {
                 string PlanName = entry.Nombre;
-   
                 string NutricionistEmail = entry.CorreoNutri;
-                Db.PlanAlimentacions.FromSqlInterpolated($"exec spAddPlan {PlanName},{NutricionistEmail}");
-                var plan = Db.PlanAlimentacions.Where(R => R.Nombre == PlanName).Where(R => R.CorreoNutri == NutricionistEmail).ToList().ElementAt(0);
+                var plan = Db.PlanAlimentacions.FromSqlInterpolated($"exec spAddPlan {PlanName},{NutricionistEmail}");
                 return Ok(plan);
             }
             catch (Exception e)
