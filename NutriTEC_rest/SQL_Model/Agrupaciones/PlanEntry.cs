@@ -9,6 +9,6 @@ namespace NutriTEC_rest.SQL_Model.Agrupaciones
     {
         public String Correo_Nutricionista { get; set; }
         public String Nombre_Plan{get; set;}
-        public MenuEntry[] Menus { get; set; }
+        public MenuEntry Menu { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace NutriTEC_rest.SQL_Model
+namespace NutriTEC_rest.SQL_Model.Models
 {
     public partial class RecetaProducto
     {

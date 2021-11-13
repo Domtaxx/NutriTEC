@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using NutriTEC_rest.SQL_Model;
+using NutriTEC_rest.SQL_Model.Models;
 
 #nullable disable
 

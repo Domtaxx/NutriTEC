@@ -133,6 +133,28 @@ BEGIN
 END
 GO
 
+Create Procedure dbo.spAddMenuToPlan
+@plan_name varchar(128),
+@email varchar(320),
+@menu_name varchar(128)
+AS
+    begin
+        declare @authorized as INTEGER;
+        select @authorized=count(*) from PLAN_ALIMENTACION
+        where Nombre=@plan_name and Correo_nutri=@email;
+        if(@authorized>0)begin
+            declare @defined as INTEGER;
+            select @defined=count(*) from MENU
+            where Nombre_plan_alimentacion=@plan_name and Nombre=@menu_name;
+            if(@defined=0)begin
+                insert into MENU(Nombre_plan_alimentacion, Nombre)
+                VALUES(@plan_name,@menu_name);
+            end
+        end
+    end
+GO
+
+
 Create Procedure dbo.spAddProductToMenu
 @plan_name varchar(128),
 @menu_name varchar(128),
@@ -145,3 +167,4 @@ AS
         where Codigo_barras=@codigo;
     end
 Go
+
