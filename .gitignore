@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+NutriTEC_rest/obj/
+
+NutriTEC_rest/.vs/
