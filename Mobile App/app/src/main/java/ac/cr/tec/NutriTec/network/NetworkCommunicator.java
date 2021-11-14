@@ -10,7 +10,15 @@ import androidx.annotation.NonNull;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.security.cert.CertificateException;
 import java.util.Map;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -26,7 +34,8 @@ import okhttp3.Response;
 
 
 public class NetworkCommunicator {
-    private static OkHttpClient client=new OkHttpClient();
+    private static OkHttpClient client=getClient().build();
+
 
     /**
      * process a get request to the given url with the params,the callback given will be used in the function returning
@@ -35,7 +44,7 @@ public class NetworkCommunicator {
      * @param responseCallback  callback
      */
     public static void get(String url, Map<String,String> params, Callback responseCallback) {
-      //  client.proxy();
+        //client.proxy();
         HttpUrl.Builder httpBuilder = HttpUrl.parse(url).newBuilder();
         if (params != null) {
             for(Map.Entry<String, String> param : params.entrySet()) {
@@ -55,7 +64,7 @@ public class NetworkCommunicator {
      */
     public static void put(String url,JSONObject body) throws IOException {
         if(url==null || body==null)return;
-       // client.proxy();
+        client.proxy();
         RequestBody requestBody = RequestBody.create( body.toString(),
                 MediaType.parse("application/json"));
         Request request = new Request.Builder()
@@ -64,19 +73,19 @@ public class NetworkCommunicator {
                 .addHeader("Content-Type", "application/json")
                 .build();
 
-            //Response response=client.newCall(request).execute();
-            client.newCall(request).enqueue(new Callback() {
-                @Override
-                public void onFailure(@NonNull Call call, @NonNull IOException e) {
+        //Response response=client.newCall(request).execute();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
 
-                }
+            }
 
-                @Override
-                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                    Log.d("PUT","EXIto");
-                }
-            });
-            ///return null;
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                Log.d("PUT","EXIto");
+            }
+        });
+        ///return null;
 
 
 
@@ -92,6 +101,51 @@ public class NetworkCommunicator {
         // otherwise check if we are connected
         return (networkInfo != null && networkInfo.isConnected());
     }
+    public static OkHttpClient.Builder getClient(){
+        Context context = null;
+
+        try {
+            // Create a trust manager that does not validate certificate chains
+            final TrustManager[] trustAllCerts = new TrustManager[]{
+                    new X509TrustManager() {
+                        @Override
+                        public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+                        }
+
+                        @Override
+                        public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+                        }
+
+                        @Override
+                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                            return new java.security.cert.X509Certificate[]{};
+                        }
+                    }
+            };
+
+            // Install the all-trusting trust manager
+            final SSLContext sslContext = SSLContext.getInstance("SSL");
+            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+
+            // Create an ssl socket factory with our all-trusting manager
+            final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+
+            OkHttpClient.Builder builder = new OkHttpClient.Builder();
+            builder.sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0]);
+            builder.hostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            });
+            return builder;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
 
 
 }
