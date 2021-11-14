@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import ac.cr.tec.NutriTec.R;
 import ac.cr.tec.NutriTec.viewModel.productListViewModel;
 
@@ -81,6 +83,10 @@ public class DailyMealFragment extends Fragment {
         viewModel.getProductList().observe(getViewLifecycleOwner(),element->{
             //Log.d("IMPORTANTE",element.toString());
             //mealTimeName.setText(element.get(0));
+
         });
+    }
+    public void processProduct(ArrayList<String> products,String MealTime){
+
     }
 }

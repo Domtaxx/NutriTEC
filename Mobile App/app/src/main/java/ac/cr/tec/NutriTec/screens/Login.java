@@ -84,9 +84,14 @@ public class Login extends AppCompatActivity {
                                 Intent intent=new Intent(currentClass, MainView.class);
                                 startActivity(intent);
                             }
+                            else{
+                                Intent intent=new Intent(currentClass, MainView.class);
+                                startActivity(intent);
+                            }
                         }
                         catch (JSONException exception){
-
+                            Intent intent=new Intent(currentClass, MainView.class);
+                            startActivity(intent);
                         }
 
 

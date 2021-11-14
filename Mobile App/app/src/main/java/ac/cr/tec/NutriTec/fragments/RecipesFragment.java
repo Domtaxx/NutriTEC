@@ -75,6 +75,7 @@ public class RecipesFragment extends Fragment {
         viewModel.getProductList().observe(getViewLifecycleOwner(),element->{
             //Log.d("IMPORTANTE",element.toString());
             //mealTimeName.setText(element.get(0));
+
         });
     }
 }
