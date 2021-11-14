@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { BackendService } from 'src/app/services/backend-service.service';
 import { SwalService } from 'src/app/services/swalService';
 
 @Component({
@@ -26,6 +27,7 @@ export class ProductAddingComponent implements OnInit {
 
   constructor(
     public me: MatDialogRef<ProductAddingComponent>,
+    private backend: BackendService,
     private swal: SwalService
   ) {}
 
@@ -41,7 +43,7 @@ export class ProductAddingComponent implements OnInit {
     }
 
     const data = {
-      codBarras: this.codBarras,
+      codigoBarras: this.codBarras,
       descripcion: this.descripcion,
       grasa: this.grasa,
       hierro: this.hierro,
@@ -51,14 +53,19 @@ export class ProductAddingComponent implements OnInit {
       proteina: this.proteina,
       calcio: this.calcio,
       tamano: this.tamano,
+      vitaminas: 1,
+      estado: 'asdasd',
     };
-    /**backend call here */
 
-    this.swal.showSuccess(
-      'Producto registrado!',
-      'Prontamente, un administrador se encargará de validar este producto'
-    );
-    this.me.close();
+    this.backend
+      .post_request('Cliente/Producto', data)
+      .subscribe((response) => {
+        this.swal.showSuccess(
+          'Producto registrado!',
+          'Prontamente, un administrador se encargará de validar este producto'
+        );
+        this.me.close();
+      });
   }
 
   autoComplete() {

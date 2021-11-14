@@ -29,6 +29,7 @@ body {
   font-style: normal;
   letter-spacing: 0.02em;
   font-weight: 100;
+  line-height: 1;
 }
 .mainViewContainer {
   display: flex;

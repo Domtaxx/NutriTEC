@@ -97,6 +97,38 @@
                 <div class="text inputText">cm</div>
             </div>
 
+
+            <div class="dataCell">
+                <div class="text inputText">Código</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%;" [value]="caderas"  (input)="caderas = $any( $event.target).value" class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">cm</div>
+            </div>
+
+
+            <div class="dataCell">
+                <div class="text inputText">Tarjeta</div>
+                <div class="InputContainer"style="width: 76%;">
+                    <input style="width: 100%;" [value]="caderas"  (input)="caderas = $any( $event.target).value" class="myInput"  type="text">
+                    <div class="inputLine"></div>
+                </div>
+                <div class="text inputText">cm</div>
+            </div>
+
+
+            <div class="card nextButton" [matMenuTriggerFor]="menu">
+                <div *ngIf="currentPayTypeIndex==-1">Tipo de cobro</div>
+                <div *ngIf="currentPayTypeIndex!=-1">{{payType[currentPayTypeIndex].type}}</div> 
+            </div>
+            <mat-menu #menu="matMenu">
+              <button (click)="selectPay(0)" mat-menu-item>Anual</button>
+              <button  (click)="selectPay(1)" mat-menu-item>Mensual</button>
+              <button  (click)='selectPay(2)' mat-menu-item>Semanal</button>
+
+            </mat-menu>
+
         </div>
 
     </div>

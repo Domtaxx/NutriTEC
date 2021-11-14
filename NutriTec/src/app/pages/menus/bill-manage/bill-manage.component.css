@@ -5,6 +5,8 @@
   align-items: flex-start;
   align-content: center;
   height: 70vh;
+
+  overflow-x: hidden;
 }
 .icon {
   color: var(--itemColor);

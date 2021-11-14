@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+
 import { Observable, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,7 @@ import { HttpParams } from '@angular/common/http';
 export class BackendService {
   constructor(private http: HttpClient) {}
 
-  serverIp: string = 'http://25.92.13.1:38389/';
+  serverIp: string = 'https://25.92.13.1:44352/';
 
   get_request(url: string, Params: any): Observable<any> {
     var http_params = new HttpParams({ fromObject: Params });

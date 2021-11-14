@@ -32,7 +32,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.com.homeComp = this;
-    this.openBillManage();
   }
   /**
    * def opens Add Product dialog

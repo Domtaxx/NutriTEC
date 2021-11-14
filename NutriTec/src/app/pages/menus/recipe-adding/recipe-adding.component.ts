@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { BackendService } from 'src/app/services/backend-service.service';
 import { SwalService } from 'src/app/services/swalService';
 import Swal from 'sweetalert2';
 
@@ -16,50 +17,16 @@ export class RecipeAddingComponent implements OnInit {
 
   products: any[] = [
     {
-      pname: 'arroz',
       tamano: 12,
       energia: 133,
       grasa: 433,
-    },
-    {
-      pname: 'azucar',
-      tamano: 1,
-      energia: 4443,
-      grasa: 0,
-    },
-    {
-      pname: 'arandanos',
-      tamano: 4,
-      energia: 43,
-      grasa: 0,
-    },
-    {
-      pname: 'jamon',
-      tamano: 32,
-      energia: 43,
-      grasa: 43,
-    },
-    {
-      pname: 'pasta',
-      tamano: 62,
-      energia: 763,
-      grasa: 73,
-    },
-    {
-      pname: 'lechuga',
-      tamano: 87,
-      energia: 77,
-      grasa: 67,
-    },
-    {
-      pname: 'leche',
-      tamano: 2,
-      energia: 2,
-      grasa: 4,
+      codigoBarras: '7501000608249',
+      descripcion: 'GALLETA SALADITA GAMESA 1024GR',
     },
   ];
   selectedProducts: any[] = [];
   searchResult: any[] = [];
+  nombre: string = '';
 
   search: string = '';
   searching: boolean = false;
@@ -67,10 +34,18 @@ export class RecipeAddingComponent implements OnInit {
 
   constructor(
     public me: MatDialogRef<RecipeAddingComponent>,
+    private backend: BackendService,
     private swal: SwalService
   ) {}
 
   ngOnInit(): void {}
+  getProductsId() {
+    let response: string[] = [];
+    this.selectedProducts.forEach((product) => {
+      response.push(product.codigoBarras);
+    });
+    return response;
+  }
 
   submit() {
     if (false) {
@@ -81,14 +56,21 @@ export class RecipeAddingComponent implements OnInit {
       return;
     }
 
-    const data = {};
+    const data = {
+      nombre: this.nombre,
+      correoCreador: 'mangel12412@gmail.com',
+      productos: this.getProductsId(),
+    };
     /**backend call here */
+    console.log(data);
 
-    this.swal.showSuccess(
-      'Receta registrada!',
-      'Prontamente, un administrador se encargará de validar esta receta'
-    );
-    this.me.close();
+    this.backend.post_request('Cliente/Receta', data).subscribe((response) => {
+      this.swal.showSuccess(
+        'Receta registrada!',
+        'Prontamente, un administrador se encargará de validar esta receta'
+      );
+      this.me.close();
+    });
   }
 
   openSearchBox() {
@@ -127,5 +109,6 @@ export class RecipeAddingComponent implements OnInit {
   }
   autoComplete() {
     this.selectedProducts = this.products.slice();
+    this.nombre = 'Sopa de maiz';
   }
 }

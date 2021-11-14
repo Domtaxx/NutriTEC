@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SwalService } from './services/swalService';
 import { BackendService } from './services/backend-service.service';
 import { HttpClientModule } from '@angular/common/http';
+import { completerService } from './services/completerService';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,7 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     BrowserAnimationsModule,
   ],
-  providers: [SwalService, BackendService],
+  providers: [SwalService, BackendService, completerService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

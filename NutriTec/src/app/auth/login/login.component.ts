@@ -2,7 +2,8 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BackendService } from 'src/app/services/backend-service.service';
 import { SwalService } from 'src/app/services/swalService';
-
+import { UserService } from 'src/app/services/userService';
+import { Md5 } from 'ts-md5/dist/md5';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,11 +17,13 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private swal: SwalService,
-    private backend: BackendService
+    private backend: BackendService,
+    private userService: UserService
   ) {}
 
   userId: string = '';
   password: string = '';
+  devUserindex = 0;
 
   ngOnInit(): void {}
   toRegister() {
@@ -28,33 +31,47 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log('JOA');
-
     const info = {
-      username: this.userId,
-      password: this.password,
+      correo: this.userId,
+      contra: Md5.hashStr(this.password),
     };
+
     if (this.userId === '' || this.password === '') {
       this.swal.showError('error', 'datos insuficientes');
       return;
     }
-    this.backend.post_request('Login', info).subscribe((user) => {
-      //console.log(user);
 
-      if (user === null || user === undefined) {
-        this.backend.post_request('Admin/Login', info).subscribe((admin) => {
-          if (admin === null || admin === undefined) {
-            this.swal.showError(
-              'Oops',
-              'El usuario no se encuentra en la base de datos '
-            );
-            return;
-          } else {
-            localStorage.setItem('admin', 'true');
-            this.router.navigateByUrl('admin');
-          }
-        });
+    this.backend.get_request('Login/Client', info).subscribe((user) => {
+      if (
+        user === null ||
+        user === undefined ||
+        JSON.stringify(user) === JSON.stringify([])
+      ) {
+        this.backend
+          .get_request('Login/Nutricionista', info)
+          .subscribe((admin) => {
+            if (
+              admin === null ||
+              admin === undefined ||
+              JSON.stringify(admin) === JSON.stringify([])
+            ) {
+              this.swal.showError(
+                'Oops',
+                'El usuario no se encuentra en la base de datos '
+              );
+              return;
+            } else {
+              this.userService.user = false;
+              this.userService.admin = false;
+              this.userService.doctor = true;
+              localStorage.setItem('admin', 'true');
+              this.router.navigateByUrl('pages');
+            }
+          });
       } else {
+        this.userService.user = true;
+        this.userService.admin = false;
+        this.userService.doctor = false;
         localStorage.setItem('user', JSON.stringify(user));
         this.router.navigateByUrl('pages');
       }
@@ -62,7 +79,16 @@ export class LoginComponent implements OnInit {
   }
 
   autoComplete() {
-    this.userId = 'Adriantec';
-    this.password = '123';
+    //Para usuarios
+    this.devUserindex += 1;
+    if (this.devUserindex == 1) {
+      this.userId = 'mangel12412@gmail.com';
+      this.password = '123';
+    }
+    if (this.devUserindex == 2) {
+      this.userId = 'Fernando03@gmail.com';
+      this.password = '123';
+    }
+    if (this.devUserindex > 3) this.devUserindex = 1;
   }
 }

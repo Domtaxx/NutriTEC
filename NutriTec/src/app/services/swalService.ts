@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import Swal, { SweetAlertInput } from 'sweetalert2';
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class SwalService {
   showError(title: string, text: string) {
     Swal.fire({

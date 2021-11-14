@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/b0872a66-03ce-4f32-907d-17b4b2cede65/resourceGroups/DefaultResourceGroup-CAU/providers/Microsoft.Web/sites/aNutriTec",
+  "appService.deploySubpath": "dist\\NutriTec"
+}

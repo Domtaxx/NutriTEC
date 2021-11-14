@@ -6,24 +6,24 @@
 
 
             <div style="height: 15%;" class="loginInputContainer"> 
-                <input class="myInput loginInput"  type="text" placeholder="Nombre" autocomplete="new-password">
+                <input class="myInput loginInput" [value]="name"  (input)="name = $any( $event.target).value"  type="text" placeholder="Nombre" autocomplete="new-password">
                 <div class="hline"></div>
             </div>
 
             <div style="height: 15%;"  class="loginInputContainer"> 
-                <input class="myInput loginInput"  type="text" placeholder="Apellidos" autocomplete="new-password">
+                <input class="myInput loginInput" [value]="lastName"  (input)="lastName = $any( $event.target).value" type="text" placeholder="Apellidos" autocomplete="new-password">
                 <div class="hline"></div>
             </div>
 
             <div style="height: 15%;"  class="loginInputContainer"> 
-                <input class="myInput loginInput"  type="text" placeholder="Correo Electrónico" autocomplete="new-password">
+                <input class="myInput loginInput" [value]="address"  (input)="address = $any( $event.target).value" type="text" placeholder="Correo Electrónico" autocomplete="new-password">
                 <div class="hline"></div>
             </div>
 
     
             
             <div style="height: 15%;"  class="loginInputContainer"> 
-                <input class="myInput loginInput"  type="password" placeholder=" Inserte su Contraseña" autocomplete="new-password">
+                <input class="myInput loginInput" [value]="password"  (input)="password = $any( $event.target).value"  type="password" placeholder=" Inserte su Contraseña" autocomplete="new-password">
                 <div class="hline"></div>
             </div>
 

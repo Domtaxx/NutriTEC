@@ -9,6 +9,10 @@
 
     <div class="spacer"></div>
 
+    <div class="InputContainer"style="width: 76%;">
+        <input style="width: 100%; " [value]="nombre" placeholder="Nombre de la receta"  (input)="nombre = $any( $event.target).value"class="myInput"  type="text">
+        <div class="inputLine"></div>
+    </div>
 <!--Encabezados-->
     <div class="columHeaders">
         <div class="text inputText" style="margin-right: 16vh;">Nombre</div>
@@ -19,7 +23,8 @@
 <!--Productos que componen la receta-->
     <div class="scrollCardContainer">
         <div *ngFor='let product of selectedProducts' class="card productCard">
-            <div style="width: 21%;" class="text inputText">{{product.pname}}</div>
+            <div style="width: 21%;  overflow: hidden;
+            white-space: nowrap;" class="text inputText">{{product.descripcion}}</div>
             <div style="width: 16%;" class="text inputText">{{product.tamano}}</div>
             <div style="width: 13%;" class="text inputText">{{product.energia}}</div>
             <div style="width: 18%;" class="text inputText">{{product.grasa}}</div>
@@ -61,7 +66,7 @@
     <div class="searchResults">
         <div *ngFor="let product of searchResult" class="card productCard" style="width: 80%;"  (click)="selectSearchProduct(product)" >
             <div style="width: 100%;">
-                <div class="text inputText">{{product.pname}}</div>
+                <div class="text inputText">{{product.descripcion}}</div>
 
             </div>
             
