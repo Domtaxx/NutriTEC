@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/profile"
+        android:title="Perfil" />
+    <item
+        android:id="@+id/navigation_daily_meals"
+        android:icon="@drawable/dailyfood"
+        android:title="Registro Diario" />
+    <item
+        android:id="@+id/navigation_recipes"
+        android:icon="@drawable/dailyfood"
+        android:title="Gestión de Recetas"></item>
+    <item
+        android:title="Sesion">
+        <menu>
+            <item
+                android:id="@+id/navigation_logout"
+                android:icon="@drawable/logout"
+                android:title="Cerrar Session" />
+        </menu>
+
+
+    </item>
+
+</menu>
