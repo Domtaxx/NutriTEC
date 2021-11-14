@@ -11,8 +11,8 @@ using NutriTEC_rest.SQL_Model.Models;
 namespace NutriTEC_rest.Controllers
 {
     [ApiController]
-    [Route("Cliente/Producto")]
-    public class Client_Product:Controller
+    [Route("Producto/buscar")]
+    public class Producto_Controller:Controller
     {
         NutriTECContext Db = new NutriTECContext();
 

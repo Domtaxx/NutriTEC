@@ -6,7 +6,7 @@ insert into NUTRICIONISTA
 values('Pablo02@gmail.com','2e6edb52fa0ea8167a5a621d31937c41','3996404839','Pablo','Felipe','Mendez','Quesada','1962698798694876','1982-06-09','a','Casa #181 Residencial Casas Bonitas,Cartago, Cartago',21.5,78,'‪D:\NutriTEC_images\Pablo02@gmail.com.png');
 insert into NUTRICIONISTA
 	(Correo,Contra,Codigo,Primer_nom,Seg_nom,Primer_apellido,Seg_apellido,Num_tarjeta,Fecha_nace,Tipo_cobro,Direccion,IMC,Peso,foto)
-values('Fernando03@gmail.com','24dc248af86c07e84209fd75f2dfa091','2396403836','Fernando','Felipe','Quesada','Arce','1962693168694876','1972-02-01','b','Casa #182 Residencial Casas Bonitas,Cartago, Cartago',19.7,68,'‪D:\NutriTEC_images\Fernando03@gmail.com.png');
+values('Fernando03@gmail.com','202cb962ac59075b964b07152d234b70','2396403836','Fernando','Felipe','Quesada','Arce','1962693168694876','1972-02-01','b','Casa #182 Residencial Casas Bonitas,Cartago, Cartago',19.7,68,'‪D:\NutriTEC_images\Fernando03@gmail.com.png');
 
 insert into ADMINISTRADOR(Correo,Contra)values('Admin1@gmail.com','e64b78fc3bc91bcbc7dc232ba8ec59e0');
 insert into ADMINISTRADOR(Correo,Contra)values('Admin2@gmail.com','e64b78fc3bc91bcbc7dc232ba8ec59e0');
@@ -14,7 +14,7 @@ insert into ADMINISTRADOR(Correo,Contra)values('Admin3@gmail.com','e64b78fc3bc91
 
 insert into CLIENTE
 	(Correo,Contra,Direccion,Primer_nom,Seg_nom,Primer_apellido,Seg_apellido,Max_calorias,Fecha_nace,Peso,IMC,Correo_nutri)
-values('mangel12412@gmail.com','59bc0dd33d4a37452c1b5bf19196aeef','Casa #160 Residencial Casas Bonitas,Cartago, Cartago','Miguel','Angel','Calderon','Torres',4500,'2000-03-05',78,21.8,'Lau01@gmail.com');
+values('mangel12412@gmail.com','202cb962ac59075b964b07152d234b70','Casa #160 Residencial Casas Bonitas,Cartago, Cartago','Miguel','Angel','Calderon','Torres',4500,'2000-03-05',78,21.8,'Lau01@gmail.com');
 insert into CLIENTE
 	(Correo,Contra,Direccion,Primer_nom,Seg_nom,Primer_apellido,Seg_apellido,Max_calorias,Fecha_nace,Peso,IMC,Correo_nutri)
 values('manuel0123@gmail.com','8fc1d6a987a35725bc67e42a45b46d81','Casa #161 Residencial Casas Bonitas,Cartago, Cartago','Manuel','','Arce','Quesada',3000,'1990-05-09',88,24,'Pablo02@gmail.com');

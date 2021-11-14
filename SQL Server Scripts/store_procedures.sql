@@ -176,14 +176,10 @@ AS
             if(@existingMenu>0)begin
                 insert into MENU_PRODUCTO (nombre_plan_alimentacion, nombre_menu, codigo_barras)
                 values (@plan_name,@menu_name,@codigo);
-
             end
-
         end
         select * from Producto_public
         where Codigo_barras=@codigo;
-
-
     end
 Go
 
@@ -198,4 +194,30 @@ AS
     end
 GO
 
+create procedure dbo.spGetProduct_report
+@Client_email varchar(320)
+AS
+    Begin
+        select * from Cliente_producto_public where Correo_cliente = @Client_email
+    end
+GO
 
+alter procedure dbo.spGetReceta_report
+@Client_email varchar(320)
+AS
+    Begin
+        select distinct RP.Correo_cliente,
+                        RP.Nombre,
+                        RP.Correo_creador,
+                        (select sum(Calcio) from receta_public t1 where t1.Correo_creador = RP.Correo_creador and t1.Correo_cliente = RP.Correo_cliente and t1.Nombre = RP.Nombre)[Calcio],
+                        (select sum(Hierro) from receta_public t1 where t1.Correo_creador = RP.Correo_creador and t1.Correo_cliente = RP.Correo_cliente and t1.Nombre = RP.Nombre)[Hierro],
+                        (select sum(Energia) from receta_public t1 where t1.Correo_creador = RP.Correo_creador and t1.Correo_cliente = RP.Correo_cliente and t1.Nombre = RP.Nombre)[Energia],
+                        (select sum(Sodio) from receta_public t1 where t1.Correo_creador = RP.Correo_creador and t1.Correo_cliente = RP.Correo_cliente and t1.Nombre = RP.Nombre)[Sodio],
+                        (select sum(Carbohidratos) from receta_public t1 where t1.Correo_creador = RP.Correo_creador and t1.Correo_cliente = RP.Correo_cliente and t1.Nombre = RP.Nombre)[Carbohidratos],
+                        (select sum(Proteina) from receta_public t1 where t1.Correo_creador = RP.Correo_creador and t1.Correo_cliente = RP.Correo_cliente and t1.Nombre = RP.Nombre)[Proteina],
+                        (select sum(Vitaminas) from receta_public t1 where t1.Correo_creador = RP.Correo_creador and t1.Correo_cliente = RP.Correo_cliente and t1.Nombre = RP.Nombre)[Vitaminas]
+        from receta_public RP where Correo_cliente = @Client_email
+    end
+GO
+
+spGetReceta_report 'mangel12412@gmail.com'

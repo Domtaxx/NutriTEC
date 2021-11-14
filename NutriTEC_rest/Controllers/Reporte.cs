@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NutriTEC_rest.DB_Context;
 using NutriTEC_rest.SQL_Model.Agrupaciones;
 using NutriTEC_rest.SQL_Model.Models;
@@ -29,6 +30,20 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [Route("Productos")]
+        [HttpGet]
+        public ActionResult Get(string Correo_cliente)
+        {
+            try
+            {
+                var res = Db.ClienteProductoPublics.FromSqlInterpolated($"spGetProduct_report {Correo_cliente}");
+                return Ok(res);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
         [Route("Recetas")]
         [HttpPost]
         public ActionResult Post([FromBody] ClienteRecetum CR)
@@ -42,6 +57,21 @@ namespace NutriTEC_rest.Controllers
             catch (Exception e)
             {
                 return BadRequest(e.Message);
+            }
+        }
+        [Route("Recetas")]
+        [HttpGet]
+        public ActionResult get(string Correo_cliente)
+        {
+            try
+            {
+                var res = Db.RecetaPublics.FromSqlInterpolated($"spGetReceta_report {Correo_cliente}");
+                return Ok(res);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+
             }
         }
     }

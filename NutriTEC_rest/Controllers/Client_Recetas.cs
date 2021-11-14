@@ -12,7 +12,7 @@ namespace NutriTEC_rest.Controllers
 {
 
     [ApiController]
-    [Route("Cliente/Receta")]
+    [Route("Receta/Crear")]
     public class Client_Recetas : Controller
     {
         NutriTECContext Db = new NutriTECContext();
