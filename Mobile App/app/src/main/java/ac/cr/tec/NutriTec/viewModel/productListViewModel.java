@@ -5,14 +5,16 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class productListViewModel extends ViewModel {
-    private final MutableLiveData<ArrayList<String>> productList=new MutableLiveData<>();
+    private final MutableLiveData<HashMap<String,ArrayList<String>>> productList=new MutableLiveData<>();
+    //private final MutableLiveData<ArrayList<String>> recipesList=new Mutabl
 
-    public LiveData<ArrayList<String>>  getProductList(){
+    public LiveData<HashMap<String,ArrayList<String>>>  getProductList(){
         return productList;
     }
-    public void setProductList(ArrayList<String> products){
+    public void setProductList(HashMap<String,ArrayList<String>> products){
         productList.setValue(products);
     }
 

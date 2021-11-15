@@ -30,4 +30,5 @@
     <string name="profile_hips">Cadera:</string>
     <string name="profile_IMC">IMC:</string>
     <string name="profile_nape">Cuello:</string>
+    <string name="not_products_or_recipes">No se encontro ningun producto o receta</string>
 </resources>

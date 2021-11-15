@@ -2,7 +2,7 @@ package ac.cr.tec.NutriTec.Const;
 
 public class Const {
     //base url
-    public static final String urlSite="https://25.92.13.1:44352";
+    public static final String urlSite="https://nutritecsqlapi.azurewebsites.net";
 
     //login related
     public static final String user="username";
@@ -19,9 +19,17 @@ public class Const {
     //product object related
     public static final String productBarCode="codigoBarras";
     public static final String productDescription="descripcion";
-    public static final String noAvailableProduct="No se encontro ningun producto";
+    public static final String noAvailableProduct="No se encontro ningun producto o receta";
 
-    //Reci
+    //Recipe creator
+    public static final String recipeCreator="creator";
+    public static final String recipeName="name";
+
+    //hash keys
+    public static final String productKey="product";
+    public static final String recipeKey="recipe";
+    public static final String recipeUrl=urlSite+"/Receta/Busqueda";
+    public static final String recipeObjectNameAttribute="nombre";
 
 
     //comidas

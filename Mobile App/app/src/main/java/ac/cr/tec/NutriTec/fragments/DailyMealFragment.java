@@ -95,6 +95,8 @@ public class DailyMealFragment extends Fragment {
         viewModel.getProductList().observe(getViewLifecycleOwner(),element->{
             //Log.d("IMPORTANTE",element.toString());
             //mealTimeName.setText(element.get(0));
+            //aqui van los parametros
+
 
         });
     }

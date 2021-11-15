@@ -66,8 +66,8 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Call call, @NonNull IOException e) {
                         Log.d("FALLO","FALLO");
-                        Intent intent=new Intent(currentClass, MainView.class);
-                        startActivity(intent);
+                        //Intent intent=new Intent(currentClass, MainView.class);
+                        //startActivity(intent);
 
                     }
 
@@ -86,13 +86,13 @@ public class Login extends AppCompatActivity {
                                 startActivity(intent);
                             }
                             else{
-                                Intent intent=new Intent(currentClass, MainView.class);
-                                startActivity(intent);
+                               // Intent intent=new Intent(currentClass, MainView.class);
+                                //startActivity(intent);
                             }
                         }
                         catch (JSONException exception){
-                            Intent intent=new Intent(currentClass, MainView.class);
-                            startActivity(intent);
+                           // Intent intent=new Intent(currentClass, MainView.class);
+                            //startActivity(intent);
                         }
 
 
