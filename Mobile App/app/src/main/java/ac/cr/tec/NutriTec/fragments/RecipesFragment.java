@@ -1,5 +1,6 @@
 package ac.cr.tec.NutriTec.fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,12 +8,27 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.preference.PreferenceManager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import ac.cr.tec.NutriTec.Const.Const;
 import ac.cr.tec.NutriTec.R;
+import ac.cr.tec.NutriTec.network.NetworkCommunicator;
 import ac.cr.tec.NutriTec.viewModel.productListViewModel;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +45,8 @@ public class RecipesFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private String username;
+    private EditText recipeInput;
 
     private productListViewModel viewModel;
 
@@ -68,16 +85,65 @@ public class RecipesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_recipes, container, false);
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        recipeInput=view.findViewById(R.id.recipe_name_input);
+        SharedPreferences preferences= PreferenceManager.getDefaultSharedPreferences(getContext());
+        username=preferences.getString(Const.user,"");
         viewModel=new ViewModelProvider(this).get(productListViewModel.class);
         viewModel.getProductList().observe(getViewLifecycleOwner(),element->{
             //Log.d("IMPORTANTE",element.toString());
             //mealTimeName.setText(element.get(0));
+            ArrayList<String> products=element.get(Const.productKey);
+            String recipeName=recipeInput.getText().toString();
+            processRecipe(recipeName,products);
+
 
         });
     }
+    public void processRecipe(String recipeName,ArrayList<String> products){
+        try {
+            JSONObject requestBody=new JSONObject();
+            requestBody.put(Const.addRecipeName,recipeName);
+            requestBody.put(Const.addRecipeEmail,username);
+            JSONArray productArray=new JSONArray(products);
+            requestBody.put(Const.addRecipeProduct,productArray);
+            NetworkCommunicator.post(Const.addRecipeUrl, requestBody, new Callback() {
+                @Override
+                public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            toastText(Const.addRecipeError);
+                        }
+                    });
+
+                }
+
+                @Override
+                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            toastText(Const.addRecipeSuccess);
+                        }
+                    });
+
+                }
+            });
+        }
+        catch (Exception e){}
+
+
+    }
+    public void toastText(String text){
+        Toast toast=Toast.makeText(getActivity(),text,Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+    }
+
 }

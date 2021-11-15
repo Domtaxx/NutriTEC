@@ -108,8 +108,9 @@ public class DailyMealFragment extends Fragment {
         viewModel.getProductList().observe(getViewLifecycleOwner(),element->{
             ArrayList<String> recipes=element.get(Const.recipeKey);
             ArrayList<String> products=element.get(Const.productKey);
+            ArrayList<String> creators=element.get(Const.creatorKey);
             processProducts(products);
-            processRecipe(recipes);
+            processRecipe(recipes,creators);
 
 
         });
@@ -152,15 +153,17 @@ public class DailyMealFragment extends Fragment {
 
     }
 
-    public void processRecipe(ArrayList<String> recipes){
+    public void processRecipe(ArrayList<String> recipes,ArrayList<String> creators){
         try {
             JSONObject requestBody=new JSONObject();
             for(int i=0;i<recipes.size();i++){
                 String recipe=recipes.get(i);
+                String creator=creators.get(i);
                 String date=String.valueOf(android.text.format.DateFormat.format("yyyy-MM-dd", new java.util.Date()));
 
                 requestBody.put(Const.dailyRecipeName,recipe);
                 requestBody.put(Const.dailyUser,username);
+                requestBody.put(Const.dailyRecipeCreator,creator);
                 requestBody.put(Const.dailyDate,date);
                 requestBody.put(Const.dailyTime,mealTime);
                 NetworkCommunicator.post(Const.dailyRecipeUrl, requestBody, new Callback() {

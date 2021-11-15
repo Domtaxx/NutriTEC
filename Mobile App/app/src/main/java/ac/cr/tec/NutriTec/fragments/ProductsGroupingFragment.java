@@ -55,6 +55,7 @@ public class ProductsGroupingFragment extends Fragment {
     private String username;
     private ArrayList<String> productsSelected;
     private ArrayList<String> recipesSelected;
+    private ArrayList<String> recipesOwner;
     private MaterialButton addProductButton;
     private MaterialButton confirmButton;
     private EditText productInputName;
@@ -103,6 +104,7 @@ public class ProductsGroupingFragment extends Fragment {
         currentFragment=this;
         productsSelected=new ArrayList<>();
         recipesSelected=new ArrayList<>();
+        recipesOwner=new ArrayList<>();
         getInstances(currentView);
         //setListeners();
         return currentView;
@@ -206,7 +208,7 @@ public class ProductsGroupingFragment extends Fragment {
                                                 //noProductToast.setGravity(Gravity.CENTER, 0, 0);
                                                 //noProductToast.show();
                                                 HashMap<String,String> params2=new HashMap<>();
-                                                params2.put(Const.recipeCreator,username);
+                                                //params2.put(Const.recipeCreator,username);
                                                 params2.put(Const.recipeName,productName);
                                                 NetworkCommunicator.get(Const.recipeUrl, params2, new Callback() {
                                                     @Override
@@ -237,11 +239,12 @@ public class ProductsGroupingFragment extends Fragment {
                                                                 for(int i=0;i<products.length();i++){
                                                                     JSONObject product= products.getJSONObject(i);
                                                                     String recipeName=product.getString(Const.recipeObjectNameAttribute);
+                                                                    String creator=product.getString(Const.recipeObjectCreatorAttribute);
                                                                     productDescriptions[i]=recipeName;
                                                                     productSelected[i]=new ChoiceSelected() {
                                                                         @Override
                                                                         public void onSelected() {
-                                                                            addRecipe(recipeName);
+                                                                            addRecipe(recipeName,creator);
                                                                         }
                                                                     };
                                                                     SelectRecipeDialogFragment Dialog=new SelectRecipeDialogFragment(productDescriptions,productSelected);
@@ -299,6 +302,7 @@ public class ProductsGroupingFragment extends Fragment {
                     HashMap<String,ArrayList<String>> hash=new HashMap<>();
                     hash.put(Const.productKey,productsSelected);
                     hash.put(Const.recipeKey,recipesSelected);
+                    hash.put(Const.creatorKey,recipesOwner);
                     viewModel.setProductList(hash);
                     productList.removeAllViews();
                     productsSelected=new ArrayList<>();
@@ -340,9 +344,10 @@ public class ProductsGroupingFragment extends Fragment {
 
     }
 
-    public void addRecipe(String recipeName){
+    public void addRecipe(String recipeName,String creator){
         //if(!inProducts(barsCode)){
         recipesSelected.add(recipeName);
+        recipesOwner.add(creator);
         DeleteButton button=new DeleteButton(getContext());
         productList.addView(button);
         button.setButtonText(recipeName);
@@ -351,6 +356,7 @@ public class ProductsGroupingFragment extends Fragment {
             public void onClick(View view) {
                 productList.removeView(button);
                 recipesSelected.remove(recipeName);
+                recipesOwner.remove(creator);
 
             }
         });

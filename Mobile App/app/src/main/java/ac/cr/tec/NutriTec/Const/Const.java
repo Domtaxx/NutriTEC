@@ -29,7 +29,8 @@ public class Const {
     //hash keys
     public static final String productKey="product";
     public static final String recipeKey="recipe";
-    public static final String recipeUrl=urlSite+"/Receta/ByName";
+    public static final String creatorKey="creator";
+    public static final String recipeUrl=urlSite+"/Receta/Busqueda";
     public static final String recipeObjectNameAttribute="nombre";
     public static final String recipeObjectCreatorAttribute="correoCreador";
     public static final String recipeObjectProductAttribute="productos";
@@ -48,11 +49,22 @@ public class Const {
     public static final String dailyRecipeUrl=urlSite+"/Reportes/Recetas";
     public static final String dailyBarCode="codigoBarras";
     public static final String dailyRecipeName="nombreReceta";
+    public static final String dailyRecipeCreator="creator";
     public static final String dailyUser="correoCliente";
     public static final String dailyDate="fecha";
     public static final String dailyTime="tiempo";
     public static final String dailyAccepted="Agregado ";
     public static final String dailyFailed="Fallo en agregar ";
+
+
+    //recipes creation
+    public static String addRecipeUrl=urlSite+"/Receta/Crear";
+    public static String addRecipeName="nombre";
+    public static String addRecipeEmail="correoCreador";
+    public static String addRecipeProduct="productos";
+    public static String addRecipeSuccess="Reseta Añadida con exito";
+    public static String addRecipeError="No se pudo agregar la receta";
+
     //Errores
     public static final String noConnection="No hay conexion";
 
