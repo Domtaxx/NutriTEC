@@ -74,5 +74,20 @@ namespace NutriTEC_rest.Controllers
 
             }
         }
+        [Route("Recetas/fecha")]
+        [HttpGet]
+        public ActionResult get(string Correo_cliente,DateTime fecha)
+        {
+            try
+            {
+                var res = Db.RecetaPublics.FromSqlInterpolated($"spGetReceta_report {Correo_cliente}").Where(W=> W.Fecha == fecha);
+                return Ok(res);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+
+            }
+        }
     }
 }

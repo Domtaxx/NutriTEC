@@ -1,6 +1,6 @@
-CREATE PROCEDURE dbo.spGetProduct
+create PROCEDURE dbo.spGetProduct
 	@Codigo varchar(128) = '',
-	@Desc varchar(128)= 'a'
+	@Desc varchar(128)= 'aasdasasdfasd1234jadfvasd1234nadbfh1'
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -45,6 +45,7 @@ Create PROCEDURE dbo.spGetClientes
     @email varchar(320)
 AS
 BEGIN
+    SET NOCOUNT ON;
     select * from Client_public where Correo_nutri = @email
     return
 END
@@ -54,6 +55,7 @@ Create PROCEDURE dbo.spGetCliente
     @email varchar(320)
 AS
 BEGIN
+    SET NOCOUNT ON;
     select * from Client_public where Correo = @email
     return
 END
@@ -63,6 +65,7 @@ Create FUNCTION dbo.GetDiscount
 RETURNS float(2)
 AS
 Begin
+    SET NOCOUNT ON;
     Declare @discount as float(2)=0;
     Declare @tipo_cobro as char;
     Select @tipo_cobro = (select Tipo_cobro from NUTRICIONISTA where NUTRICIONISTA.Correo=@email)
@@ -84,6 +87,7 @@ Create FUNCTION dbo.GetAttendedClient
 returns integer
     AS
     begin
+        SET NOCOUNT ON;
         declare @attended As INTEGER;
         Select @attended=Count(*)
         From CLIENTE
@@ -97,6 +101,7 @@ Create PROCEDURE dbo.GetPaymentAmount
 @email varchar(320)
 AS
     Begin
+        SET NOCOUNT ON;
         Create Table #temp(
             correo varchar(320),
             atendidos int,
@@ -120,7 +125,7 @@ Create PROCEDURE dbo.spAddPlan
 @correo_nutri varchar(128)
 AS
 BEGIN
-
+        SET NOCOUNT ON;
         declare @element_count as integer;
         select @element_count=count(*) from dbo.PLAN_ALIMENTACION
         where Nombre=@plan_name;
@@ -139,6 +144,7 @@ Create Procedure dbo.spAddMenuToPlan
 @email varchar(320)
 as
     begin
+        SET NOCOUNT ON;
         declare @accepted_user as INTEGER;
         select @accepted_user=count(*) from PLAN_ALIMENTACION
         where PLAN_ALIMENTACION.Nombre=@plan_name and PLAN_ALIMENTACION.Correo_nutri=@email;
@@ -166,6 +172,7 @@ Create Procedure dbo.spAddProductToMenu
 @correo varchar(320)
 AS
     begin
+        SET NOCOUNT ON;
         declare @acceptedPlanUser as integer;
         select @acceptedPlanUser=count(*) from PLAN_ALIMENTACION
         WHERE Nombre=@plan_name and Correo_nutri=@correo;
@@ -188,6 +195,7 @@ create procedure dbo.spGetMenuProducts
 @menu_name varchar(130)
 AS
     Begin
+        SET NOCOUNT ON;
         Select * from
         MENU_PRODUCTO join Producto_public on (dbo.MENU_PRODUCTO.Codigo_barras=Producto_public.Codigo_barras)
         where MENU_PRODUCTO.Nombre_plan_alimentacion=@plan_name and MENU_PRODUCTO.Nombre_menu=@menu_name
@@ -198,6 +206,7 @@ create procedure dbo.spGetProduct_report
 @Client_email varchar(320)
 AS
     Begin
+        SET NOCOUNT ON;
         select * from Cliente_producto_public where Correo_cliente = @Client_email
     end
 GO
@@ -206,9 +215,13 @@ alter procedure dbo.spGetReceta_report
 @Client_email varchar(320)
 AS
     Begin
+        SET NOCOUNT ON;
         select distinct RP.Correo_cliente,
                         RP.Nombre,
                         RP.Correo_creador,
+                        RP.Fecha,
+                        RP.Tiempo,
+                        RP.Tamano,
                         (select sum(Calcio) from receta_public t1 where t1.Correo_creador = RP.Correo_creador and t1.Correo_cliente = RP.Correo_cliente and t1.Nombre = RP.Nombre)[Calcio],
                         (select sum(Hierro) from receta_public t1 where t1.Correo_creador = RP.Correo_creador and t1.Correo_cliente = RP.Correo_cliente and t1.Nombre = RP.Nombre)[Hierro],
                         (select sum(Energia) from receta_public t1 where t1.Correo_creador = RP.Correo_creador and t1.Correo_cliente = RP.Correo_cliente and t1.Nombre = RP.Nombre)[Energia],
@@ -220,4 +233,13 @@ AS
     end
 GO
 
-spGetReceta_report 'mangel12412@gmail.com'
+create procedure dbo.spGetRecetas
+@email_creator varchar(320),
+@name varchar(128)
+AS
+    Begin
+        SET NOCOUNT ON;
+	    SELECT * from dbo.RECETA where (Nombre like concat('%',concat(@name,'%')) or @email_creator like concat('%',concat(Correo_creador,'%')))
+    end
+GO
+

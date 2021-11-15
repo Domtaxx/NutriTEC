@@ -33,7 +33,21 @@ namespace NutriTEC_rest.Controllers
         {
             try
             {
-                var medidas = Db.RegistroMedidas.Where(M => M.CorreoCliente == correo).Where(M => M.Fecha == fecha);
+                var medidas = Db.RegistroMedidas.Where(M => M.CorreoCliente == correo && M.Fecha == fecha);
+                return Ok(medidas.ToList().ElementAt(0));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+        [Route("Todas")]
+        [HttpGet]
+        public ActionResult Get(string correo)
+        {
+            try
+            {
+                var medidas = Db.RegistroMedidas.Where(M => M.CorreoCliente == correo);
                 return Ok(medidas.ToList().ElementAt(0));
             }
             catch (Exception e)

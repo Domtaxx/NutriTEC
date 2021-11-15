@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAzdDWHlkU1UiS8JilfIkyTgAAAAACAAAAAAAQZgAAAAEAACAAAAAEyLNdCQJvqNxYCjMQbBSMggXvy0k/psl0AssJo156LQAAAAAOgAAAAAIAACAAAACat6Mn1O9PyMMYQeRJGnmhOtNTZseFSi+4Hb4aN+aApoAAAAA9G1lXM+/WsyHpj2U2wzgcNH1cwE1vCrjuOpzmifUx4iDPSA7G6IeQCDSgOrQgWFm1nKmT6vItw3repDMqGs7po57joV5wXHFO2F0+8YxSiorAuX6ofyKY/no0Y9qGbkpValJZvWjlE4vKUSgXsf/slgeCKRX0tQwLWaDV3VW9c0AAAADrq/r5Yp4rpcg0qc1WwJYVKpqaZfmHXSsop5ZTq0fFKfQDd5vas3J6j7E9gvM9C0MXO0ciMP3jVVO2lKtauOsr</EncryptedPassword>
+    <History>True|2021-11-15T02:54:26.3008214Z;True|2021-11-14T20:48:32.5324402-06:00;True|2021-11-14T19:54:45.9953138-06:00;True|2021-11-14T19:34:31.6181090-06:00;True|2021-11-14T17:50:17.5397780-06:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <EFMigrations Include="NutriTEC_rest.DB_Context.NutriTECContext">
+      <Value>Data Source=tcp:nutritec-sqldb.database.windows.net,1433%3bInitial Catalog=NutriTEC_rest_db%3bUser Id=domtaxx%40nutritec-sqldb%3bPassword=hDqGa968ZHzA</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

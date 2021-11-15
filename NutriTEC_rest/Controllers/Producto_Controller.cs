@@ -17,7 +17,7 @@ namespace NutriTEC_rest.Controllers
         NutriTECContext Db = new NutriTECContext();
 
         [HttpGet]
-        public ActionResult Get(string Codigo,string desc="a")
+        public ActionResult Get(string Codigo,string desc= "aasdasasdfasd1234jadfvasd1234nadbfh1")
         {
             try
             {

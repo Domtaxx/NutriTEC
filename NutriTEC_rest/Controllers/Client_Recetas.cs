@@ -12,12 +12,13 @@ namespace NutriTEC_rest.Controllers
 {
 
     [ApiController]
-    [Route("Receta/Crear")]
+    [Route("Receta")]
     public class Client_Recetas : Controller
     {
         NutriTECContext Db = new NutriTECContext();
+        [Route("Crear")]
         [HttpPost]
-        public ActionResult Post([FromBody]Receta_Productos info)
+        public ActionResult Post([FromBody] Receta_Productos info)
         {
             try
             {
@@ -27,9 +28,10 @@ namespace NutriTEC_rest.Controllers
                 receta.CorreoCreador = info.CorreoCreador;
                 receta.Nombre = info.Nombre;
                 List<RecetaProducto> productos = new();
-                foreach(string s in info.productos)
+                foreach (string s in info.productos)
                 {
-                    if (productos.Exists(e => e.CodigoBarras == s)){
+                    if (productos.Exists(e => e.CodigoBarras == s))
+                    {
                         productos.Find(e => e.CodigoBarras == s).Cantidad += 1;
                     }
                     else
@@ -44,7 +46,7 @@ namespace NutriTEC_rest.Controllers
                     }
                 }
                 Db.Receta.Add(receta);
-                foreach(RecetaProducto RP in productos)
+                foreach (RecetaProducto RP in productos)
                 {
                     Db.RecetaProductos.Add(RP);
                 }
@@ -56,5 +58,35 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [Route("Especifico")]
+        [HttpGet]
+        public ActionResult Get(string creator="a", string name = "a")
+        {
+            try
+            {
+                var recetas = Db.Receta.FromSqlInterpolated($"exec spGetRecetas {creator},{name}").ToList();
+                return Ok(recetas);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+        [Route("Todos")]
+        [HttpGet]
+        public ActionResult Get()
+        {
+            try
+            {
+                var recetas = Db.Receta.ToList();
+                return Ok(recetas);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
+    
+    
 }
