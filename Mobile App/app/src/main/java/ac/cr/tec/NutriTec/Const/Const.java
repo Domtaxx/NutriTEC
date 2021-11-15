@@ -24,5 +24,17 @@ public class Const {
     //Reci
 
 
+    //comidas
+    public static final String mealText="Meal";
+    public static final String breakfast="Desayuno";
+    public static final String snackMorning="Merienda 1";
+    public static final String lunch="Almuerzo";
+    public static final String snackEvening="Merienda 2";
+    public static final String dinner="Cena";
+
+
+    //Errores
+    public static final String noConnection="No hay conexion";
+
 
 }

@@ -115,7 +115,9 @@ public class ProductsGroupingFragment extends Fragment {
                 NetworkCommunicator.get(Const.searchUrl, params, new Callback() {
                     @Override
                     public void onFailure(@NonNull Call call, @NonNull IOException e) {
-
+                        Toast toast=Toast.makeText(getActivity().getApplicationContext(),Const.noConnection,Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
                     }
 
                     @Override
@@ -144,7 +146,9 @@ public class ProductsGroupingFragment extends Fragment {
                                 NetworkCommunicator.get(Const.searchUrl, params1, new Callback() {
                                     @Override
                                     public void onFailure(@NonNull Call call, @NonNull IOException e) {
-
+                                        Toast toast=Toast.makeText(getActivity().getApplicationContext(),Const.noConnection,Toast.LENGTH_SHORT);
+                                        toast.setGravity(Gravity.CENTER, 0, 0);
+                                        toast.show();
                                     }
 
                                     @Override
@@ -176,7 +180,9 @@ public class ProductsGroupingFragment extends Fragment {
 
                                             }
                                             else{
-                                                Toast.makeText(getActivity().getBaseContext(),Const.noAvailableProduct,Toast.LENGTH_SHORT).show();
+                                                Toast toast=Toast.makeText(getActivity().getApplicationContext(),Const.noAvailableProduct,Toast.LENGTH_SHORT);
+                                                toast.setGravity(Gravity.CENTER, 0, 0);
+                                                toast.show();
                                                 //noProductToast.setGravity(Gravity.CENTER, 0, 0);
                                                 //noProductToast.show();
                                             }

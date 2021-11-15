@@ -7,9 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_daily_meals"
-        android:name="ac.cr.tec.NutriTec.fragments.DailyMealFragment"
+        android:name="ac.cr.tec.NutriTec.fragments.MealSelector"
         android:label="DailyMeal"
-        tools:layout="@layout/fragment_daily_meal" />
+        tools:layout="@layout/fragment_meal_selector" >
+        <action
+            android:id="@+id/action_navigation_daily_meals_to_dailyMealFragment"
+            app:destination="@id/dailyMealFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_recipes"
         android:name="ac.cr.tec.NutriTec.fragments.RecipesFragment"
@@ -25,4 +29,9 @@
         android:name="ac.cr.tec.NutriTec.screens.Login"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
+    <fragment
+        android:id="@+id/dailyMealFragment"
+        android:name="ac.cr.tec.NutriTec.fragments.DailyMealFragment"
+        android:label="fragment_daily_meal"
+        tools:layout="@layout/fragment_daily_meal" />
 </navigation>

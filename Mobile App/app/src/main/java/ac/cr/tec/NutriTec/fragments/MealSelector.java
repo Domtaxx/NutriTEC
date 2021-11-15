@@ -1,12 +1,27 @@
 package ac.cr.tec.NutriTec.fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+
+import android.os.ConditionVariable;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.google.android.material.button.MaterialButton;
+
+import ac.cr.tec.NutriTec.Const.Const;
 import ac.cr.tec.NutriTec.R;
 
 
@@ -25,6 +40,14 @@ public class MealSelector extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private MaterialButton breakfastButton;
+    private MaterialButton morningSnackButton;
+    private MaterialButton lunchButton;
+    private MaterialButton eveningSnackButton;
+    private MaterialButton dinnerButton;
+    private TextView title;
+    private NavController navController;
+
 
 
     public MealSelector() {
@@ -62,7 +85,79 @@ public class MealSelector extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_meal_selector, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getInstances(view);
+        navController= NavHostFragment.findNavController(this);
+        setListener();
+    }
+    public void getInstances(View view){
+        breakfastButton=view.findViewById(R.id.breakfast_button);
+        morningSnackButton=view.findViewById(R.id.morning_snack_button);
+        lunchButton=view.findViewById(R.id.lunch_button);
+        eveningSnackButton=view.findViewById(R.id.evening_snack_button);
+        dinnerButton=view.findViewById(R.id.dinner_button);
+        title=view.findViewById(R.id.Select_meal_title);
+    }
+    public void setListener(){
+        breakfastButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                replaceFragment(Const.breakfast);
+            }
+        });
+        morningSnackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                replaceFragment(Const.snackMorning);
+            }
+        });
+        lunchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                replaceFragment(Const.lunch);
+            }
+        });
+        eveningSnackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                replaceFragment(Const.snackEvening);
+            }
+        });
+        dinnerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               //replaceFragment(Const.dinner);
+            }
+        });
+    }
+    public void replaceFragment(String food){
+        /*
+        DailyMealFragment fragment = new DailyMealFragment();
+        fragment.setMealTime(food);
+        //title.setText("");
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.navHostFragment, fragment,null);
+        transaction.commit();
+         */
+        SharedPreferences preferences= PreferenceManager.getDefaultSharedPreferences(getContext());
+        SharedPreferences.Editor editor=preferences.edit();
+        editor.putString(Const.mealText,food);
+        editor.commit();
+        navController.navigate(R.id.action_navigation_daily_meals_to_dailyMealFragment);
+
+
+
+
+
+
     }
 
 

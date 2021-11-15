@@ -1,12 +1,16 @@
 package ac.cr.tec.NutriTec.fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +19,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import ac.cr.tec.NutriTec.Const.Const;
 import ac.cr.tec.NutriTec.R;
 import ac.cr.tec.NutriTec.viewModel.productListViewModel;
 
@@ -33,7 +38,10 @@ public class DailyMealFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private TextView mealTimeName;
+    private String mealTime;
+    private TextView title;
+
+
     private productListViewModel viewModel;
 
 
@@ -73,12 +81,16 @@ public class DailyMealFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_daily_meal, container, false);;
-        mealTimeName=view.findViewById(R.id.meal_name);
+
         return view;
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        SharedPreferences preferences= PreferenceManager.getDefaultSharedPreferences(getContext());
+        title=view.findViewById(R.id.meal_name);
+        mealTime=preferences.getString(Const.mealText,"");
+        title.setText(mealTime);
         viewModel=new ViewModelProvider(this).get(productListViewModel.class);
         viewModel.getProductList().observe(getViewLifecycleOwner(),element->{
             //Log.d("IMPORTANTE",element.toString());
@@ -89,4 +101,6 @@ public class DailyMealFragment extends Fragment {
     public void processProduct(ArrayList<String> products,String MealTime){
 
     }
+
+
 }
