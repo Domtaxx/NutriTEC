@@ -243,3 +243,22 @@ AS
     end
 GO
 
+create procedure dbo.spGetReceta
+@email_creator varchar(320),
+@name varchar(128)
+AS
+    Begin
+        SET NOCOUNT ON;
+	    SELECT * from dbo.RECETA where (Nombre = @name and @email_creator = Correo_creador)
+    end
+GO
+
+create procedure dbo.spGetRecetas_byName
+@email_creator varchar(320),
+@name varchar(128)
+AS
+    Begin
+        SET NOCOUNT ON;
+	    SELECT * from dbo.RECETA where (Nombre like concat('%',concat(@name,'%')) and @email_creator =  Correo_creador)
+    end
+GO

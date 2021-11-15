@@ -25,6 +25,23 @@ values('Antonio40123@gmail.com','bcb7e9e73ce1771a23777b05bd8d3ea9','Casa #162 Re
 insert into PRODUCTO
 	(Codigo_barras,Sodio,Energia,Carbohidratos,Tamano,Vitaminas,Descripcion,Estado,Hierro,Calcio,Proteina,Correo_admin)
 values('7501000608249',2.5,100,70.8,1024,4,'GALLETA SALADITA GAMESA 1024GR','Disponible',2,3.1,0.4,'Admin1@gmail.com');
+
+insert into PRODUCTO
+	(Codigo_barras,Sodio,Energia,Carbohidratos,Tamano,Vitaminas,Descripcion,Estado,Hierro,Calcio,Proteina,Correo_admin)
+values('24076876',0,1458,75,100,0,'Arroz blanco La villa','Disponible',0,0,7.6,'Admin1@gmail.com');
+
+insert into PRODUCTO
+	(Codigo_barras,Sodio,Energia,Carbohidratos,Tamano,Vitaminas,Descripcion,Estado,Hierro,Calcio,Proteina,Correo_admin)
+values('7441029514179',0.12,186,34.2,535,0,'Pan Blanco Bimbo artesano','Disponible',0,11,6.2,'Admin1@gmail.com');
+
+insert into PRODUCTO
+	(Codigo_barras,Sodio,Energia,Carbohidratos,Tamano,Vitaminas,Descripcion,Estado,Hierro,Calcio,Proteina,Correo_admin)
+values('7441074152456 ',0,330,75,1800,0,'Arroz indiana 99% grano entero','Disponible',342,126,7,'Admin1@gmail.com');
+
+insert into PRODUCTO
+	(Codigo_barras,Sodio,Energia,Carbohidratos,Tamano,Vitaminas,Descripcion,Estado,Hierro,Calcio,Proteina,Correo_admin)
+values('7441074152456 ',0,330,75,1800,0,'Arroz indiana 99% grano entero','Disponible',342,126,7,'Admin1@gmail.com');
+
 insert into PRODUCTO
 	(Codigo_barras,Sodio,Energia,Carbohidratos,Tamano,Vitaminas,Descripcion,Estado,Hierro,Calcio,Proteina,Correo_admin)
 values('7501000608058',2.5,100,70.8,450,4,'GALLETA SALADITA GAMESA 450GR','Disponible',2,3.1,0.4,'Admin2@gmail.com');

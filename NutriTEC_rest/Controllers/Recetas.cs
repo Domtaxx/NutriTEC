@@ -13,7 +13,7 @@ namespace NutriTEC_rest.Controllers
 
     [ApiController]
     [Route("Receta")]
-    public class Client_Recetas : Controller
+    public class Recetas : Controller
     {
         NutriTECContext Db = new NutriTECContext();
         [Route("Crear")]
@@ -58,13 +58,41 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
-        [Route("Especifico")]
+        [Route("Busqueda")]
         [HttpGet]
-        public ActionResult Get(string creator="a", string name = "a")
+        public ActionResult Get(string creator="aakjlhsdfjdshjkfad", string name = "aasdjhfhasjkdhfjasdhf")
         {
             try
             {
                 var recetas = Db.Receta.FromSqlInterpolated($"exec spGetRecetas {creator},{name}").ToList();
+                return Ok(recetas);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+        [Route("Especifico")]
+        [HttpGet]
+        public ActionResult get(string creator = "aakjlhsdfjdshjkfad", string name = "aasdjhfhasjkdhfjasdhf")
+        {
+            try
+            {
+                var recetas = Db.Receta.FromSqlInterpolated($"exec spGetReceta {creator},{name}").ToList();
+                return Ok(recetas);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+        [Route("ByName")]
+        [HttpGet]
+        public ActionResult get2(string creator, string name = "aasdjhfhasjkdhfjasdhf")
+        {
+            try
+            {
+                var recetas = Db.Receta.FromSqlInterpolated($"exec spGetRecetas_byName {creator},{name}").ToList();
                 return Ok(recetas);
             }
             catch (Exception e)
