@@ -65,7 +65,7 @@ Create FUNCTION dbo.GetDiscount
 RETURNS float(2)
 AS
 Begin
-    SET NOCOUNT ON;
+
     Declare @discount as float(2)=0;
     Declare @tipo_cobro as char;
     Select @tipo_cobro = (select Tipo_cobro from NUTRICIONISTA where NUTRICIONISTA.Correo=@email)
@@ -87,7 +87,7 @@ Create FUNCTION dbo.GetAttendedClient
 returns integer
     AS
     begin
-        SET NOCOUNT ON;
+
         declare @attended As INTEGER;
         Select @attended=Count(*)
         From CLIENTE
@@ -211,7 +211,7 @@ AS
     end
 GO
 
-alter procedure dbo.spGetReceta_report
+create procedure dbo.spGetReceta_report
 @Client_email varchar(320)
 AS
     Begin
