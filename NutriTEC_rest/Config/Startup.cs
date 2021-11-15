@@ -11,22 +11,28 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using NutriTEC_rest.DB_Context;
 
 namespace NutriTEC_rest
 {
     public class Startup
     {
         public readonly string _myCors = "MyCors";
+        private readonly IConfiguration _configuration;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            _configuration = configuration;
+            
         }
+        
 
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddCors(c => {
                 c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod());
             });
@@ -42,6 +48,8 @@ namespace NutriTEC_rest
             );
             services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme)
                     .AddCertificate(options => options.AllowedCertificateTypes = CertificateTypes.All);
+           
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
