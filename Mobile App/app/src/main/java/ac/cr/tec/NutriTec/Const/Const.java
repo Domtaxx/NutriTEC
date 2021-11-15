@@ -31,9 +31,11 @@ public class Const {
     public static final String recipeKey="recipe";
     public static final String recipeUrl=urlSite+"/Receta/ByName";
     public static final String recipeObjectNameAttribute="nombre";
+    public static final String recipeObjectCreatorAttribute="correoCreador";
+    public static final String recipeObjectProductAttribute="productos";
 
 
-    //comidas
+    //meals
     public static final String mealText="Meal";
     public static final String breakfast="Desayuno";
     public static final String snackMorning="Merienda 1";
@@ -41,7 +43,16 @@ public class Const {
     public static final String snackEvening="Merienda 2";
     public static final String dinner="Cena";
 
-
+    //recipes dailyConsumeAdd
+    public static final String dailyUrl=urlSite+"/Reportes/Productos";
+    public static final String dailyRecipeUrl=urlSite+"/Reportes/Recetas";
+    public static final String dailyBarCode="codigoBarras";
+    public static final String dailyRecipeName="nombreReceta";
+    public static final String dailyUser="correoCliente";
+    public static final String dailyDate="fecha";
+    public static final String dailyTime="tiempo";
+    public static final String dailyAccepted="Agregado ";
+    public static final String dailyFailed="Fallo en agregar ";
     //Errores
     public static final String noConnection="No hay conexion";
 

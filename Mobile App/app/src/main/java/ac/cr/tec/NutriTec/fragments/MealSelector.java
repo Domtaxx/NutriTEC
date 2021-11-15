@@ -132,7 +132,7 @@ public class MealSelector extends Fragment {
         dinnerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               //replaceFragment(Const.dinner);
+                replaceFragment(Const.dinner);
             }
         });
     }

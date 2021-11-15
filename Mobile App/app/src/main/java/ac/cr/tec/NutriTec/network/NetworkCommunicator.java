@@ -62,7 +62,7 @@ public class NetworkCommunicator {
      * @return  a Response
      * @throws IOException
      */
-    public static void put(String url,JSONObject body) throws IOException {
+    public static void put(String url,JSONObject body,Callback callback) throws IOException {
         if(url==null || body==null)return;
         client.proxy();
         RequestBody requestBody = RequestBody.create( body.toString(),
@@ -74,17 +74,7 @@ public class NetworkCommunicator {
                 .build();
 
         //Response response=client.newCall(request).execute();
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                Log.d("PUT","EXIto");
-            }
-        });
+        client.newCall(request).enqueue(callback);
         ///return null;
 
 
@@ -92,6 +82,34 @@ public class NetworkCommunicator {
 
 
     }
+    /**
+     * put request
+     * @param url String url
+     * @param body  JSONObject body
+     * @return  a Response
+     * @throws IOException
+     */
+    public static void post(String url,JSONObject body,Callback callback) throws IOException {
+        if(url==null || body==null)return;
+        client.proxy();
+        RequestBody requestBody = RequestBody.create( body.toString(),
+                MediaType.parse("application/json"));
+        Request request = new Request.Builder()
+                .url(url)
+                .post(requestBody)
+                .addHeader("Content-Type", "application/json")
+                .build();
+
+        //Response response=client.newCall(request).execute();
+        client.newCall(request).enqueue(callback);
+        ///return null;
+
+
+
+
+
+    }
+
     public static boolean isNetworkAvailable(final Context context) {
         final ConnectivityManager cm = (ConnectivityManager)
                 context.getSystemService(Context.CONNECTIVITY_SERVICE);
