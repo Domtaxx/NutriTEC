@@ -20,15 +20,16 @@ public class Const {
     public static final String productBarCode="codigoBarras";
     public static final String productDescription="descripcion";
     public static final String noAvailableProduct="No se encontro ningun producto o receta";
-
+    public static final String productAdded="Se agrego el producto";
     //Recipe creator
     public static final String recipeCreator="creator";
     public static final String recipeName="name";
+    public static final String recipeAdded="Se agrego la receta";
 
     //hash keys
     public static final String productKey="product";
     public static final String recipeKey="recipe";
-    public static final String recipeUrl=urlSite+"/Receta/Busqueda";
+    public static final String recipeUrl=urlSite+"/Receta/ByName";
     public static final String recipeObjectNameAttribute="nombre";
 
 

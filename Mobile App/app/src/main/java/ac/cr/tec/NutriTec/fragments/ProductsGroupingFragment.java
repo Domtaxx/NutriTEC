@@ -219,7 +219,10 @@ public class ProductsGroupingFragment extends Fragment {
                                                         try{
                                                             String textResponse=response.body().source().readUtf8();
                                                             JSONArray products=new JSONArray(textResponse);
+
                                                             if(products.length()>0){
+                                                                String[] productDescriptions=new String[products.length()];
+                                                                ChoiceSelected[] productSelected=new ChoiceSelected[products.length()];
                                                                 /*
                                                                 JSONObject product=products.getJSONObject(0);
                                                                 String recipeName=product.getString(Const.recipeObjectNameAttribute);
@@ -332,6 +335,7 @@ public class ProductsGroupingFragment extends Fragment {
 
                 }
             });
+            elementAdded(Const.productAdded);
       //  }
 
     }
@@ -350,17 +354,21 @@ public class ProductsGroupingFragment extends Fragment {
 
             }
         });
+        elementAdded(Const.recipeAdded);
         //  }
 
     }
     public void noProductFound(){
-        Toast toast = new Toast(getActivity());
-        toast.setDuration(Toast.LENGTH_LONG);
 
-        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.toast_no_available, null);
-        toast.setView(view);
+        Toast toast=Toast.makeText(getActivity(),Const.noAvailableProduct,Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
     }
+    public void elementAdded(String text){
+        Toast toast=Toast.makeText(getActivity(),text,Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+    }
+
 
 }
