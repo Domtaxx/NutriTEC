@@ -239,7 +239,7 @@ create procedure dbo.spGetRecetas
 AS
     Begin
         SET NOCOUNT ON;
-	    SELECT * from dbo.RECETA where (Nombre like concat('%',concat(@name,'%')) or @email_creator like concat('%',concat(Correo_creador,'%')))
+	    SELECT * from dbo.RECETA where (Nombre like concat('%',concat(@name,'%')) or @email_creator like concat('%',concat(Correo_creador,'%'))and RECETA.Aprobado = 1)
     end
 GO
 
@@ -249,7 +249,7 @@ create procedure dbo.spGetReceta
 AS
     Begin
         SET NOCOUNT ON;
-	    SELECT * from dbo.RECETA where (Nombre = @name and @email_creator = Correo_creador)
+	    SELECT * from dbo.RECETA where (Nombre = @name and @email_creator = Correo_creador and RECETA.Aprobado = 1)
     end
 GO
 
@@ -259,6 +259,32 @@ create procedure dbo.spGetRecetas_byName
 AS
     Begin
         SET NOCOUNT ON;
-	    SELECT * from dbo.RECETA where (Nombre like concat('%',concat(@name,'%')) and @email_creator =  Correo_creador)
+	    SELECT * from dbo.RECETA where (Nombre like concat('%',concat(@name,'%'))and RECETA.Aprobado = 1 and @email_creator =  Correo_creador)
     end
 GO
+
+create procedure  dbo.spAddRecetaToMenu
+@plan_name varchar(128),
+@menu_name varchar(128),
+@nombre_receta varchar(128),
+@creador varchar(320),
+@nutri varchar(320)
+AS
+    begin
+        SET NOCOUNT ON;
+        declare @acceptedPlanUser as integer;
+        select @acceptedPlanUser=count(*) from PLAN_ALIMENTACION
+        WHERE Nombre=@plan_name and Correo_nutri=@nutri;
+        if(@acceptedPlanUser>0)begin
+            declare @existingMenu as INTEGER;
+            select @existingMenu = count(*) from MENU
+            where Nombre_plan_alimentacion=@plan_name and Nombre=@menu_name;
+            if(@existingMenu>0)begin
+                insert into MENU_RECETA (nombre_plan_alimentacion, nombre_menu, Nombre_receta,Correo_creador)
+                values (@plan_name,@menu_name,@nombre_receta,@creador);
+            end
+        end
+    end
+Go
+
+create procedure

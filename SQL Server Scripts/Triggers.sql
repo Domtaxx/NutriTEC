@@ -13,3 +13,14 @@ begin
     end
 end
 GO
+
+create trigger TR_delete_plan on PLAN_ALIMENTACION instead of delete
+as
+    delete from MENU_RECETA where Nombre_plan_alimentacion = (select deleted.Nombre from deleted);
+    delete from MENU_PRODUCTO where Nombre_plan_alimentacion = (select deleted.Nombre from deleted);
+    delete from MENU where Nombre_plan_alimentacion = (select deleted.Nombre from deleted);
+    delete from CLIENTE_PLAN where Nombre_plan =(select deleted.Nombre from deleted);
+    Delete from PLAN_ALIMENTACION where Nombre = (select deleted.Nombre from deleted);
+GO
+
+delete from PLAN_ALIMENTACION where Nombre = 'Prueba';

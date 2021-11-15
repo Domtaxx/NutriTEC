@@ -40,11 +40,16 @@ values('7441074152456 ',0,330,75,1800,0,'Arroz indiana 99% grano entero','Dispon
 
 insert into PRODUCTO
 	(Codigo_barras,Sodio,Energia,Carbohidratos,Tamano,Vitaminas,Descripcion,Estado,Hierro,Calcio,Proteina,Correo_admin)
-values('7441074152456 ',0,330,75,1800,0,'Arroz indiana 99% grano entero','Disponible',342,126,7,'Admin1@gmail.com');
+values('7441014704035',56,94.4,94.4,125,0,'Yogurt fresa - Yoplait','Disponible',1,118,3.7,'Admin1@gmail.com');
+
+insert into PRODUCTO
+	(Codigo_barras,Sodio,Energia,Carbohidratos,Tamano,Vitaminas,Descripcion,Estado,Hierro,Calcio,Proteina,Correo_admin)
+values('7441028201018',0,330,75,900,0,'frijotico - frijole - 900k','Disponible',1,118,3.7,'Admin1@gmail.com');
 
 insert into PRODUCTO
 	(Codigo_barras,Sodio,Energia,Carbohidratos,Tamano,Vitaminas,Descripcion,Estado,Hierro,Calcio,Proteina,Correo_admin)
 values('7501000608058',2.5,100,70.8,450,4,'GALLETA SALADITA GAMESA 450GR','Disponible',2,3.1,0.4,'Admin2@gmail.com');
+
 insert into PRODUCTO
 	(Codigo_barras,Sodio,Energia,Carbohidratos,Tamano,Vitaminas,Descripcion,Estado,Hierro,Calcio,Proteina,Correo_admin)
 values('7501000664221',2.5,100,70.8,186,4,'GALLETA SALADITA GAMESA 186GR','Agotado',2,3.1,0.4,'Admin1@gmail.com');
@@ -52,13 +57,15 @@ values('7501000664221',2.5,100,70.8,186,4,'GALLETA SALADITA GAMESA 186GR','Agota
 insert into RECETA(Nombre,Correo_admin,Aprobado,Correo_creador)values('Galletas Sabrosas','Admin1@gmail.com',1,'mangel12412@gmail.com');
 insert into RECETA(Nombre,Correo_admin,Aprobado,Correo_creador)values('Galletas Exquisitas','Admin2@gmail.com',1,'mangel12412@gmail.com');
 insert into RECETA(Nombre,Correo_admin,Aprobado,Correo_creador)values('Galletas Increibles','Admin1@gmail.com',1,'mangel12412@gmail.com');
+insert into RECETA(Nombre,Correo_admin,Aprobado,Correo_creador)values('Gallo Pinto','Admin1@gmail.com',1,'manuel0123@gmail.com');
+insert into RECETA(Nombre,Correo_admin,Aprobado,Correo_creador)values('Merienda Tardes','Admin1@gmail.com',1,'Antonio40123@gmail.com');
 
-insert into REGISTRO_MEDIDAS(Correo_cliente,Cadera,Porcentaje_grasa,Porcentaje_musculo,Cuello,Cintura,Fecha)
-values('mangel12412@gmail.com',60,19,40,35,63,'2020-05-07');
-insert into REGISTRO_MEDIDAS(Correo_cliente,Cadera,Porcentaje_grasa,Porcentaje_musculo,Cuello,Cintura,Fecha)
-values('Antonio40123@gmail.com',72,23,44,38,75,'2020-08-10');
-insert into REGISTRO_MEDIDAS(Correo_cliente,Cadera,Porcentaje_grasa,Porcentaje_musculo,Cuello,Cintura,Fecha)
-values('manuel0123@gmail.com',62,20,42,36,67,'2020-04-12');
+insert into REGISTRO_MEDIDAS(Correo_cliente,Cadera,Porcentaje_grasa,Porcentaje_musculo,Cuello,Cintura,Fecha,IMC)
+values('mangel12412@gmail.com',60,19,40,35,63,'2020-05-07',21);
+insert into REGISTRO_MEDIDAS(Correo_cliente,Cadera,Porcentaje_grasa,Porcentaje_musculo,Cuello,Cintura,Fecha,IMC)
+values('Antonio40123@gmail.com',72,23,44,38,75,'2020-08-10',21);
+insert into REGISTRO_MEDIDAS(Correo_cliente,Cadera,Porcentaje_grasa,Porcentaje_musculo,Cuello,Cintura,Fecha,IMC)
+values('manuel0123@gmail.com',62,20,42,36,67,'2020-04-12',21);
 
 insert into PLAN_ALIMENTACION(Nombre,Correo_nutri)values('Plan de alimentacion Antonio','Fernando03@gmail.com');
 insert into PLAN_ALIMENTACION(Nombre,Correo_nutri)values('Plan de alimentacion Manuel','Pablo02@gmail.com');
@@ -106,3 +113,7 @@ insert into RECETA_PRODUCTO(nombre_receta, correo_creador, codigo_barras,cantida
 insert into RECETA_PRODUCTO(nombre_receta, correo_creador, codigo_barras,cantidad) values ('Galletas Increibles','mangel12412@gmail.com','7501000608249',1);
 insert into RECETA_PRODUCTO(nombre_receta, correo_creador, codigo_barras,cantidad) values ('Galletas Increibles','mangel12412@gmail.com','7501000664221',2);
 insert into RECETA_PRODUCTO(nombre_receta, correo_creador, codigo_barras,cantidad) values ('Galletas Increibles','mangel12412@gmail.com','7501000608058',3);
+insert into RECETA_PRODUCTO(nombre_receta, correo_creador, codigo_barras,cantidad) values ('Gallo Pinto','manuel0123@gmail.com','7441074152456',3);
+insert into RECETA_PRODUCTO(nombre_receta, correo_creador, codigo_barras,cantidad) values ('Gallo Pinto','manuel0123@gmail.com','7441028201018',2);
+insert into RECETA_PRODUCTO(nombre_receta, correo_creador, codigo_barras,cantidad) values ('Merienda Tardes','Antonio40123@gmail.com','7441014704035',1);
+insert into RECETA_PRODUCTO(nombre_receta, correo_creador, codigo_barras,cantidad) values ('Merienda Tardes','Antonio40123@gmail.com','7441029514179',2);

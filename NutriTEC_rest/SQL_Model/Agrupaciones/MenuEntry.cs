@@ -9,5 +9,6 @@ namespace NutriTEC_rest.SQL_Model.Agrupaciones
     {
         public string Name { get; set; }
         public string[] productos { get; set; }
+        public List<receta_strings> recetas { get; set; }
     }
 }

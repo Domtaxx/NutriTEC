@@ -31,6 +31,7 @@ namespace NutriTEC_rest.Controllers
 
 
         }
+        [Route("productos")]
         [HttpPost]
         public ActionResult Post([FromBody] PlanEntry entry)
         {
@@ -59,7 +60,35 @@ namespace NutriTEC_rest.Controllers
             }
         }
 
+        [Route("recetas")]
+        [HttpPost]
+        public ActionResult post([FromBody] PlanEntry entry)
+        {
+            try
+            {
+                string PlanName = entry.Nombre_Plan;
+                string NutricionistEmail = entry.Correo_Nutricionista;
+                var result = Db.Menus.FromSqlInterpolated($"exec spAddMenuToPlan {PlanName},{entry.Menu},{NutricionistEmail}").ToList();
+                foreach (receta_strings receta in entry.Menu.recetas)
+                {
+                    try
+                    {
+                        var result1 = Db.ProductoPublics.FromSqlInterpolated($"exec spAddRecetaToMenu {PlanName},{entry.Menu.Name},{receta.Nombre},{receta.Creador},{NutricionistEmail}").ToList();
+                    }
+                    catch (Exception e) {
+                        return BadRequest(e.Message);
+                    }
 
+
+                }
+                //var plan = Db.PlanAlimentacions.Where(R => R.Nombre == PlanName).Where(R => R.CorreoNutri == NutricionistEmail).ToList().ElementAt(0);
+                return Ok(null);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
     }
 }

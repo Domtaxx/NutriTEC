@@ -13,6 +13,7 @@ namespace NutriTEC_rest.SQL_Model.Models
         public double? PorcentajeGrasa { get; set; }
         public double? Cuello { get; set; }
         public double? Cintura { get; set; }
+        public double? Imc { get; set; }
         public DateTime Fecha { get; set; }
 
         public virtual Cliente CorreoClienteNavigation { get; set; }

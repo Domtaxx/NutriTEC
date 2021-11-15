@@ -29,6 +29,23 @@ namespace NutriTEC_rest.Controllers
             }
 
         }
+        [Route("plan")]
+        [HttpGet]
+        public ActionResult get(string Correo_cliente)
+        {
+            try
+            {
+                ClientePlan temp = Db.ClientePlans.Where(CP=>CP.CorreoCliente == Correo_cliente).Single();
+                var res = Db.PlanAlimentacions.Find(temp.NombrePlan);
+                return Ok(res);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+        }
+
         [HttpPost]
         public ActionResult Post([FromBody]Cliente_nutricionista correos)
         {
@@ -47,12 +64,31 @@ namespace NutriTEC_rest.Controllers
         }
         [Route("especifico")]
         [HttpGet]
-        public ActionResult get(string Correo_cliente)
+        public ActionResult get2(string Correo_cliente)
         {
             try
             {
                 var res = Db.ClientPublics.FromSqlInterpolated($"exec spGetCliente {Correo_cliente}");
                 return Ok(res);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+        }
+
+        [HttpDelete]
+        [Route("Plan/delete")]
+        [HttpGet]
+        public ActionResult Delete(string nombre_plan)
+        {
+            try
+            {
+                var a = Db.PlanAlimentacions.Find(nombre_plan);
+                Db.PlanAlimentacions.Remove(a);
+                Db.SaveChanges();
+                return Ok();
             }
             catch (Exception e)
             {

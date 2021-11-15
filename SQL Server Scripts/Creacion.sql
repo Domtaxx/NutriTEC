@@ -32,6 +32,7 @@ Create table [REGISTRO_MEDIDAS](
 	Porcentaje_grasa float,
 	Cuello float,
 	Cintura float,
+	IMC float,
 	Fecha date
 	primary key(Correo_cliente,Fecha)
 );
