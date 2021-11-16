@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { BackendService } from 'src/app/services/backend-service.service';
 import { ComService } from 'src/app/services/comService';
 import { SwalService } from 'src/app/services/swalService';
 import { RecipeAddingComponent } from '../recipe-adding/recipe-adding.component';
@@ -15,90 +16,7 @@ export class ClientSectionComponent implements OnInit {
     if (event.code === 'KeyY') this.autoComplete();
   }
 
-  clients: any[] = [
-    {
-      name: 'pepe',
-      mail: 'elpepe@gmail.com',
-      measures: [
-        {
-          date: '12/12/12',
-          peso: 32,
-          imc: 32,
-          musculo: 62,
-          grasa: 44,
-          cintura: 44,
-          cuello: 34,
-          caderas: 124,
-        },
-        {
-          date: '13/12/12',
-          peso: 36,
-          imc: 22,
-          musculo: 12,
-          grasa: 54,
-          cintura: 34,
-          cuello: 24,
-          caderas: 114,
-        },
-      ],
-    },
-
-    {
-      name: 'Josue',
-      mail: 'josueMontero@gmail.com',
-      measures: [
-        {
-          date: '12/12/12',
-          peso: 32,
-          imc: 32,
-          musculo: 62,
-          grasa: 44,
-          cintura: 44,
-          cuello: 34,
-          caderas: 124,
-        },
-        {
-          date: '13/12/12',
-          peso: 36,
-          imc: 22,
-          musculo: 12,
-          grasa: 54,
-          cintura: 34,
-          cuello: 24,
-          caderas: 114,
-        },
-      ],
-    },
-  ];
-
-  myclients: any[] = [
-    {
-      name: 'pepe',
-      mail: 'elpepe@gmail.com',
-      measures: [
-        {
-          date: '12/12/12',
-          peso: 32,
-          imc: 32,
-          musculo: 62,
-          grasa: 44,
-          cintura: 44,
-          cuello: 34,
-          caderas: 124,
-        },
-        {
-          date: '13/12/12',
-          peso: 36,
-          imc: 22,
-          musculo: 12,
-          grasa: 54,
-          cintura: 34,
-          cuello: 24,
-          caderas: 114,
-        },
-      ],
-    },
-  ];
+  myclients: any[] = [];
   searchResult: any[] = [];
 
   search: string = '';
@@ -108,10 +26,13 @@ export class ClientSectionComponent implements OnInit {
   constructor(
     public me: MatDialogRef<ClientSectionComponent>,
     private swal: SwalService,
-    private com: ComService
+    private com: ComService,
+    private backend: BackendService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getMyClients();
+  }
 
   submit() {
     if (false) {
@@ -144,34 +65,72 @@ export class ClientSectionComponent implements OnInit {
 
   searchUser() {
     //this.search
-
-    this.searchResult = [];
-    for (let i = 0; i < this.clients.length; i++) {
-      console.log(this.clients[i]);
-
-      if (
-        this.clients[i].name.toLocaleLowerCase() ===
-        this.search.toLocaleLowerCase()
-      ) {
-        this.searchResult.push(this.clients[i]);
-        continue;
-      }
-      if (
-        this.clients[i].name[0].toLocaleLowerCase() ===
-        this.search[0].toLocaleLowerCase()
-      ) {
-        this.searchResult.push(this.clients[i]);
-        continue;
-      }
-    }
-    console.log(this.searchResult);
+    this.backend
+      .get_request('/Crear/Cliente', null)
+      .subscribe((clients: any[]) => {
+        this.searchResult = [];
+        for (let i = 0; i < clients.length; i++) {
+          if (
+            clients[i].primerNom.toLocaleLowerCase() ===
+            this.search.toLocaleLowerCase()
+          ) {
+            this.searchResult.push(clients[i]);
+            continue;
+          }
+          if (
+            clients[i].primerNom[0].toLocaleLowerCase() ===
+            this.search[0].toLocaleLowerCase()
+          ) {
+            this.searchResult.push(clients[i]);
+            continue;
+          }
+        }
+        console.log(this.searchResult);
+      });
   }
 
   selectSearchClient(product: any) {
-    this.myclients.push(product);
-    this.searching = false;
+    //this.myclients.push(product);
+    const user = JSON.parse(localStorage.getItem('user') as string)[0];
+    const data = {
+      correoCliente: product.correo,
+      correoNutricionista: user.correo,
+    };
+
+    this.backend
+      .post_request('Nutricionista/Clientes', data)
+      .subscribe((response) => {
+        this.searching = false;
+        this.getMyClients();
+      });
   }
-  removeClient(product: any) {
-    this.myclients.splice(this.myclients.indexOf(product, 0), 1);
+  removeClient(client: any) {
+    const data = {
+      Correo_cliente: client.correo,
+    };
+    console.log(client);
+
+    this.backend
+      .delete_request('Nutricionista/Clientes', data)
+      .subscribe((response) => {
+        this.swal.showSuccess(
+          'Cliente desasociado',
+          'proceso realizado con éxito'
+        );
+        this.me.close();
+      });
+  }
+
+  getMyClients() {
+    const user = JSON.parse(localStorage.getItem('user') as string)[0];
+    const data = {
+      Correo_nutri: user.correo,
+    };
+    this.backend
+      .get_request('Nutricionista/Clientes', data)
+      .subscribe((result) => {
+        this.myclients = result;
+        console.log(this.myclients);
+      });
   }
 }

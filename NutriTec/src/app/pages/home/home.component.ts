@@ -10,6 +10,7 @@ import { ComService } from 'src/app/services/comService';
 import { RecipeApprovingComponent } from '../menus/recipe-approving/recipe-approving.component';
 import { ProductApprovingComponent } from '../menus/product-approving/product-approving.component';
 import { BillManageComponent } from '../menus/bill-manage/bill-manage.component';
+import { MyAdvanceComponent } from '../menus/my-advance/my-advance.component';
 
 @Component({
   selector: 'app-home',
@@ -33,6 +34,22 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.com.homeComp = this;
   }
+
+  /**
+   * def opens Add Product dialog
+   */
+  openMyAdvance() {
+    this.dialogIsOpen = true;
+    let dialogRef = this.dialog.open(MyAdvanceComponent, {
+      width: '60%',
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.dialogIsOpen = false;
+    });
+  }
+
   /**
    * def opens Add Product dialog
    */

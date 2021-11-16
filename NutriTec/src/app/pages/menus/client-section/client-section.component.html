@@ -10,16 +10,16 @@
     <div class="spacer"></div>
 
 <!--Encabezados-->
-    <div class="columHeaders">
-        <div class="text inputText" style="margin-right: 16vh;">Nombre</div>
-        <div class="text inputText">correo Electrónico </div>
+    <div class="columHeaders" style=" width: 100%;">
+        <div class="text inputText" style=" width: 20%;">Nombre</div>
+        <div class="text inputText" style=" width: 70%;">correo Electrónico </div>
 
     </div>
 <!--Productos que componen la receta-->
     <div class="scrollCardContainer">
         <div *ngFor='let product of myclients' class="card productCard">
-            <div style="width: 21%;" class="text inputText">{{product.name}}</div>
-            <div  class="text inputText mailContainer" matTooltip="{{product.mail}}">{{product.mail}}</div>
+            <div style="width:20%;" class="text inputText">{{product.primerNom}} {{product.primerApellido}} {{product.segApellido}}</div>
+            <div  class="text inputText mailContainer" matTooltip="{{product.correo}}">{{product.correo}}</div>
 
             <mat-icon class="inputText cancelButton" matTooltip="Historial de comidas" (click)="openClientMealHistory()">event</mat-icon>
             <mat-icon class="inputText cancelButton" matTooltip="Historial de mediciones" (click)="openClientMeasureHistory()">straighten</mat-icon>
@@ -59,8 +59,8 @@
     <div class="searchResults">
         <div *ngFor="let client of searchResult" class="card productCard" style="width: 80%;"  (click)="selectSearchClient(client)" >
             <div style="width: 100%;">
-                <div class="text inputText">{{client.name}}</div>
-                <div class="text inputText">{{client.mail}}</div>
+                <div class="text inputText">{{client.primerNom}} {{client.primerApellido}} {{client.segApellido}}</div>
+                <div class="text inputText">{{client.correo}}</div>
             </div>
             
         </div>

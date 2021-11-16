@@ -38,7 +38,7 @@
 }
 .inputText {
   user-select: none;
-  font-size: 142%;
+  font-size: 1.5vw;
   font-weight: 200;
   color: var(--itemColor);
   width: auto;
@@ -47,7 +47,7 @@
   white-space: nowrap;
 }
 .dataText {
-  font-size: 102%;
+  font-size: 1.5vw;
   font-weight: 200;
   color: var(--itemColor);
   width: auto;
@@ -55,12 +55,19 @@
   margin-right: 3%;
   margin-left: 3%;
   white-space: nowrap;
+  overflow: hidden;
+  height: 40%;
 }
 
 .spacer {
   margin-bottom: 1%;
   width: 94%;
   border-bottom: 0.1px solid #bbe2a2 !important;
+}
+.spacer2 {
+  margin-bottom: 1%;
+  width: 94%;
+  border-bottom: 0.4px solid #617554 !important;
 }
 .inputLine {
   border-bottom: 0.5px solid var(--itemColor) !important;
@@ -117,18 +124,30 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  overflow-x: hidden;
   height: 100%;
   width: 100%;
   margin-left: 1%;
 }
 .productCard {
   background-color: var(--buttonColor) !important;
-  width: 100%;
+  width: 94%;
   align-items: center;
   min-height: 72px;
   margin-top: 1vh;
   display: flex;
   justify-content: space-between;
+}
+
+.planCard {
+  background-color: var(--buttonColor) !important;
+  width: 94%;
+  align-items: flex-start;
+  min-height: 72px;
+  margin-top: 1vh;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
 .circle {
@@ -199,10 +218,12 @@
   justify-content: space-around;
 }
 .cancelButton {
-  transform: scale(1.5);
+  font-size: 2vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .cancelButton:hover {
-  filter: invert(0.1);
   cursor: pointer;
 }
 .lp {
@@ -212,12 +233,11 @@
   display: flex;
   flex-direction: column;
   width: 20%;
-  margin-right: 0.4%;
 }
 .horizontalColumnContainer {
   display: flex;
   flex-direction: row;
-  height: 60%;
+  height: 90%;
   width: 100%;
   justify-content: center;
   margin-bottom: 1%;
@@ -260,8 +280,9 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  overflow-y: auto;
+  overflow-y: hidden;
   height: 60%;
+  overflow-x: hidden;
 }
 .historyData {
   display: flex;

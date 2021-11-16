@@ -15,15 +15,6 @@ export class RecipeAddingComponent implements OnInit {
     if (event.code === 'KeyY') this.autoComplete();
   }
 
-  products: any[] = [
-    {
-      tamano: 12,
-      energia: 133,
-      grasa: 433,
-      codigoBarras: '7501000608249',
-      descripcion: 'GALLETA SALADITA GAMESA 1024GR',
-    },
-  ];
   selectedProducts: any[] = [];
   searchResult: any[] = [];
   nombre: string = '';
@@ -31,7 +22,16 @@ export class RecipeAddingComponent implements OnInit {
   search: string = '';
   searching: boolean = false;
   finishing: boolean = false;
-
+  recipeInfo: any = {
+    tamano: 0,
+    grasa: 0,
+    sodio: 0,
+    carbohidratos: 0,
+    proteina: 0,
+    calcio: 0,
+    hierro: 0,
+    energia: 0,
+  };
   constructor(
     public me: MatDialogRef<RecipeAddingComponent>,
     private backend: BackendService,
@@ -64,7 +64,7 @@ export class RecipeAddingComponent implements OnInit {
     /**backend call here */
     console.log(data);
 
-    this.backend.post_request('Cliente/Receta', data).subscribe((response) => {
+    this.backend.post_request('Receta/Crear', data).subscribe((response) => {
       this.swal.showSuccess(
         'Receta registrada!',
         'Prontamente, un administrador se encargará de validar esta receta'
@@ -78,26 +78,16 @@ export class RecipeAddingComponent implements OnInit {
   }
 
   searchProduct() {
-    //this.search
-    console.log(this.products);
-
+    const data = {
+      Codigo: '',
+      desc: this.search,
+    };
     this.searchResult = [];
-    for (let i = 0; i < this.products.length; i++) {
-      if (
-        this.products[i].pname.toLocaleLowerCase() ===
-        this.search.toLocaleLowerCase()
-      ) {
-        this.searchResult.push(this.products[i]);
-        continue;
-      }
-      if (
-        this.products[i].pname[0].toLocaleLowerCase() ===
-        this.search[0].toLocaleLowerCase()
-      ) {
-        this.searchResult.push(this.products[i]);
-        continue;
-      }
-    }
+    this.backend.get_request('Producto/buscar', data).subscribe((result) => {
+      console.log(result);
+
+      this.searchResult = result;
+    });
   }
 
   selectSearchProduct(product: any) {
@@ -107,8 +97,28 @@ export class RecipeAddingComponent implements OnInit {
   removeProduct(product: any) {
     this.selectedProducts.splice(this.selectedProducts.indexOf(product, 0), 1);
   }
-  autoComplete() {
-    this.selectedProducts = this.products.slice();
+
+  getTotalValue() {
+    this.selectedProducts.forEach((product) => {
+      this.recipeInfo.tamano += product.tamano;
+      // recipeInfo.grasa+=product.grasa;
+      this.recipeInfo.sodio += product.sodio;
+      this.recipeInfo.carbohidratos += product.carbohidratos;
+      this.recipeInfo.proteina += product.proteina;
+      this.recipeInfo.calcio += product.calcio;
+      this.recipeInfo.hierro += product.hierro;
+      this.recipeInfo.energia += product.energia;
+    });
+  }
+  async autoComplete() {
     this.nombre = 'Sopa de maiz';
+    const data = {
+      Codigo: '',
+      desc: '',
+    };
+    this.searchResult = [];
+    this.backend.get_request('Producto/buscar', data).subscribe((result) => {
+      this.selectedProducts = result;
+    });
   }
 }

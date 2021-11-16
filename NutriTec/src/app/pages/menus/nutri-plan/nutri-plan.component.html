@@ -47,8 +47,7 @@
             <div class="scrollCardContainer">
             
                 <div *ngFor='let product of tfood.foods' class="card productCard">
-                    <div style="width: 50%;" class="text inputText">{{product.pname}}</div>
-                    <div style="width: 40%;" class="text dataText">{{product.energia}} Kcal</div>
+                    <div style="width: 50%; overflow: hidden;white-space: nowrap;" matTooltip="{{product.nombre}}" class="text inputText">{{product.nombre}}</div>
                     <mat-icon style="width: 10%;" class="inputText cancelButton" (click)="removeProduct(product,tfood)">cancel</mat-icon>
                 </div>
             </div>
@@ -65,36 +64,36 @@
     <div *ngIf="history" class="verticalHistory">
 
         <div class="historyData"*ngFor="let tFoods of foodHistory">
-            <div class="text dataText" style="margin-left: 0%; margin-bottom: 1%;">Fecha {{tFoods.date}}</div>
+            <div class="text dataText" style="margin-left: 0%; margin-bottom: 1%;">Fecha {{tFoods.fecha}}</div>
             <div  class="horizontalColumnContainer">
 
-                <div *ngFor="let tfood of tFoods.meals" class="column">
-                    <div class="text inputText">{{tfood.name}}</div>
+                <div *ngFor="let tfood of tFoods.foods" class="column">
+                    <div class="text inputText">{{tFoods.tiempo}}</div>
                     <div class="scrollCardContainer">
                     
                         <div *ngFor='let product of tfood.foods' class="card productCard" style="background-color: #a3d486cf !important;">
-                            <div style="width: 50%;" class="text inputText">{{product.pname}}</div>
-                            <div style="width: 40%;" class="text dataText">{{product.energia}} Kcal</div>
+                            <div style="width: 50%;" class="text inputText">{{product.nombre}}</div>
                         </div>
                     </div>
 
 
-                </div>
+                </div> 
             </div>
 
             <div class="card feedBackBox">
                 <img class="logox" src="../../../assets/doctorsvg.svg" alt="">
-                <textarea readonly *ngIf="!this.uServ.doctor" class="myInput" [value]="foodPlan.feedBack" rows="30" cols="50">                             
+                <textarea readonly *ngIf="!this.uServ.doctor" class="myInput" [value]="tFoods.feedBack" rows="30" cols="50">                             
                 </textarea>
                 <div *ngIf="this.uServ.doctor" class="InputContainer"style="width: 90%;">
 
-                    <textarea class="myInput" [value]="foodPlan.feedBack" rows="30" cols="50">                             
+                    <textarea class="myInput" [value]="tFoods.feedBack" rows="30" cols="50">                             
                     </textarea>
 
                 </div>
-                
             </div>
             <div class="spacer" style="margin-bottom: 3%; width: 100%;height: 21px;margin-top: 3%;"></div>
+
+
         </div>    
     </div>
 
@@ -104,16 +103,17 @@
 
         <div *ngIf="foodPlan &&!this.uServ.doctor" class="historyData">
 
-            <div class="text dataText" style="margin-left: 0%; margin-bottom: 1%;">Fecha {{foodPlan.date}}</div>
             <div  class="horizontalColumnContainer">
 
                 <div *ngFor="let tfood of foodPlan.meals" class="column">
                     <div class="text inputText">{{tfood.name}}</div>
                     <div class="scrollCardContainer">
                     
-                        <div *ngFor='let product of tfood.foods' class="card productCard" style="background-color: #a3d486cf !important;">
-                            <div style="width: 50%;" class="text inputText">{{product.pname}}</div>
-                            <div style="width: 40%;" class="text dataText">{{product.energia}} Kcal</div>
+                        <div *ngFor='let product of tfood.foods' class="card planCard"  mto style="background-color: #a3d486cf !important;"  matTooltip="{{product.name}}  {{product.info}}">
+                            <div style="width: 90%; overflow: hidden;margin-top: 1%; font-size: 1vw;" class="text inputText">{{product.name}}</div>
+                            <div class="spacer2" style="margin-bottom: 1%; width: 100%;;margin-top: 1%;"></div>
+                            <div style="width: 90%; overflow: hidden;margin-top: 1%; font-size: 1vw;" class="text inputText">{{product.info}}</div>
+
                         </div>
                     </div>
 
@@ -121,18 +121,7 @@
                 </div>
             </div>
 
-            <div class="card feedBackBox">
-                <img class="logox" src="../../../assets/doctorsvg.svg" alt="">
-                <textarea *ngIf="!this.uServ.doctor" class="myInput" [value]="foodPlan.feedBack" rows="30" cols="50">                             
-                </textarea>
-                <div *ngIf="this.uServ.doctor" class="InputContainer"style="width: 90%;">
-
-                    <textarea class="myInput" [value]="foodPlan.feedBack" rows="30" cols="50">                             
-                    </textarea>
-
-                </div>
-
-            </div>
+    
 
             <div class="spacer" style="margin-bottom: 3%; width: 100%;height: 21px;margin-top: 3%;"></div>
 
@@ -151,8 +140,7 @@
                 <div class="scrollCardContainer">
                 
                     <div *ngFor='let product of tfood.foods' class="card productCard">
-                        <div style="width: 50%;" class="text inputText">{{product.pname}}</div>
-                        <div style="width: 40%;" class="text dataText">{{product.energia}} Kcal</div>
+                        <div style="width: 90%;" class="text inputText">{{product.nombre}}</div>
                         <mat-icon style="width: 10%;" class="inputText cancelButton" (click)="removeProduct(product,tfood)">cancel</mat-icon>
                     </div>
                 </div>
@@ -168,6 +156,11 @@
     </div>
     <div *ngIf=" plan && this.uServ.doctor" class="buttonContainer">
         <div class="card nextButton" (click)="updateNutriPlan()">
+            <div class="text inputText" >Siguiente</div>    
+        </div>
+    </div>
+    <div *ngIf="today" class="buttonContainer">
+        <div class="card nextButton" (click)="submitDailyReport()">
             <div class="text inputText" >Siguiente</div>    
         </div>
     </div>
@@ -222,7 +215,7 @@
     <div class="searchResults">
         <div *ngFor="let product of searchResult" class="card productCard" style="width: 80%;"  (click)="selectSearchProduct(product)" >
             <div style="width: 100%;">
-                <div class="text inputText">{{product.pname}}</div>
+                <div class="text inputText">{{product.nombre}}</div>
 
             </div>
             
@@ -236,50 +229,3 @@
     </div>
 </div>
 
-
-<!--PANEL DE creación-->
-<div class="card searchingBox" *ngIf="finishing">
-
-    <div style="height: 20%; margin-left: 1vh;">
-        <div class="text Title">Verificar Receta</div>
-    </div>
-    <div class="spacer"></div>
-    <div style="height: 60%; display: flex; flex-direction: column;">
-        <div class="text inputText lp">
-            tamaño de la porción:  21.4 (g/ml) 
-        </div>
-        <div class="text inputText lp">
-            grasa:  44 (g)
-        </div>
-        <div class="text inputText lp" >
-            sodio:  12 (mg)
-        </div>
-    
-        <div class="text inputText lp">
-            carbohidratos: 133(g)
-        </div>
-        <div class="text inputText lp">
-            proteína:  14 (g)
-        </div>
-        <div class="text inputText lp">
-            Calcio: 23 (mg)
-        </div>
-        <div class="text inputText lp">
-            Hierro: 33(mg)
-        </div>
-
-    </div>  
-    <div class="spacer"></div>
-    <div class="buttonSpace">
-        <div class="card nextButton" (click)="finishing=false; ">
-            <div class="text inputText">Cancelar</div>
-        </div>
-        <div class="card nextButton"(click)="submit()">
-            <div class="text inputText" >Siguiente</div>
-        </div>
-    </div>
-    
-    
-    
-    
-</div>

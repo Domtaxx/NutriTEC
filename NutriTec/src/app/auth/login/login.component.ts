@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit {
               this.userService.user = false;
               this.userService.admin = false;
               this.userService.doctor = true;
+              localStorage.setItem('user', JSON.stringify(admin));
               localStorage.setItem('admin', 'true');
               this.router.navigateByUrl('pages');
             }

@@ -9,7 +9,17 @@ import { HttpParams } from '@angular/common/http';
 export class BackendService {
   constructor(private http: HttpClient) {}
 
-  serverIp: string = 'https://25.92.13.1:44352/';
+  serverIp: string = 'https://nutritecsqlapi.azurewebsites.net/';
+
+  get_requestTotal(url: string, Params: any): Observable<any> {
+    var http_params = new HttpParams({ fromObject: Params });
+
+    return this.http.get(url, { params: http_params });
+  }
+
+  post_request2(url: string, Params: object) {
+    return this.http.post(url, Params);
+  }
 
   get_request(url: string, Params: any): Observable<any> {
     var http_params = new HttpParams({ fromObject: Params });

@@ -17,6 +17,10 @@ import { MeasuresComponent } from './menus/measures/measures.component';
 import { ProductSearchComponent } from './menus/recipe-adding/product-search/product-search.component';
 import { ProductApprovingComponent } from './menus/product-approving/product-approving.component';
 import { BillManageComponent } from './menus/bill-manage/bill-manage.component';
+import { MyAdvanceComponent } from './menus/my-advance/my-advance.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     PagesComponent,
@@ -30,10 +34,14 @@ import { BillManageComponent } from './menus/bill-manage/bill-manage.component';
     ProductSearchComponent,
     ProductApprovingComponent,
     BillManageComponent,
+    MyAdvanceComponent,
   ],
   imports: [
     CommonModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
     PagesRoutingModule,
+    MatDatepickerModule,
     MatDialogModule,
     MatMenuModule,
     MatIconModule,

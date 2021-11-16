@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { BackendService } from 'src/app/services/backend-service.service';
 import { SwalService } from 'src/app/services/swalService';
 import { UserService } from 'src/app/services/userService';
 
@@ -14,51 +15,6 @@ export class NutriPlanComponent implements OnInit {
     if (event.code === 'KeyY') this.autoComplete();
   }
 
-  products: any[] = [
-    {
-      pname: 'arroz',
-      tamano: 12,
-      energia: 133,
-      grasa: 433,
-    },
-    {
-      pname: 'azucar',
-      tamano: 1,
-      energia: 4443,
-      grasa: 0,
-    },
-    {
-      pname: 'arandanos',
-      tamano: 4,
-      energia: 43,
-      grasa: 0,
-    },
-    {
-      pname: 'jamon',
-      tamano: 32,
-      energia: 43,
-      grasa: 43,
-    },
-    {
-      pname: 'pasta',
-      tamano: 62,
-      energia: 763,
-      grasa: 73,
-    },
-    {
-      pname: 'lechuga',
-      tamano: 87,
-      energia: 77,
-      grasa: 67,
-    },
-    {
-      pname: 'leche',
-      tamano: 2,
-      energia: 2,
-      grasa: 4,
-    },
-  ];
-
   today: boolean = true;
   history: boolean = false;
   plan: boolean = false;
@@ -68,23 +24,23 @@ export class NutriPlanComponent implements OnInit {
     date: '',
     meals: [
       {
-        name: 'desayuno',
+        name: 'Desayuno',
         foods: [],
       },
       {
-        name: 'merienda mañana',
+        name: 'Merienda 1',
         foods: [],
       },
       {
-        name: 'almuerzo',
+        name: 'Almuerzo',
         foods: [],
       },
       {
-        name: 'merienda tarde',
+        name: 'Merienda 2',
         foods: [],
       },
       {
-        name: 'cena',
+        name: 'Cena',
         foods: [],
       },
     ],
@@ -95,7 +51,7 @@ export class NutriPlanComponent implements OnInit {
   foodHistory: any = []; //containsTfoodsObjects
   foodPlan: any;
 
-  selectedProducts: any[] = [];
+  selectedmenus: any[] = [];
   searchResult: any[] = [];
 
   search: string = '';
@@ -105,7 +61,8 @@ export class NutriPlanComponent implements OnInit {
   constructor(
     public me: MatDialogRef<NutriPlanComponent>,
     private swal: SwalService,
-    public uServ: UserService
+    public uServ: UserService,
+    public backend: BackendService
   ) {}
 
   ngOnInit(): void {
@@ -113,7 +70,19 @@ export class NutriPlanComponent implements OnInit {
       this.today = false;
       this.history = true;
     }
+    this.getReports();
+
+    this.getPlan();
   }
+
+  createTfoodReport(fecha: any, feedBack: string, foods: any[]) {
+    return {
+      fecha: fecha,
+      feedBack: feedBack,
+      foods: foods,
+    };
+  }
+
   updateNutriPlan() {
     if (false) {
       this.swal.showError(
@@ -132,55 +101,54 @@ export class NutriPlanComponent implements OnInit {
     );
     this.me.close();
   }
-  submit() {
-    if (false) {
-      this.swal.showError(
-        'Error al ingresar los datos',
-        'Datos ingresados insuficientes'
-      );
-      return;
-    }
 
-    const data = {};
-    /**backend call here */
+  /**
+   * Report a daily report to db
+   */
+  submitDailyReport() {
+    const currentDate = new Date();
 
-    this.swal.showSuccess(
-      'Receta registrada!',
-      'Prontamente, un administrador se encargará de validar esta receta'
-    );
-    this.me.close();
+    this.tFoods.meals.forEach((tiempoDeComida: any) => {
+      tiempoDeComida.foods.forEach((recetaConsumida: any) => {
+        const user = JSON.parse(localStorage.getItem('user') as string)[0];
+
+        const data = {
+          nombreReceta: recetaConsumida.nombre,
+          correoCliente: user.correo,
+          correoCreador: recetaConsumida.correoCreador,
+          fecha: currentDate,
+          tiempo: tiempoDeComida.name,
+        };
+
+        this.backend
+          .post_request('Reportes/Recetas', data)
+
+          .subscribe((response) => {});
+      });
+    });
   }
-
   openSearchBox(tfood: any) {
     this.searching = true;
     this.currentTfood = tfood;
   }
 
-  searchProduct() {
-    //this.search
-    console.log(this.products);
-
+  searchmenu() {
+    const data = {
+      creator: '',
+      name: this.search,
+    };
     this.searchResult = [];
-    for (let i = 0; i < this.products.length; i++) {
-      if (this.products[i].pname === this.search) {
-        this.searchResult.push(this.products[i]);
-        continue;
-      }
-      if (this.products[i].pname[0] === this.search[0]) {
-        this.searchResult.push(this.products[i]);
-        continue;
-      }
-    }
+    this.backend.get_request('Receta/Busqueda', data).subscribe((result) => {
+      this.searchResult = result;
+    });
   }
 
-  selectSearchProduct(product: any) {
-    this.currentTfood.foods.push(product);
+  selectSearchmenu(menu: any) {
+    this.currentTfood.foods.push(menu);
     this.searching = false;
   }
-  removeProduct(product: any, tfood: any) {
-    console.log(product);
-    console.log(tfood);
-    tfood.foods.splice(this.selectedProducts.indexOf(product, 0), 1);
+  removemenu(menu: any, tfood: any) {
+    tfood.foods.splice(this.selectedmenus.indexOf(menu, 0), 1);
   }
 
   openToday() {
@@ -198,80 +166,277 @@ export class NutriPlanComponent implements OnInit {
     this.history = false;
     this.plan = true;
   }
-
-  autocompleteTfood(tfood: any, maxProducts: number) {
+  /**
+   * Complete tFood Forms
+   * @param tfood
+   * @param maxmenus
+   */
+  autocompleteTfood(tfood: any, maxmenus: number) {
     tfood.date = new Date();
-    this.selectedProducts = this.products.slice();
-    tfood.meals.forEach((meal: { foods: any[] }) => {
-      meal.foods = this.products.slice(0, maxProducts);
+
+    this.backend.get_request('Receta/Todos', null).subscribe((result) => {
+      this.selectedmenus = result;
+      tfood.meals.forEach((meal: { foods: any[] }) => {
+        meal.foods = this.selectedmenus.slice(0, maxmenus);
+      });
     });
   }
+
+  /**
+   * Autocomplete forms
+   */
   autoComplete() {
-    const maxProducts = 3;
+    const maxmenus = 1;
     const maxTfoods = 3;
 
-    this.autocompleteTfood(this.tFoods, maxProducts);
+    this.autocompleteTfood(this.tFoods, maxmenus);
 
     for (let i = 0; i < maxTfoods; i++) {
       let newTfood = {
         date: '',
         meals: [
           {
-            name: 'desayuno',
+            name: 'Desayuno',
             foods: [],
           },
           {
-            name: 'merienda mañana',
+            name: 'Merienda 1',
             foods: [],
           },
           {
-            name: 'almuerzo',
+            name: 'Almuerzo',
             foods: [],
           },
           {
-            name: 'merienda tarde',
+            name: 'Merienda 2',
             foods: [],
           },
           {
-            name: 'cena',
+            name: 'Cena',
             foods: [],
           },
         ],
         feedBack: 'Muy bien, sigue así',
       };
 
-      this.autocompleteTfood(newTfood, maxProducts);
+      this.autocompleteTfood(newTfood, maxmenus);
       this.foodHistory.push(newTfood);
     }
+  }
+  /**
+   * Gets user consumption plan from db
+   */
+  getPlan() {
+    ///OBTENEMOS EL PLAN DE ALIMENTACION
+    const user = JSON.parse(localStorage.getItem('user') as string)[0];
 
-    //Para el plan
-    let newTfood = {
-      date: '',
-      meals: [
-        {
-          name: 'desayuno',
-          foods: [],
-        },
-        {
-          name: 'merienda mañana',
-          foods: [],
-        },
-        {
-          name: 'almuerzo',
-          foods: [],
-        },
-        {
-          name: 'merienda tarde',
-          foods: [],
-        },
-        {
-          name: 'cena',
-          foods: [],
-        },
-      ],
-      feedBack: 'Muy bien, sigue así',
-    };
-    this.autocompleteTfood(newTfood, maxProducts);
-    this.foodPlan = newTfood;
+    this.backend
+      .get_request('Nutricionista/Clientes/plan', {
+        Correo_cliente: user.correo,
+      })
+      .subscribe((plan) => {
+        let foodPlan = {
+          meals: [
+            {
+              name: 'Desayuno',
+              foods: [],
+            },
+            {
+              name: 'Merienda 1',
+              foods: [],
+            },
+            {
+              name: 'Almuerzo',
+              foods: [],
+            },
+            {
+              name: 'Merienda 2',
+              foods: [],
+            },
+            {
+              name: 'Cena',
+              foods: [],
+            },
+          ],
+          feedBack: 'Muy bien, sigue así',
+        };
+
+        plan.forEach((menu: any) => {
+          foodPlan.meals.forEach((meal: any) => {
+            if (meal.name === menu.nombre) {
+              menu.menuProductos.forEach((product: any) => {
+                const x = {
+                  name: product.codigoBarrasNavigation.descripcion,
+                  info: product.codigoBarras,
+                };
+                meal.foods.push(x);
+              });
+
+              menu.menuReceta.forEach((recipe: any) => {
+                const x = {
+                  name: recipe.nombreReceta,
+                  info: recipe.correoCreador,
+                };
+                meal.foods.push(x);
+              });
+              console.log(foodPlan);
+              this.foodPlan = foodPlan;
+            }
+          });
+        });
+      });
+  }
+  /**
+   * Obtiene el historial de consumo
+   */
+  getReports() {
+    const user = JSON.parse(localStorage.getItem('user') as string)[0];
+    this.backend
+      .get_request('Reportes/Recetas', { Correo_cliente: user.correo })
+      .subscribe((result) => {
+        const reportsBydate: any[] = [];
+        const reportsBydateAndTime: any[] = [];
+
+        result.forEach((foodReport: any) => {
+          let objectWithSameDate = false;
+          reportsBydate.forEach((reportByDate) => {
+            if (reportByDate.fecha === foodReport.fecha) {
+              reportByDate.reports.push(foodReport);
+              objectWithSameDate = true;
+            }
+          });
+
+          if (!objectWithSameDate) {
+            const newReportByDate = {
+              fecha: foodReport.fecha,
+              reports: [foodReport],
+            };
+            reportsBydate.push(newReportByDate);
+          }
+        });
+
+        //A este punto, se tiene los reportes ordenados por fecha, pero las comidas consumidas no están agrupadas
+        reportsBydate.forEach((dateReport: any) => {
+          //
+          //
+          let meals: any[] = [
+            {
+              name: 'Desayuno',
+              foods: [],
+            },
+            {
+              name: 'Merienda 1',
+              foods: [],
+            },
+            {
+              name: 'Almuerzo',
+              foods: [],
+            },
+            {
+              name: 'Merienda 2',
+              foods: [],
+            },
+            {
+              name: 'Cena',
+              foods: [],
+            },
+          ];
+          dateReport.reports.forEach((reporteDeConsumo: any) => {
+            //
+            meals.forEach((value) => {
+              if (reporteDeConsumo.tiempo === value.name)
+                value.foods.push({
+                  nombre: reporteDeConsumo.nombre,
+                  correoCrador: reporteDeConsumo.correoCreador,
+                });
+            });
+          });
+
+          const dateString: string = (dateReport.fecha as Date).toString();
+          const data = {
+            id: user.correo,
+            date: dateString.substring(dateString.indexOf('T'), -1),
+          };
+
+          this.backend
+            .get_requestTotal(
+              'https://nutritecmongoapi.azurewebsites.net/api/notes',
+              data
+            )
+            .subscribe((result) => {
+              reportsBydateAndTime.push(
+                this.createTfoodReport(
+                  dateReport.fecha,
+                  result.description,
+                  meals
+                )
+              );
+            });
+        });
+        console.log('////////////////');
+        console.log(reportsBydateAndTime);
+
+        this.foodHistory = reportsBydateAndTime;
+      });
   }
 }
+
+//Objects contain by this array, contains the next Structure objects
+/*
+        reportsBydate=[
+                        {
+                        fecha:dateTime,
+                        reports:[ 
+                                  {
+                                        "correoCliente": "mangel12412@gmail.com",
+                                        "nombre": "Galletas Exquisitas",
+                                        "correoCreador": "mangel12412@gmail.com",
+                                        "fecha": "2021-11-15T00:00:00",
+                                        "tiempo": "almuerzo",
+                                        "calcio": 15.5,
+                                        "hierro": 10,
+                                        "energia": 500,
+                                        "sodio": 12.5,
+                                        "carbohidratos": 354,
+                                        "proteina": 2,
+                                        "vitaminas": 20,
+                                        "tamano": 1024
+                                  },
+                                ]
+                      }
+                    ]
+
+      BUT WHE WANT THISS
+
+       reportsBydateAndTime=   [
+                                  {
+                                    fecha:dateTime,
+                                    feedBack:''
+                                    foods: [
+                                      {
+                                        tiempo: 'desayuno',
+                                        foods: [{
+                                          nombre: "Galletas Exquisitas",
+                                          correoCreador: "mangel12412@gmail.com",
+                                        }],
+                                      },
+                                      {
+                                        tiempo: 'merienda ',
+                                        foods: [],
+                                      },
+                                      {
+                                        tiempo: 'almuerzo',
+                                        foods: [],
+                                      },
+                                      {
+                                        tiempo: 'merienda2 ',
+                                        foods: [],
+                                      },
+                                      {
+                                        tiempo: 'cena',
+                                        foods: [],
+                                      },
+                                    ],
+                                  }
+                                ]
+      */

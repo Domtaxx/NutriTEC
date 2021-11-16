@@ -15,16 +15,16 @@
     </div>
 <!--Encabezados-->
     <div class="columHeaders">
-        <div class="text inputText" style="margin-right: 16vh;">Nombre</div>
-        <div class="text inputText">tamaño  (g/ml) </div>
-        <div class="text inputText">energía (Kcal)</div>
-        <div class="text inputText">grasa  (g)</div>
+        <div class="text inputText" style=" width:20%">Nombre</div>
+        <div class="text inputText" style=" width:25%">tamaño  (g/ml) </div>
+        <div class="text inputText" style=" width:25%">energía (Kcal)</div>
+        <div class="text inputText" style=" width:25%">grasa  (g)</div>
     </div>
 <!--Productos que componen la receta-->
     <div class="scrollCardContainer">
         <div *ngFor='let product of selectedProducts' class="card productCard">
             <div style="width: 21%;  overflow: hidden;
-            white-space: nowrap;" class="text inputText">{{product.descripcion}}</div>
+            white-space: nowrap;" matTooltip="{{product.descripcion}}" class="text inputText">{{product.descripcion}}</div>
             <div style="width: 16%;" class="text inputText">{{product.tamano}}</div>
             <div style="width: 13%;" class="text inputText">{{product.energia}}</div>
             <div style="width: 18%;" class="text inputText">{{product.grasa}}</div>
@@ -37,8 +37,8 @@
         
         <div class="spacer" style="  margin-bottom: 2%;"></div>
         <div class="buttonContainer">
-            <div class="card nextButton" (click)="searching=false ;finishing=true;">
-                <div class="text inputText" >Siguiente</div>    
+            <div class="card nextButton" (click)="searching=false ;finishing=true;getTotalValue();">
+                <div class="text buttonText" >Siguiente</div>    
             </div>
         </div>
 
@@ -66,7 +66,7 @@
     <div class="searchResults">
         <div *ngFor="let product of searchResult" class="card productCard" style="width: 80%;"  (click)="selectSearchProduct(product)" >
             <div style="width: 100%;">
-                <div class="text inputText">{{product.descripcion}}</div>
+                <div class="text inputText" style="font-size: 1vw;">{{product.descripcion}}</div>
 
             </div>
             
@@ -90,26 +90,27 @@
     <div class="spacer"></div>
     <div style="height: 60%; display: flex; flex-direction: column;">
         <div class="text inputText lp">
-            tamaño de la porción:  21.4 (g/ml) 
+            tamaño de la porción: {{recipeInfo.tamano.toPrecision(5)}}(g/ml) 
         </div>
-        <div class="text inputText lp">
-            grasa:  44 (g)
-        </div>
+
         <div class="text inputText lp" >
-            sodio:  12 (mg)
+            sodio:  {{recipeInfo.sodio.toPrecision(3)}} (mg)
         </div>
     
         <div class="text inputText lp">
-            carbohidratos: 133(g)
+            carbohidratos: {{recipeInfo.carbohidratos.toPrecision(3)}}(g)
         </div>
         <div class="text inputText lp">
-            proteína:  14 (g)
+            proteína:  {{recipeInfo.proteina.toPrecision(3)}} (g)
         </div>
         <div class="text inputText lp">
-            Calcio: 23 (mg)
+            Calcio: {{recipeInfo.calcio.toPrecision(3)}} (mg)
         </div>
         <div class="text inputText lp">
-            Hierro: 33(mg)
+            Hierro: {{recipeInfo.hierro.toPrecision(3)}}(mg)
+        </div>
+        <div class="text inputText lp">
+            energia: {{recipeInfo.energia.toPrecision(3)}}(mg)
         </div>
 
     </div>  

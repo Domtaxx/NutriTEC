@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { BackendService } from 'src/app/services/backend-service.service';
 import { SwalService } from 'src/app/services/swalService';
 
 @Component({
@@ -13,28 +14,7 @@ export class MeasuresComponent implements OnInit {
     if (event.code === 'KeyY') this.autoComplete();
   }
 
-  measures: any[] = [
-    {
-      date: '12/12/12',
-      peso: 32,
-      imc: 32,
-      musculo: 62,
-      grasa: 44,
-      cintura: 44,
-      cuello: 34,
-      caderas: 124,
-    },
-    {
-      date: '13/12/12',
-      peso: 36,
-      imc: 22,
-      musculo: 12,
-      grasa: 54,
-      cintura: 34,
-      cuello: 24,
-      caderas: 114,
-    },
-  ];
+  measures: any[] = [];
   today: boolean = true;
   history: boolean = false;
 
@@ -51,12 +31,49 @@ export class MeasuresComponent implements OnInit {
 
   constructor(
     public me: MatDialogRef<MeasuresComponent>,
-    private swal: SwalService
+    private swal: SwalService,
+    private backend: BackendService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const user = JSON.parse(localStorage.getItem('user') as string)[0];
+    const data = {
+      correo: user.correo,
+    };
+    this.backend
+      .get_request('Cliente/Medidas/Todas', data)
+      .subscribe((result) => {
+        this.measures = result;
 
+        this.measures.forEach((value) => {
+          const dateString: string = (value.fecha as Date).toString();
+
+          value.fecha = dateString.substring(dateString.indexOf('T'), -1);
+        });
+      });
+  }
+  randomDate() {
+    return new Date(
+      new Date(2012, 0, 1).getTime() +
+        Math.random() * (new Date().getTime() - new Date(2012, 0, 1).getTime())
+    );
+  }
   submit() {
+    const user = JSON.parse(localStorage.getItem('user') as string)[0];
+    const data = {
+      fecha: this.randomDate(),
+      peso: this.peso,
+      imc: this.imc,
+      porcentajeGrasa: this.grasa,
+      porcentajeMusculo: this.musculo,
+      correoCliente: user.correo,
+      cintura: this.cintura,
+
+      cuello: this.cuello,
+      cadera: this.caderas,
+    };
+    console.log(data);
+
     if (
       this.peso > 0 &&
       this.grasa > 0 &&
@@ -64,27 +81,22 @@ export class MeasuresComponent implements OnInit {
       this.musculo > 0 &&
       this.caderas > 0 &&
       this.cuello > 0 &&
-      this.caderas > 0 &&
       this.cintura > 0
     ) {
-      const data = {
-        date: new Date(),
-        peso: this.peso,
-        imc: this.imc,
-        grasa: this.grasa,
-        musculo: this.musculo,
+      {
+      }
 
-        cintura: this.cintura,
-        cuello: this.cuello,
-        caderas: this.caderas,
-      };
       /**backend call here */
+      this.backend.post_request('Cliente/Medidas', data).subscribe((result) => {
+        console.log(result);
 
-      this.swal.showSuccess(
-        'Medición registrada!',
-        'Esta medición fue registrada con éxito'
-      );
-      this.me.close();
+        this.swal.showSuccess(
+          'Medición registrada!',
+          'Esta medición fue registrada con éxito'
+        );
+        this.me.close();
+        return;
+      });
     } else {
       this.swal.showError(
         'Error al ingresar los datos',

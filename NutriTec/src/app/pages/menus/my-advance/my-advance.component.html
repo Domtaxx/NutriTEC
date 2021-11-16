@@ -1,0 +1,52 @@
+<div class="mainView">
+
+
+    <div class="textAndIcon" style="height: 15%;">
+        <div class="text Title">Mi avance</div>
+        <div><mat-icon class="icon">accessibility</mat-icon></div>        
+    </div>
+
+    <div class="spacer" style="height: 5%;"></div>
+
+
+    <div class="fromToContainer" style="height: 15%;">
+        <mat-form-field appearance="fill">
+            <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+              <input (dateChange)="dateChange($event.value,null)"  matStartDate placeholder="Start date">
+              <input  (dateChange)="dateChange(null,$event.value)" matEndDate  placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          
+          </mat-form-field>
+    </div>
+  
+<!--Encabezados-->
+    <div class="columHeaders" style="height: 10%;">
+        <div class="text inputText" style=" width:20%">Fecha</div>
+        <div class="text inputText" style=" width:25%">Estatura  (cm) </div>
+        <div class="text inputText" style=" width:25%">peso (Kg)</div>
+        <div class="text inputText" style=" width:25%">%grasa</div>
+    </div>
+<!--Productos que componen la receta-->
+    <div class="scrollCardContainer" style="height: 50%;">
+        <div *ngFor='let report of reports' class="card productCard">
+            <div style="width: 21%;  overflow: hidden;
+            white-space: nowrap;" matTooltip="{{report.descripcion}}" class="text inputText">{{report.fecha}}</div>
+            <div style="width: 16%;" class="text inputText">{{report.cintura}}</div>
+            <div style="width: 13%;" class="text inputText">{{report.porcentajeMusculo}}</div>
+            <div style="width: 18%;" class="text inputText">{{report.porcentajeGrasa}}</div>
+        </div>
+    </div>
+
+        
+        <div class="spacer" style="  margin-bottom: 2%; height: 5%;"></div>
+        <div class="buttonContainer" style="height: 15%;">
+
+            <div class="card nextButton" (click)="download()">
+                <div class="text buttonText" >Descargar reporte</div>    
+            </div>
+
+        </div>
+
+</div>
