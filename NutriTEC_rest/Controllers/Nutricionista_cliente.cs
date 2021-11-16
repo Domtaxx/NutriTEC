@@ -15,6 +15,11 @@ namespace NutriTEC_rest.Controllers
     public class Nutricionista_cliente : Controller
     {
         NutriTECContext Db = new NutriTECContext();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Correo_nutri"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Get(string Correo_nutri)
         {
@@ -31,6 +36,11 @@ namespace NutriTEC_rest.Controllers
         }
         [Route("plan")]
         [HttpGet]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Correo_cliente"></param>
+        /// <returns></returns>
         public ActionResult get(string Correo_cliente)
         {
             try
@@ -46,6 +56,11 @@ namespace NutriTEC_rest.Controllers
         }
         [Route("plan/cliente")]
         [HttpPost]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="CP"></param>
+        /// <returns></returns>
         public ActionResult post([FromBody] ClientePlan CP)
         {
             try
@@ -59,7 +74,11 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="correos"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Post([FromBody]Cliente_nutricionista correos)
         {
@@ -75,6 +94,11 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Correo_cliente"></param>
+        /// <returns></returns>
         [Route("especifico")]
         [HttpGet]
         public ActionResult get2(string Correo_cliente)
@@ -89,6 +113,11 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Correo_cliente"></param>
+        /// <returns></returns>
         [HttpDelete]
         public ActionResult Delete2(string Correo_cliente)
         {
@@ -104,6 +133,11 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nombre_plan"></param>
+        /// <returns></returns>
         [Route("Plan/delete")]
         [HttpDelete]
         public ActionResult Delete(string nombre_plan)

@@ -14,6 +14,12 @@ namespace NutriTEC_rest.Controllers
     public class Login_Cliente : Controller
     {
         NutriTECContext Db = new NutriTECContext();
+     /// <summary>
+     /// 
+     /// </summary>
+     /// <param name="Correo"></param>
+     /// <param name="Contra"></param>
+     /// <returns></returns>
         [HttpGet]
         public ActionResult Get(string Correo, string Contra)
         {

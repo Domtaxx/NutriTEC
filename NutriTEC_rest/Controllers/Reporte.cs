@@ -16,6 +16,11 @@ namespace NutriTEC_rest.Controllers
     {
         NutriTECContext Db = new NutriTECContext();
         [Route("Productos")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="CP"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Post([FromBody] ClienteProducto CP)
         {
@@ -31,6 +36,11 @@ namespace NutriTEC_rest.Controllers
             }
         }
         [Route("Productos")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Correo_cliente"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Get(string Correo_cliente)
         {
@@ -45,6 +55,13 @@ namespace NutriTEC_rest.Controllers
             }
         }
         [Route("Productos/PeriodoTiempo")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Correo_cliente"></param>
+        /// <param name="FechaI"></param>
+        /// <param name="FechaF"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult get(string Correo_cliente, DateTime FechaI, DateTime FechaF)
         {
@@ -59,6 +76,11 @@ namespace NutriTEC_rest.Controllers
 
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="CR"></param>
+        /// <returns></returns>
         [Route("Recetas")]
         [HttpPost]
         public ActionResult Post([FromBody] ClienteRecetum CR)
@@ -74,6 +96,11 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Correo_cliente"></param>
+        /// <returns></returns>
         [Route("Recetas")]
         [HttpGet]
         public ActionResult get(string Correo_cliente)
@@ -89,6 +116,12 @@ namespace NutriTEC_rest.Controllers
 
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Correo_cliente"></param>
+        /// <param name="fecha"></param>
+        /// <returns></returns>
         [Route("Recetas/fecha")]
         [HttpGet]
         public ActionResult get(string Correo_cliente,DateTime fecha)
@@ -104,6 +137,13 @@ namespace NutriTEC_rest.Controllers
 
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Correo_cliente"></param>
+        /// <param name="FechaI"></param>
+        /// <param name="FechaF"></param>
+        /// <returns></returns>
         [Route("Recetas/PeriodoTiempo")]
         [HttpGet]
         public ActionResult get2(string Correo_cliente, DateTime FechaI, DateTime FechaF)

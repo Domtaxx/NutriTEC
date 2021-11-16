@@ -13,6 +13,11 @@ namespace NutriTEC_rest.Controllers
     public class Creacion_Usuario_Controller : Controller
     {
         NutriTECContext Db = new NutriTECContext();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cli"></param>
+        /// <returns></returns>   
         [Route("Cliente")]
         [HttpPost]
         public ActionResult Post([FromBody] Cliente cli)
@@ -28,6 +33,10 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [Route("Cliente")]
         [HttpGet]
         public ActionResult Get()
@@ -41,6 +50,11 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nutri"></param>
+        /// <returns></returns>
         [Route("Nutricionista")]
         [HttpPost]
         public ActionResult Post([FromBody] Nutricionistum nutri)
@@ -56,6 +70,10 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [Route("Nutricionista")]
         [HttpGet]
         public ActionResult get()

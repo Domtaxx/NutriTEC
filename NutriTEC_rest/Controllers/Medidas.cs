@@ -15,6 +15,11 @@ namespace NutriTEC_rest.Controllers
     public class Medidas : Controller
     {
         NutriTECContext Db = new NutriTECContext();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="RM"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Post([FromBody] RegistroMedida RM)
         {
@@ -29,6 +34,12 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="correo"></param>
+        /// <param name="fecha"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Get (string correo,DateTime fecha)
         {
@@ -42,6 +53,11 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="correo"></param>
+        /// <returns></returns>
         [Route("Todas")]
         [HttpGet]
         public ActionResult Get(string correo)
@@ -56,6 +72,11 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="correo"></param>
+        /// <returns></returns>
         [Route("Reciente")]
         [HttpGet]
         public ActionResult Get2(string correo)
@@ -70,6 +91,13 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="correo"></param>
+        /// <param name="FechaI"></param>
+        /// <param name="FechaF"></param>
+        /// <returns></returns>
         [Route("Periodo")]
         [HttpGet]
         public ActionResult Get(string correo,DateTime FechaI, DateTime FechaF)

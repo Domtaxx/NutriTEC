@@ -15,6 +15,11 @@ namespace NutriTEC_rest.Controllers
     public class Nutricionista_Plan : Controller
     {
         NutriTECContext Db = new NutriTECContext();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="PlanName"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Get(string PlanName)
         {
@@ -31,6 +36,11 @@ namespace NutriTEC_rest.Controllers
 
 
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entry"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Post([FromBody]PlanAlimentacion entry)
         {
@@ -46,8 +56,5 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
-
-
-        
     }
 }

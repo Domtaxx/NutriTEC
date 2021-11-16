@@ -15,6 +15,12 @@ namespace NutriTEC_rest.Controllers
     public class Plan_Menu : Controller
     {
         NutriTECContext Db = new NutriTECContext();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="PlanName"></param>
+        /// <param name="menuName"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Get(string PlanName,string menuName)
         {
@@ -29,6 +35,11 @@ namespace NutriTEC_rest.Controllers
             }
         }
         [Route("productos")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entry"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Post([FromBody] PlanEntry entry)
         {
@@ -58,6 +69,11 @@ namespace NutriTEC_rest.Controllers
         }
 
         [Route("recetas")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entry"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult post([FromBody] PlanEntry entry)
         {
@@ -75,8 +91,6 @@ namespace NutriTEC_rest.Controllers
                     catch (Exception e) {
                         return BadRequest(e.Message);
                     }
-
-
                 }
                 //var plan = Db.PlanAlimentacions.Where(R => R.Nombre == PlanName).Where(R => R.CorreoNutri == NutricionistEmail).ToList().ElementAt(0);
                 return Ok(null);

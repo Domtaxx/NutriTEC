@@ -15,7 +15,12 @@ namespace NutriTEC_rest.Controllers
     public class Producto_Controller:Controller
     {
         NutriTECContext Db = new NutriTECContext();
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Codigo"></param>
+        /// <param name="desc"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Get(string Codigo,string desc= "aasdasasdfasd1234jadfvasd1234nadbfh1")
         {
@@ -29,6 +34,11 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="prod"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Post([FromBody] Producto prod)
         {
@@ -43,6 +53,10 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [Route("Todos")]
         [HttpGet]
         public ActionResult Get()

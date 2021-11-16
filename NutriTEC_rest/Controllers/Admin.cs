@@ -9,10 +9,17 @@ using System.Threading.Tasks;
 
 namespace NutriTEC_rest.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Admin : Controller
-    {
+    {   
         NutriTECContext Db = new NutriTECContext();
         [Route("Recetas")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Get()
         {
@@ -26,6 +33,11 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="receta"></param>
+        /// <returns></returns>
         [Route("Recetas")]
         [HttpPut]
         public ActionResult Put([FromBody] Recetum receta)
@@ -41,6 +53,10 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [Route("Productos")]
         [HttpGet]
         public ActionResult Get2()
@@ -55,6 +71,11 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="prod"></param>
+        /// <returns></returns>
         [Route("Productos")]
         [HttpPut]
         public ActionResult Put([FromBody] Producto prod)
@@ -70,6 +91,11 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tipo"></param>
+        /// <returns></returns>
         [Route("ReporteCobro")]
         [HttpGet]
         public ActionResult Get23(string tipo)

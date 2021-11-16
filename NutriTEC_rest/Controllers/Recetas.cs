@@ -17,6 +17,11 @@ namespace NutriTEC_rest.Controllers
     {
         NutriTECContext Db = new NutriTECContext();
         [Route("Crear")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Post([FromBody] Receta_Productos info)
         {
@@ -59,6 +64,12 @@ namespace NutriTEC_rest.Controllers
             }
         }
         [Route("Busqueda")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="creator"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Get(string creator="aakjlhsdfjdshjkfad", string name = "aasdjhfhasjkdhfjasdhf")
         {
@@ -73,6 +84,12 @@ namespace NutriTEC_rest.Controllers
             }
         }
         [Route("Especifico")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="creator"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult get(string creator = "aakjlhsdfjdshjkfad", string name = "aasdjhfhasjkdhfjasdhf")
         {
@@ -87,6 +104,12 @@ namespace NutriTEC_rest.Controllers
             }
         }
         [Route("ByName")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="creator"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult get2(string creator, string name = "aasdjhfhasjkdhfjasdhf")
         {
@@ -101,6 +124,10 @@ namespace NutriTEC_rest.Controllers
             }
         }
         [Route("Todos")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Get()
         {
