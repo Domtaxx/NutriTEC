@@ -1,0 +1,1574 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "NutriTEC_rest",
+    "version": "v1"
+  },
+  "paths": {
+    "/Recetas": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Admin"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Recetum"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Productos": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Admin"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Producto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/ReporteCobro": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "tipo",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Crear/Cliente": {
+      "post": {
+        "tags": [
+          "Creacion_Usuario_"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Cliente"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Creacion_Usuario_"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Crear/Nutricionista": {
+      "post": {
+        "tags": [
+          "Creacion_Usuario_"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Nutricionistum"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Creacion_Usuario_"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Login/Admin": {
+      "get": {
+        "tags": [
+          "Login_Admin"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "Correo",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "Contra",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Login/Client": {
+      "get": {
+        "tags": [
+          "Login_Cliente"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "Correo",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "Contra",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Login/Nutricionista": {
+      "get": {
+        "tags": [
+          "Login_Nutricionista"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "Correo",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "Contra",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Cliente/Medidas": {
+      "post": {
+        "tags": [
+          "Medidas"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/RegistroMedida"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Medidas"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "correo",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "fecha",
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Cliente/Medidas/Todas": {
+      "get": {
+        "tags": [
+          "Medidas"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "correo",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Cliente/Medidas/Reciente": {
+      "get": {
+        "tags": [
+          "Medidas"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "correo",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Cliente/Medidas/Periodo": {
+      "get": {
+        "tags": [
+          "Medidas"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "correo",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "FechaI",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "FechaF",
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Nutricionista/Clientes": {
+      "get": {
+        "tags": [
+          "Nutricionista_cliente"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "Correo_nutri",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Nutricionista_cliente"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Cliente_nutricionista"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Nutricionista_cliente"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "Correo_cliente",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Nutricionista/Clientes/plan": {
+      "get": {
+        "tags": [
+          "Nutricionista_cliente"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "Correo_cliente",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Nutricionista/Clientes/plan/cliente": {
+      "post": {
+        "tags": [
+          "Nutricionista_cliente"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ClientePlan"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Nutricionista/Clientes/especifico": {
+      "get": {
+        "tags": [
+          "Nutricionista_cliente"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "Correo_cliente",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Nutricionista/Clientes/Plan/delete": {
+      "delete": {
+        "tags": [
+          "Nutricionista_cliente"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "nombre_plan",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Plan": {
+      "get": {
+        "tags": [
+          "Nutricionista_Plan"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "PlanName",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Nutricionista_Plan"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/PlanAlimentacion"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Menu": {
+      "get": {
+        "tags": [
+          "Plan_Menu"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "PlanName",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "menuName",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Menu/productos": {
+      "post": {
+        "tags": [
+          "Plan_Menu"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/PlanEntry"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Menu/recetas": {
+      "post": {
+        "tags": [
+          "Plan_Menu"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/PlanEntry"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Producto/buscar": {
+      "get": {
+        "tags": [
+          "Producto_"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "Codigo",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "desc",
+            "type": "string",
+            "default": "aasdasasdfasd1234jadfvasd1234nadbfh1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Producto_"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Producto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Producto/buscar/Todos": {
+      "get": {
+        "tags": [
+          "Producto_"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Receta/Crear": {
+      "post": {
+        "tags": [
+          "Recetas"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Receta_Productos"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Receta/Busqueda": {
+      "get": {
+        "tags": [
+          "Recetas"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "creator",
+            "type": "string",
+            "default": "aakjlhsdfjdshjkfad"
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "type": "string",
+            "default": "aasdjhfhasjkdhfjasdhf"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Receta/Especifico": {
+      "get": {
+        "tags": [
+          "Recetas"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "creator",
+            "type": "string",
+            "default": "aakjlhsdfjdshjkfad"
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "type": "string",
+            "default": "aasdjhfhasjkdhfjasdhf"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Receta/ByName": {
+      "get": {
+        "tags": [
+          "Recetas"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "creator",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "type": "string",
+            "default": "aasdjhfhasjkdhfjasdhf"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Receta/Todos": {
+      "get": {
+        "tags": [
+          "Recetas"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Reportes/Productos": {
+      "post": {
+        "tags": [
+          "Reporte"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ClienteProducto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Reporte"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "Correo_cliente",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Reportes/Productos/PeriodoTiempo": {
+      "get": {
+        "tags": [
+          "Reporte"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "Correo_cliente",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "FechaI",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "FechaF",
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Reportes/Recetas": {
+      "post": {
+        "tags": [
+          "Reporte"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ClienteRecetum"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Reporte"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "Correo_cliente",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Reportes/Recetas/fecha": {
+      "get": {
+        "tags": [
+          "Reporte"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "Correo_cliente",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "fecha",
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Reportes/Recetas/PeriodoTiempo": {
+      "get": {
+        "tags": [
+          "Reporte"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "Correo_cliente",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "FechaI",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "FechaF",
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Administrador": {
+      "type": "object",
+      "properties": {
+        "correo": {
+          "type": "string"
+        },
+        "contra": {
+          "type": "string"
+        },
+        "productos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Producto"
+          }
+        },
+        "receta": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Recetum"
+          }
+        }
+      }
+    },
+    "Cliente": {
+      "type": "object",
+      "properties": {
+        "correo": {
+          "type": "string"
+        },
+        "contra": {
+          "type": "string"
+        },
+        "direccion": {
+          "type": "string"
+        },
+        "primerNom": {
+          "type": "string"
+        },
+        "segNom": {
+          "type": "string"
+        },
+        "imc": {
+          "format": "double",
+          "type": "number"
+        },
+        "primerApellido": {
+          "type": "string"
+        },
+        "segApellido": {
+          "type": "string"
+        },
+        "maxCalorias": {
+          "format": "double",
+          "type": "number"
+        },
+        "fechaNace": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "correoNutri": {
+          "type": "string"
+        },
+        "correoNutriNavigation": {
+          "$ref": "#/definitions/Nutricionistum"
+        },
+        "clientePlans": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ClientePlan"
+          }
+        },
+        "clienteProductos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ClienteProducto"
+          }
+        },
+        "clienteReceta": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ClienteRecetum"
+          }
+        },
+        "receta": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Recetum"
+          }
+        },
+        "registroMedida": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RegistroMedida"
+          }
+        }
+      }
+    },
+    "Cliente_nutricionista": {
+      "type": "object",
+      "properties": {
+        "correoCliente": {
+          "type": "string"
+        },
+        "correoNutricionista": {
+          "type": "string"
+        }
+      }
+    },
+    "ClientePlan": {
+      "type": "object",
+      "properties": {
+        "nombrePlan": {
+          "type": "string"
+        },
+        "correoCliente": {
+          "type": "string"
+        },
+        "inicio": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "final": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "correoClienteNavigation": {
+          "$ref": "#/definitions/Cliente"
+        },
+        "nombrePlanNavigation": {
+          "$ref": "#/definitions/PlanAlimentacion"
+        }
+      }
+    },
+    "ClienteProducto": {
+      "type": "object",
+      "properties": {
+        "codigoBarras": {
+          "type": "string"
+        },
+        "correoCliente": {
+          "type": "string"
+        },
+        "fecha": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "tiempo": {
+          "type": "string"
+        },
+        "codigoBarrasNavigation": {
+          "$ref": "#/definitions/Producto"
+        },
+        "correoClienteNavigation": {
+          "$ref": "#/definitions/Cliente"
+        }
+      }
+    },
+    "ClienteRecetum": {
+      "type": "object",
+      "properties": {
+        "nombreReceta": {
+          "type": "string"
+        },
+        "correoCliente": {
+          "type": "string"
+        },
+        "correoCreador": {
+          "type": "string"
+        },
+        "fecha": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "tiempo": {
+          "type": "string"
+        },
+        "correoClienteNavigation": {
+          "$ref": "#/definitions/Cliente"
+        },
+        "recetum": {
+          "$ref": "#/definitions/Recetum"
+        }
+      }
+    },
+    "Menu": {
+      "type": "object",
+      "properties": {
+        "nombrePlanAlimentacion": {
+          "type": "string"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "nombrePlanAlimentacionNavigation": {
+          "$ref": "#/definitions/PlanAlimentacion"
+        },
+        "menuProductos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MenuProducto"
+          }
+        },
+        "menuReceta": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MenuRecetum"
+          }
+        }
+      }
+    },
+    "MenuEntry": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "productos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recetas": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/receta_strings"
+          }
+        }
+      }
+    },
+    "MenuProducto": {
+      "type": "object",
+      "properties": {
+        "nombrePlanAlimentacion": {
+          "type": "string"
+        },
+        "nombreMenu": {
+          "type": "string"
+        },
+        "codigoBarras": {
+          "type": "string"
+        },
+        "cantidad": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "codigoBarrasNavigation": {
+          "$ref": "#/definitions/Producto"
+        },
+        "nombre": {
+          "$ref": "#/definitions/Menu"
+        }
+      }
+    },
+    "MenuRecetum": {
+      "type": "object",
+      "properties": {
+        "nombrePlanAlimentacion": {
+          "type": "string"
+        },
+        "nombreMenu": {
+          "type": "string"
+        },
+        "nombreReceta": {
+          "type": "string"
+        },
+        "correoCreador": {
+          "type": "string"
+        },
+        "nombre": {
+          "$ref": "#/definitions/Menu"
+        },
+        "recetum": {
+          "$ref": "#/definitions/Recetum"
+        }
+      }
+    },
+    "Nutricionistum": {
+      "type": "object",
+      "properties": {
+        "correo": {
+          "type": "string"
+        },
+        "contra": {
+          "type": "string"
+        },
+        "codigo": {
+          "type": "string"
+        },
+        "primerNom": {
+          "type": "string"
+        },
+        "segNom": {
+          "type": "string"
+        },
+        "primerApellido": {
+          "type": "string"
+        },
+        "segApellido": {
+          "type": "string"
+        },
+        "numTarjeta": {
+          "type": "string"
+        },
+        "fechaNace": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "tipoCobro": {
+          "type": "string"
+        },
+        "direccion": {
+          "type": "string"
+        },
+        "imc": {
+          "format": "double",
+          "type": "number"
+        },
+        "peso": {
+          "format": "double",
+          "type": "number"
+        },
+        "foto": {
+          "type": "string"
+        },
+        "clientes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cliente"
+          }
+        },
+        "planAlimentacions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PlanAlimentacion"
+          }
+        }
+      }
+    },
+    "PlanAlimentacion": {
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string"
+        },
+        "correoNutri": {
+          "type": "string"
+        },
+        "correoNutriNavigation": {
+          "$ref": "#/definitions/Nutricionistum"
+        },
+        "clientePlans": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ClientePlan"
+          }
+        },
+        "menus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Menu"
+          }
+        }
+      }
+    },
+    "PlanEntry": {
+      "type": "object",
+      "properties": {
+        "correo_Nutricionista": {
+          "type": "string"
+        },
+        "nombre_Plan": {
+          "type": "string"
+        },
+        "menu": {
+          "$ref": "#/definitions/MenuEntry"
+        }
+      }
+    },
+    "Producto": {
+      "type": "object",
+      "properties": {
+        "codigoBarras": {
+          "type": "string"
+        },
+        "sodio": {
+          "format": "double",
+          "type": "number"
+        },
+        "energia": {
+          "format": "double",
+          "type": "number"
+        },
+        "carbohidratos": {
+          "format": "double",
+          "type": "number"
+        },
+        "tamano": {
+          "format": "double",
+          "type": "number"
+        },
+        "vitaminas": {
+          "format": "double",
+          "type": "number"
+        },
+        "descripcion": {
+          "type": "string"
+        },
+        "estado": {
+          "type": "string"
+        },
+        "hierro": {
+          "format": "double",
+          "type": "number"
+        },
+        "calcio": {
+          "format": "double",
+          "type": "number"
+        },
+        "proteina": {
+          "format": "double",
+          "type": "number"
+        },
+        "correoAdmin": {
+          "type": "string"
+        },
+        "correoAdminNavigation": {
+          "$ref": "#/definitions/Administrador"
+        },
+        "clienteProductos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ClienteProducto"
+          }
+        },
+        "menuProductos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MenuProducto"
+          }
+        },
+        "recetaProductos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RecetaProducto"
+          }
+        }
+      }
+    },
+    "Receta_Productos": {
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string"
+        },
+        "correoCreador": {
+          "type": "string"
+        },
+        "productos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "receta_strings": {
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string"
+        },
+        "creador": {
+          "type": "string"
+        }
+      }
+    },
+    "RecetaProducto": {
+      "type": "object",
+      "properties": {
+        "nombreReceta": {
+          "type": "string"
+        },
+        "correoCreador": {
+          "type": "string"
+        },
+        "codigoBarras": {
+          "type": "string"
+        },
+        "cantidad": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "codigoBarrasNavigation": {
+          "$ref": "#/definitions/Producto"
+        },
+        "recetum": {
+          "$ref": "#/definitions/Recetum"
+        }
+      }
+    },
+    "Recetum": {
+      "type": "object",
+      "properties": {
+        "correoAdmin": {
+          "type": "string"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "correoCreador": {
+          "type": "string"
+        },
+        "aprobado": {
+          "type": "boolean"
+        },
+        "correoAdminNavigation": {
+          "$ref": "#/definitions/Administrador"
+        },
+        "correoCreadorNavigation": {
+          "$ref": "#/definitions/Cliente"
+        },
+        "clienteReceta": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ClienteRecetum"
+          }
+        },
+        "menuReceta": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MenuRecetum"
+          }
+        },
+        "recetaProductos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RecetaProducto"
+          }
+        }
+      }
+    },
+    "RegistroMedida": {
+      "type": "object",
+      "properties": {
+        "correoCliente": {
+          "type": "string"
+        },
+        "cadera": {
+          "format": "double",
+          "type": "number"
+        },
+        "porcentajeMusculo": {
+          "format": "double",
+          "type": "number"
+        },
+        "porcentajeGrasa": {
+          "format": "double",
+          "type": "number"
+        },
+        "cuello": {
+          "format": "double",
+          "type": "number"
+        },
+        "cintura": {
+          "format": "double",
+          "type": "number"
+        },
+        "imc": {
+          "format": "double",
+          "type": "number"
+        },
+        "peso": {
+          "format": "double",
+          "type": "number"
+        },
+        "fecha": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "correoClienteNavigation": {
+          "$ref": "#/definitions/Cliente"
+        }
+      }
+    }
+  }
+}

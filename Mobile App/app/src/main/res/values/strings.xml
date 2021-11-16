@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">NutriTec</string>
+    <string name="title_activity_login">Login</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="login_user_label">Correo</string>
+    <string name="login_user_label_password">Contraseña</string>
+    <string name="login_button_text">Ingresar</string>
+    <string name="title_activity_today_meals">TodayMeals</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="inputProduct">Ingrese Producto</string>
+    <string name="ProductListLabel">Productos Agregados</string>
+    <string name="recipe_title">Nombre Receta</string>
+    <string name="select_meal">Seleccione la comida a realizar</string>
+    <string name="breakfast">Desayuno</string>
+    <string name="morning_snack">Merienda Mañana</string>
+    <string name="lunch">Almuerzo</string>
+    <string name="evening_snack">Merienda Tarde</string>
+    <string name="dinner">Cena</string>
+    <string name="profile_height">Altura:</string>
+    <string name="profile_waist">Cintura:</string>
+    <string name="profile_weight">Peso:</string>
+    <string name="profile_hips">Cadera:</string>
+    <string name="profile_IMC">IMC:</string>
+    <string name="profile_nape">Cuello:</string>
+</resources>

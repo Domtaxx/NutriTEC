@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    app:startDestination="@id/navigation_profile">
+
+    <fragment
+        android:id="@+id/navigation_daily_meals"
+        android:name="ac.cr.tec.NutriTec.fragments.DailyMealFragment"
+        android:label="DailyMeal"
+        tools:layout="@layout/fragment_daily_meal" />
+    <fragment
+        android:id="@+id/navigation_recipes"
+        android:name="ac.cr.tec.NutriTec.fragments.RecipesFragment"
+        android:label="Recipes"
+        tools:layout="@layout/fragment_recipes" />
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="ac.cr.tec.NutriTec.fragments.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+    <activity
+        android:id="@+id/navigation_logout"
+        android:name="ac.cr.tec.NutriTec.screens.Login"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+</navigation>
