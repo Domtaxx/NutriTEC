@@ -72,16 +72,20 @@ export class LoginComponent implements OnInit {
                     this.userService.user = false;
                     this.userService.doctor = false;
                     this.userService.admin = true;
+
                     localStorage.setItem('user', JSON.stringify(admin));
-                    localStorage.setItem('admin', 'true');
+
+                    localStorage.setItem('userType', 'admin');
+
                     this.router.navigateByUrl('pages');
                   }
                 });
             } else {
               this.userService.user = false;
               this.userService.doctor = true;
+              this.userService.admin = false;
               localStorage.setItem('user', JSON.stringify(doctor));
-              localStorage.setItem('doctor', 'true');
+              localStorage.setItem('userType', 'doctor');
               this.router.navigateByUrl('pages');
             }
           });
@@ -89,7 +93,9 @@ export class LoginComponent implements OnInit {
         this.userService.user = true;
         this.userService.doctor = false;
         this.userService.admin = false;
+        localStorage.setItem('userType', 'user');
         localStorage.setItem('user', JSON.stringify(user));
+
         this.router.navigateByUrl('pages');
       }
     });
@@ -112,6 +118,6 @@ export class LoginComponent implements OnInit {
       this.password = 'Admin123';
     }
 
-    if (this.devUserindex > 3) this.devUserindex = 1;
+    if (this.devUserindex > 3) this.devUserindex = 0;
   }
 }

@@ -4,6 +4,7 @@ import { BackendService } from 'src/app/services/backend-service.service';
 import { SwalService } from 'src/app/services/swalService';
 import { UserService } from 'src/app/services/userService';
 import { DatePipe } from '@angular/common';
+import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 @Component({
   selector: 'app-nutri-plan',
   templateUrl: './nutri-plan.component.html',
@@ -18,7 +19,7 @@ export class NutriPlanComponent implements OnInit {
   today: boolean = true;
   history: boolean = false;
   plan: boolean = false;
-
+  asplan: boolean = false;
   //todayVars
   tFoods: any = {
     date: '',
@@ -51,9 +52,10 @@ export class NutriPlanComponent implements OnInit {
   foodHistory: any = []; //containsTfoodsObjects
   foodPlan: any;
 
+  planName: string = '';
   selectedmenus: any[] = [];
   searchResult: any[] = [];
-
+  userId: string = '';
   search: string = '';
   searching: boolean = false;
   finishing: boolean = false;
@@ -76,7 +78,13 @@ export class NutriPlanComponent implements OnInit {
 
     this.getPlan();
   }
-
+  /**
+   * Reports a meal
+   * @param fecha ]
+   * @param feedBack
+   * @param foods
+   * @returns
+   */
   createTfoodReport(fecha: any, feedBack: string, foods: any[]) {
     return {
       fecha: fecha,
@@ -84,7 +92,41 @@ export class NutriPlanComponent implements OnInit {
       foods: foods,
     };
   }
+  createPlan() {
+    const user = JSON.parse(localStorage.getItem('user') as string)[0];
+    const data = {
+      nombre: this.planName,
+      correoNutri: user.correo,
+    };
 
+    this.backend.post_request('Plan', data).subscribe((response) => {
+      this.foodPlan.meals.forEach((tfood: any) => {
+        const menuData: any = {
+          correo_Nutricionista: user.correo,
+          nombre_Plan: this.planName,
+          menu: {
+            name: tfood.name,
+            productos: [],
+            recetas: [],
+          },
+        };
+
+        tfood.foods.forEach((product: any) => {
+          const productData = {
+            nombre: product.correoCreador,
+            creador: product.info,
+          };
+          menuData.menu.recetas.push(productData);
+        });
+        console.log(menuData);
+        this.backend
+          .post_request('Menu/recetas', menuData)
+          .subscribe((response) => {
+            this.swal.showSuccess('exito', 'exito al crear el plan');
+          });
+      });
+    });
+  }
   updateNutriPlan() {
     if (false) {
       this.swal.showError(
@@ -103,12 +145,17 @@ export class NutriPlanComponent implements OnInit {
     );
     this.me.close();
   }
+  /**
+   * Edits feedBack
+   * @param report
+   */
   commentReport(report: any) {
     const data = {
       identification: this.data.user.correo,
       date: this.datePipe.transform(report.fecha, 'yyyy-MM-dd'),
       description: report.feedBack,
     };
+    console.log(data);
 
     this.backend
       .post_request2(
@@ -116,6 +163,8 @@ export class NutriPlanComponent implements OnInit {
         data
       )
       .subscribe((result) => {
+        console.log(result);
+
         this.swal.showSuccess('exito', 'modificación realizada');
       });
   }
@@ -175,17 +224,27 @@ export class NutriPlanComponent implements OnInit {
     this.today = true;
     this.history = false;
     this.plan = false;
+    this.asplan = false;
   }
   openHistory() {
     this.today = false;
     this.history = true;
     this.plan = false;
+    this.asplan = false;
   }
   openPlan() {
     this.today = false;
     this.history = false;
     this.plan = true;
+    this.asplan = false;
   }
+  openAsPlan() {
+    this.today = false;
+    this.history = false;
+    this.plan = false;
+    this.asplan = true;
+  }
+
   /**
    * Complete tFood Forms
    * @param tfood
@@ -208,6 +267,7 @@ export class NutriPlanComponent implements OnInit {
   autoComplete() {
     const maxmenus = 1;
     const maxTfoods = 3;
+    this.planName = 'plancito';
 
     this.autocompleteTfood(this.tFoods, maxmenus);
 
@@ -303,7 +363,6 @@ export class NutriPlanComponent implements OnInit {
                 };
                 meal.foods.push(x);
               });
-              console.log(foodPlan);
               this.foodPlan = foodPlan;
             }
           });
@@ -318,6 +377,7 @@ export class NutriPlanComponent implements OnInit {
     if (!this.data.user)
       user = JSON.parse(localStorage.getItem('user') as string)[0];
     else user = this.data.user;
+
     this.backend
       .get_request('Reportes/Recetas', { Correo_cliente: user.correo })
       .subscribe((result) => {
@@ -391,6 +451,8 @@ export class NutriPlanComponent implements OnInit {
               data
             )
             .subscribe((result) => {
+              console.log(result);
+
               reportsBydateAndTime.push(
                 this.createTfoodReport(
                   dateReport.fecha,
@@ -400,12 +462,12 @@ export class NutriPlanComponent implements OnInit {
               );
             });
         });
-        console.log('////////////////');
-        console.log(reportsBydateAndTime);
 
         this.foodHistory = reportsBydateAndTime;
       });
   }
+
+  asignPlan() {}
 }
 
 //Objects contain by this array, contains the next Structure objects

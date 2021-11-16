@@ -1,6 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { BackendService } from 'src/app/services/backend-service.service';
 import { completerService } from 'src/app/services/completerService';
+import { UserService } from 'src/app/services/userService';
 import { RegisterBoxComponent } from './register-box/register-box.component';
 
 @Component({

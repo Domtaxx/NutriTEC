@@ -29,6 +29,12 @@ export class MyAdvanceComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+
+  /**
+   * Detect date input
+   * @param from
+   * @param to
+   */
   dateChange(from: any, to: any) {
     if (from != null) {
       this.from = from;
@@ -51,29 +57,36 @@ export class MyAdvanceComponent implements OnInit {
         .get_request('Cliente/Medidas/Periodo', data)
         .subscribe((reports: any) => {
           reports.forEach((report: any) => {
+            console.log(reports);
+
             const rep = {
               fecha: this.datePipe.transform(report.fecha, 'yyyy-MM-dd'),
-
               cintura: report.cintura,
               porcentajeMusculo: report.porcentajeMusculo,
               porcentajeGrasa: report.porcentajeGrasa,
+              cuello: report.cuello,
+              imc: report.imc,
+              peso: report.peso,
             };
+
             this.reports.push(rep);
           });
         });
     }
   }
+  /**
+   * Download the user advance report
+   */
   download() {
     (document.getElementById('content') as HTMLElement).style.display = '';
     const doc = new jsPDF('p', 'pt', 'a4');
     doc.html(document.getElementById('content') as HTMLElement, {
       callback: function (doc) {
         doc.save();
+        (document.getElementById('content') as HTMLElement).style.display =
+          'none';
       },
     });
-
-    (document.getElementById('content') as HTMLElement).style.display =
-      'hidden';
   }
 
   async autoComplete() {

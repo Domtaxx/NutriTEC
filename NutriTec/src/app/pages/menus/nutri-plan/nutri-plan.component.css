@@ -45,6 +45,7 @@
   margin-right: 3%;
   margin-left: 3%;
   white-space: nowrap;
+  overflow: hidden;
 }
 .dataText {
   font-size: 1.5vw;

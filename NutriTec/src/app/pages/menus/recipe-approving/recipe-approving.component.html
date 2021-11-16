@@ -48,17 +48,26 @@
                 <div class="text dataText" style="width:20%;">{{product.calcio}}</div>
                 <div class="text dataText" style="width:20%;">{{product.proteina}} </div>
             </div>
+            
+            <div class="horizontalButtonProductsContainer">
+                <div class="productsContainer">
+                        <div *ngFor="let compProduct of product.compositeProducts" class="card compositeProductCard">
+                            <div class="text dataText" style="width:20%;">{{compProduct.descripcion}}</div>
 
-            <div class="buttonBar">
+                        </div>
 
-                <div class="circleButton" style="background: #9ebe8a;" (click)="disaprove(product)">
-                    <mat-icon style="color: #3F6328;" >close</mat-icon>
                 </div>
-                <div class="circleButton" style="background-color: #CBF7B0;" (click)="aprove(product)">
-                    <mat-icon style="color: #3F6328;">done</mat-icon>
+
+                <div class="buttonBar">
+
+                    <div class="circleButton" style="background: #9ebe8a;" (click)="disaprove(product)">
+                        <mat-icon style="color: #3F6328;" >close</mat-icon>
+                    </div>
+                    <div class="circleButton" style="background-color: #CBF7B0;" (click)="aprove(product)">
+                        <mat-icon style="color: #3F6328;">done</mat-icon>
+                    </div>
                 </div>
-            </div>
-                               
+            </div>                  
         </div>
     </div>
 

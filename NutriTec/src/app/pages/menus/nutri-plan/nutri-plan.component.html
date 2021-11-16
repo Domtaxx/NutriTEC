@@ -35,6 +35,14 @@
             <div class="text inputText">Plan De comidas</div>
         </div>
 
+        <div *ngIf="asplan" class="card menuButton" style=" width: 30vh;">
+            <div class="text inputText">Asignar Plan</div>
+        </div>
+
+        <div *ngIf="!asplan" (click)="openAsPlan()" class="card menuButtonDisabled" style=" width: 30vh;">
+            <div class="text inputText">Asignar Plan</div>
+        </div>
+
 
     </div>
     <div class="spacer"></div>
@@ -135,7 +143,10 @@
             <img src="../../../assets/noPlan.svg" alt="">
         </div>
 
-
+        <div class="loginInputContainer"> 
+            <input class="myInput loginInput"  [value]="planName"  (input)="planName = $any( $event.target).value"placeholder=" Nombre del plan" autocomplete="new-password">
+            <div class="hline"></div>
+        </div>
         <div *ngIf="this.uServ.doctor" class="horizontalColumnContainer">
 
         
@@ -158,8 +169,29 @@
 
 
     </div>
+   <!--asplan-->
+    <div *ngIf="asplan" class="verticalHistory">
+
+        <div class="loginInputContainer"> 
+            <input class="myInput loginInput"  [value]="planName"  (input)="planName = $any( $event.target).value"placeholder=" Nombre del plan" autocomplete="new-password">
+            <div class="hline"></div>
+        </div>
+
+        <div class="loginInputContainer"> 
+            <input class="myInput loginInput"  [value]="userId"  (input)="userId = $any( $event.target).value" placeholder=" correo del cliente" autocomplete="new-password">
+            <div class="hline"></div>
+        </div>
+
+        <div class="buttonContainer">
+            <div class="card nextButton" (click)="asignPlan()">
+                <div class="text inputText" >Asignar</div>    
+            </div>
+        </div>
+
+    </div>
+
     <div *ngIf=" plan && this.uServ.doctor" class="buttonContainer">
-        <div class="card nextButton" (click)="updateNutriPlan()">
+        <div class="card nextButton" (click)=" createPlan()">
             <div class="text inputText" >Siguiente</div>    
         </div>
     </div>

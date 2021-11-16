@@ -227,7 +227,8 @@
 }
 .reportContainer {
   width: 80%;
-  margin: 5% 2% 1% 2%;
+  padding-right: 12 px;
+  padding-left: 10 px;
 }
 .reportText {
   font-size: 10px;
@@ -253,7 +254,7 @@
 .reportBox {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 90%;
 }
 
 .reportLine {
@@ -264,4 +265,9 @@
 .reportLineThin {
   width: 100%;
   border-bottom: 0.01px solid #cfcfcf;
+}
+.reportsScroll {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

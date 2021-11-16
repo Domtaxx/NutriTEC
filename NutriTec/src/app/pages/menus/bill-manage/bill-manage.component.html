@@ -46,7 +46,7 @@
         <div class="text inputText">Tipo de Pago </div>
         <div class="text inputText">Pacientes</div>
         <div class="text inputText">Descuentos</div>
-        <div class="text inputText">Total</div>
+        <div class="text inputText">pago</div>
     </div>
     
 
@@ -58,11 +58,11 @@
 
         <div *ngIf="Semanal">
                 <div  *ngFor='let doctor of semanalDoctors' class="card doctorCard">
-                    <div style="width: 30%;" class="text inputText">{{doctor.name}}</div>
-                    <div style="width: 20%;" class="text inputText">{{doctor.billType}}</div>
-                    <div style="width: 15%;" class="text inputText">{{doctor.pacients}}</div>
-                    <div style="width: 15%;" class="text inputText">{{doctor.descount}}%</div>
-                    <div style="width: 20%;" class="text inputText">{{doctor.total}}</div>
+                    <div style="width: 30%;" class="text inputText">{{doctor.correo}}</div>
+                    <div style="width: 20%;" class="text inputText">{{doctor.tipoCobro}}</div>
+                    <div style="width: 15%;" class="text inputText">{{doctor.atendidos}}</div>
+                    <div style="width: 15%;" class="text inputText">{{doctor.descuento}}%</div>
+                    <div style="width: 20%;" class="text inputText">{{doctor.pago}}</div>
                 </div>
         </div>
         <div *ngIf="Mensual" class="separatorCard">
@@ -73,11 +73,11 @@
         <div *ngIf="Mensual">
 
             <div  *ngFor='let doctor of mensualDoctors' class="card doctorCard">
-                <div style="width: 30%;" class="text inputText">{{doctor.name}}</div>
-                <div style="width: 20%;" class="text inputText">{{doctor.billType}}</div>
-                <div style="width: 15%;" class="text inputText">{{doctor.pacients}}</div>
-                <div style="width: 15%;" class="text inputText">{{doctor.descount}}%</div>
-                <div style="width: 20%;" class="text inputText">{{doctor.total}}</div>
+                <div style="width: 30%;" class="text inputText">{{doctor.correo}}</div>
+                <div style="width: 20%;" class="text inputText">{{doctor.tipoCobro}}</div>
+                <div style="width: 15%;" class="text inputText">{{doctor.atendidos}}</div>
+                <div style="width: 15%;" class="text inputText">{{doctor.descuento}}%</div>
+                <div style="width: 20%;" class="text inputText">{{doctor.pago}}</div>
             </div>
         </div>
 
@@ -86,11 +86,11 @@
         </div>
         <div  *ngIf="Anual">
             <div *ngFor='let doctor of anualDoctors' class="card doctorCard">
-                <div style="width: 30%;" class="text inputText">{{doctor.name}}</div>
-                <div style="width: 20%;" class="text inputText">{{doctor.billType}}</div>
-                <div style="width: 15%;" class="text inputText">{{doctor.pacients}}</div>
-                <div style="width: 15%;" class="text inputText">{{doctor.descount}}%</div>
-                <div style="width: 20%;" class="text inputText">{{doctor.total}}</div>
+                <div style="width: 30%;" class="text inputText">{{doctor.correo}}</div>
+                <div style="width: 20%;" class="text inputText">{{doctor.tipoCobro}}</div>
+                <div style="width: 15%;" class="text inputText">{{doctor.atendidos}}</div>
+                <div style="width: 15%;" class="text inputText">{{doctor.descuento}}%</div>
+                <div style="width: 20%;" class="text inputText">{{doctor.pago}}</div>
             </div>
         </div>
 
@@ -121,7 +121,7 @@
                 <div style="width: 15%;" class="text reportText">Tipo</div>
                 <div style="width: 15%;" class="text reportText">Pacientes</div>
                 <div style="width: 25%;" class="text reportText">Descuentos</div>
-                <div style="width: 25%;" class="text reportText">Total</div>
+                <div style="width: 25%;" class="text reportText">pago</div>
             </div>
 
             <div class="reportLineThin"></div>
@@ -131,11 +131,11 @@
             <div class="reportLineThin"></div>
             <div >
                     <div  *ngFor='let doctor of semanalDoctors' class="reportBox">
-                        <div style="width: 30%;" class="text reportText">{{doctor.name}}</div>
-                        <div style="width: 15%;" class="text reportText">{{doctor.billtype}}</div>
-                        <div style="width: 15%;" class="text reportText">{{doctor.pacients}}</div>
-                        <div style="width: 25%;" class="text reportText">{{doctor.descount}}%</div>
-                        <div style="width: 25%;" class="text reportText">{{doctor.total}}</div>
+                        <div style="width: 30%;" class="text reportText">{{doctor.correo}}</div>
+                        <div style="width: 15%;" class="text reportText">{{doctor.tipoCobro}}</div>
+                        <div style="width: 15%;" class="text reportText">{{doctor.atendidos}}</div>
+                        <div style="width: 25%;" class="text reportText">{{doctor.descuento}}%</div>
+                        <div style="width: 25%;" class="text reportText">{{doctor.pago}}</div>
                     </div>
             </div>
 
@@ -148,11 +148,11 @@
             <div >
 
                 <div  *ngFor='let doctor of mensualDoctors' class="reportBox">
-                    <div style="width: 30%;" class="text reportText">{{doctor.name}}</div>
-                    <div style="width: 15%;" class="text reportText">{{doctor.billtype}}</div>
-                    <div style="width: 15%;" class="text reportText">{{doctor.pacients}}</div>
-                    <div style="width: 25%;" class="text reportText">{{doctor.descount}}%</div>
-                    <div style="width: 25%;" class="text reportText">{{doctor.total}}</div>
+                    <div style="width: 30%;" class="text reportText">{{doctor.correo}}</div>
+                    <div style="width: 15%;" class="text reportText">{{doctor.tipoCobro}}</div>
+                    <div style="width: 15%;" class="text reportText">{{doctor.atendidos}}</div>
+                    <div style="width: 25%;" class="text reportText">{{doctor.descuento}}%</div>
+                    <div style="width: 25%;" class="text reportText">{{doctor.pago}}</div>
                 </div>
             </div>
 
@@ -164,11 +164,11 @@
 
             <div  >
                 <div *ngFor='let doctor of anualDoctors' class="reportBox">
-                    <div style="width: 30%;" class="text reportText">{{doctor.name}}</div>
-                    <div style="width: 15%;" class="text reportText">{{doctor.billtype}}</div>
-                    <div style="width: 15%;" class="text reportText">{{doctor.pacients}}</div>
-                    <div style="width: 25%;" class="text reportText">{{doctor.descount}}%</div>
-                    <div style="width: 25%;" class="text reportText">{{doctor.total}}</div>
+                    <div style="width: 30%;" class="text reportText">{{doctor.correo}}</div>
+                    <div style="width: 15%;" class="text reportText">{{doctor.tipoCobro}}</div>
+                    <div style="width: 15%;" class="text reportText">{{doctor.atendidos}}</div>
+                    <div style="width: 25%;" class="text reportText">{{doctor.descuento}}%</div>
+                    <div style="width: 25%;" class="text reportText">{{doctor.pago}}</div>
                 
                 </div>
             </div>

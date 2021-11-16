@@ -9,6 +9,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { SwalService } from 'src/app/services/swalService';
 import { jsPDF } from 'jspdf';
 import { DatePipe } from '@angular/common';
+import { BackendService } from 'src/app/services/backend-service.service';
 @Component({
   selector: 'app-bill-manage',
   templateUrl: './bill-manage.component.html',
@@ -19,71 +20,44 @@ export class BillManageComponent implements OnInit {
   handleKeyboardEvent(event: KeyboardEvent) {
     if (event.code === 'KeyY') this.autoComplete();
   }
-
+  @ViewChild('content') content!: ElementRef;
   Semanal: boolean = true;
   Mensual: boolean = false;
   Anual: boolean = false;
 
-  semanalDoctors: any[] = [
-    {
-      name: 'Ana lopez Gonzalez',
-      billtype: 'semanal',
-      pacients: 15,
-      descount: 0,
-      total: 15000,
-    },
-    {
-      name: 'Pedro Gonzalez',
-      billtype: 'semanal',
-      pacients: 3,
-      descount: 0,
-      total: 4000,
-    },
-  ];
+  semanalDoctors: any[] = [];
 
-  mensualDoctors: any[] = [
-    {
-      name: 'Ana fd Gonzalez',
-      billtype: 'anual',
-      pacients: 15,
-      descount: 0,
-      total: 400,
-    },
-    {
-      name: 'sds asdasd',
-      billtype: 'anual',
-      pacients: 3,
-      descount: 0,
-      total: 300,
-    },
-  ];
+  mensualDoctors: any[] = [];
 
-  anualDoctors: any[] = [
-    {
-      name: 'Ana lopez Gonzalez',
-      billtype: 'mensual',
-      pacients: 15,
-      descount: 0,
-      total: 15000,
-    },
-    {
-      name: 'Pedro Gonzalez',
-      billtype: 'mensual',
-      pacients: 3,
-      descount: 0,
-      total: 4000,
-    },
-  ];
+  anualDoctors: any[] = [];
 
   constructor(
     public me: MatDialogRef<BillManageComponent>,
     private swal: SwalService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private backend: BackendService
   ) {}
 
-  ngOnInit(): void {}
-  @ViewChild('content')
-  content!: ElementRef;
+  ngOnInit(): void {
+    this.backend
+      .get_request('ReporteCobro', { tipo: 'Mensual' })
+      .subscribe((result) => {
+        this.mensualDoctors = result;
+      });
+
+    this.backend
+      .get_request('ReporteCobro', { tipo: 'Semanal' })
+      .subscribe((result) => {
+        this.semanalDoctors = result;
+      });
+
+    this.backend
+      .get_request('ReporteCobro', { tipo: 'Anual' })
+      .subscribe((result) => {
+        this.anualDoctors = result;
+      });
+  }
+
   submit() {
     (document.getElementById('content') as HTMLElement).style.display = '';
     const doc = new jsPDF('p', 'pt', 'a4');

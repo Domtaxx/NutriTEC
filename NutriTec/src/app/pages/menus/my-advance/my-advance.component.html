@@ -53,33 +53,33 @@
 <div id="content"  class="reportView" style="display: none;">
 
     <div class="reportContainer">
-        <div style="width: 15%; font-size: 3vw; margin-bottom: 20px; text-indent: 40px;" class="text reportText">Reporte de avance</div>
+        <div style="width: 15%; font-size: 30px; margin-bottom: 20px; text-indent: 40px;" class="text reportText">Reporte de avance</div>
 
-        <div style="width: 15%; font-size: 0.9vw; margin-bottom: 20px;" class="text reportText">Nutritec Mi avance</div>
-        <div style="width: 15%; font-size: 0.9vw; margin-bottom: 20px;" class="text reportText">Rango de Fechas: {{getDates().FechaI}}  a  {{getDates().FechaF}}  </div>
-
-        <div class="reportLine"></div>
+        <div style="width: 15%; font-size: 13px; margin-bottom: 20px;" class="text reportText">Nutritec Mi avance</div>
+        <div style="width: 15%; font-size: 13px; margin-bottom: 5px;" class="text reportText">Rango de Fechas: {{getDates().FechaI}}  a  {{getDates().FechaF}}  </div>
+        <div class=" reportsScroll">
+            <div class="reportLine" style="width: 90% !important;  margin-left: 6%;"></div>
             <div class="reportBox">
-                <div class="text inputText" style=" width:20%">Fecha</div>
-                <div class="text inputText" style=" width:25%">Estatura  (cm) </div>
-                <div class="text inputText" style=" width:25%">peso (Kg)</div>
-                <div class="text inputText" style=" width:25%">%grasa</div>
+                <div class="text reportText" style=" width:20%">Fecha</div>
+                <div class="text reportText" style=" width:15%">%Musculo</div>
+                <div class="text reportText" style=" width:15%">%grasa</div>
+                <div class="text reportText" style=" width:15%">cuello</div>
+                <div class="text reportText" style=" width:15%">imc</div>
+                <div class="text reportText" style=" width:15%">peso</div>
             </div>
 
-            <div class="reportLineThin"></div>
-            <div class="reportBox">
-                <div class="reportTitleText">Semanal</div>
-            </div>
-            <div class="reportLineThin"></div>
+            <div class="reportLineThin" style="width: 90% !important; margin-left: 6%;"></div>
+
             <div >
                 <div *ngFor='let report of reports' class="reportBox">
-                    <div style="width: 21%;  overflow: hidden;
-                    white-space: nowrap;" matTooltip="{{report.descripcion}}" class="text inputText">{{report.fecha}}</div>
-                    <div style="width: 16%;" class="text inputText">{{report.cintura}}</div>
-                    <div style="width: 13%;" class="text inputText">{{report.porcentajeMusculo}}</div>
-                    <div style="width: 18%;" class="text inputText">{{report.porcentajeGrasa}}</div>
+                    <div style="width: 21%;  overflow: hidden;white-space: nowrap;" matTooltip="{{report.descripcion}}" class="text reportText">{{report.fecha}}</div>
+                    <div style="width: 15%;" class="text reportText">{{report.porcentajeMusculo}}</div>
+                    <div style="width: 15%;" class="text reportText">{{report.porcentajeGrasa}}</div>
+                    <div style="width: 15%;" class="text reportText">{{report.cuello}}</div>
+                    <div style="width: 13%;" class="text reportText">{{report.imc}}</div>
+                    <div style="width: 18%;" class="text reportText">{{report.peso}}</div>
                 </div>
             </div>
-
+        </div>
     </div>
 </div>

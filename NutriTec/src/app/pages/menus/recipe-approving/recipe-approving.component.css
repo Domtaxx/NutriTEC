@@ -123,3 +123,23 @@
 
   filter: invert(0.3);
 }
+.productsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 150%;
+}
+.compositeProductCard {
+  background-color: rgb(255, 255, 255);
+  margin-bottom: 3px;
+  margin-left: 3px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.horizontalButtonProductsContainer {
+  width: 97%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}

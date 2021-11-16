@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
   user: boolean = false;
-  admin: boolean = true;
+  admin: boolean = false;
   doctor: boolean = false;
 
   swithUserType() {
@@ -24,6 +24,30 @@ export class UserService {
       this.user = true;
       return;
     }
+  }
+
+  constructor() {
+    const userT = this.getUserType();
+    switch (userT) {
+      case 'admin': {
+        this.admin = true;
+        break;
+      }
+      case 'doctor': {
+        this.doctor = true;
+        break;
+      }
+      case 'user': {
+        this.user = true;
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  }
+  getUserType() {
+    return localStorage.getItem('userType');
   }
   getUser() {
     return localStorage.getItem('user');

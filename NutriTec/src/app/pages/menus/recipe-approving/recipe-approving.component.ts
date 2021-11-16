@@ -16,7 +16,20 @@ export class RecipeApprovingComponent implements OnInit {
   }
 
   products: any[] = [];
-
+  compositeProducts: any[] = [
+    {
+      descripcion: 'Arroz integral',
+    },
+    {
+      descripcion: 'Arroz integral',
+    },
+    {
+      descripcion: 'Arroz integral',
+    },
+    {
+      descripcion: 'Arroz integral',
+    },
+  ];
   constructor(
     public me: MatDialogRef<RecipeApprovingComponent>,
     private swal: SwalService,
