@@ -44,6 +44,21 @@ namespace NutriTEC_rest.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [Route("plan/cliente")]
+        [HttpPost]
+        public ActionResult post([FromBody] ClientePlan CP)
+        {
+            try
+            {
+                Db.ClientePlans.Add(CP);
+                Db.SaveChanges();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
         [HttpPost]
         public ActionResult Post([FromBody]Cliente_nutricionista correos)
@@ -73,7 +88,21 @@ namespace NutriTEC_rest.Controllers
             {
                 return BadRequest(e.Message);
             }
-
+        }
+        [HttpDelete]
+        public ActionResult Delete2(string Correo_cliente)
+        {
+            try
+            {
+                var res = Db.Clientes.Find(Correo_cliente);
+                res.CorreoNutri = null;
+                Db.SaveChanges();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
         [Route("Plan/delete")]
         [HttpDelete]

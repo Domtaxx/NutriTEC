@@ -755,6 +755,8 @@ namespace NutriTEC_rest.DB_Context
                     .IsUnicode(false)
                     .HasColumnName("correo");
 
+                entity.Property(e => e.Descuento).HasColumnName("descuento");
+
                 entity.Property(e => e.Pago).HasColumnName("pago");
             });
 

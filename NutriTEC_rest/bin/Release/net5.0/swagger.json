@@ -405,6 +405,23 @@
             "description": "Success"
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "Nutricionista_cliente"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "Correo_cliente",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
       }
     },
     "/Nutricionista/Clientes/plan": {
@@ -417,6 +434,33 @@
             "in": "query",
             "name": "Correo_cliente",
             "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Nutricionista/Clientes/plan/cliente": {
+      "post": {
+        "tags": [
+          "Nutricionista_cliente"
+        ],
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ClientePlan"
+            }
           }
         ],
         "responses": {

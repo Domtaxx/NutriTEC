@@ -10,5 +10,6 @@ namespace NutriTEC_rest.SQL_Model.Models
         public string Correo { get; set; }
         public int? Atendidos { get; set; }
         public double? Pago { get; set; }
+        public double? Descuento { get; set; }
     }
 }

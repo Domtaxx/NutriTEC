@@ -32,7 +32,19 @@ values('24076876',0,1458,75,100,0,'Arroz blanco La villa','Disponible',0,0,7.6,'
 
 insert into PRODUCTO
 	(Codigo_barras,Sodio,Energia,Carbohidratos,Tamano,Vitaminas,Descripcion,Estado,Hierro,Calcio,Proteina,Correo_admin)
+values('0803275305609',1,164,27,100,0,'Avena interal - Quaker - 300','Disponible',0,0,5,'Admin1@gmail.com');
+
+insert into PRODUCTO
+	(Codigo_barras,Sodio,Energia,Carbohidratos,Tamano,Vitaminas,Descripcion,Estado,Hierro,Calcio,Proteina,Correo_admin)
+values('0016000506497',0.8,280,8,25,0,'Chocolate Fudge Brownie - Fiber One - 25 g','Disponible',4.32,0,8,'Admin1@gmail.com');
+
+insert into PRODUCTO
+	(Codigo_barras,Sodio,Energia,Carbohidratos,Tamano,Vitaminas,Descripcion,Estado,Hierro,Calcio,Proteina,Correo_admin)
 values('7441029514179',0.12,186,34.2,535,0,'Pan Blanco Bimbo artesano','Disponible',0,11,6.2,'Admin1@gmail.com');
+
+insert into PRODUCTO
+	(Codigo_barras,Sodio,Energia,Carbohidratos,Tamano,Vitaminas,Descripcion,Estado,Hierro,Calcio,Proteina,Correo_admin)
+values('0747627005116 ',0.08,10,2,100,0,'Salsa sauce - Lizano - 280 ml','Disponible',0,11,0,'Admin1@gmail.com');
 
 insert into PRODUCTO
 	(Codigo_barras,Sodio,Energia,Carbohidratos,Tamano,Vitaminas,Descripcion,Estado,Hierro,Calcio,Proteina,Correo_admin)

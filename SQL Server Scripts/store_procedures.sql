@@ -97,7 +97,7 @@ returns integer
 GO
 
 
-Create PROCEDURE dbo.GetPaymentAmount
+create PROCEDURE dbo.GetPaymentAmount
 @email varchar(320)
 AS
     Begin
@@ -105,16 +105,16 @@ AS
         Create Table #temp(
             correo varchar(320),
             atendidos int,
-            pago float
-
+            pago float,
+            descuento float
         )
         Declare @discount As Float(2);
         Set @discount =dbo.GetDiscount(@email);
         Declare @atendend as integer=dbo.GetAttendedClient(@email);
         Declare @payment as FLOAT
         set @payment =(100-@discount)* @atendend /100;
-        insert into #temp (correo,atendidos,pago)
-        values(@email,@atendend,ROUND(@payment,2));
+        insert into #temp (correo,atendidos,pago,descuento)
+        values(@email,@atendend,ROUND(@payment,2),@discount);
         select * from #temp;
         drop table #temp;
     end
@@ -233,7 +233,7 @@ AS
     end
 GO
 
-alter procedure dbo.spGetRecetas
+create procedure dbo.spGetRecetas
 @email_creator varchar(320),
 @name varchar(128)
 AS
@@ -342,7 +342,7 @@ as
     end
 GO
 
-alter procedure dbo.spLoginAdmin
+create procedure dbo.spLoginAdmin
 @email varchar(320),
 @contra varchar(128)
 as
