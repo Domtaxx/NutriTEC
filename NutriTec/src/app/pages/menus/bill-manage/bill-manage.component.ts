@@ -13,6 +13,10 @@ export class BillManageComponent implements OnInit {
     if (event.code === 'KeyY') this.autoComplete();
   }
 
+  Semanal: boolean = true;
+  Mensual: boolean = false;
+  Anual: boolean = false;
+
   semanalDoctors: any[] = [
     {
       name: 'Ana lopez Gonzalez',
@@ -32,18 +36,18 @@ export class BillManageComponent implements OnInit {
 
   mensualDoctors: any[] = [
     {
-      name: 'Ana lopez Gonzalez',
+      name: 'Ana fd Gonzalez',
       billtype: 'anual',
       pacients: 15,
       descount: 0,
-      total: 15000,
+      total: 400,
     },
     {
-      name: 'Pedro Gonzalez',
+      name: 'sds asdasd',
       billtype: 'anual',
       pacients: 3,
       descount: 0,
-      total: 4000,
+      total: 300,
     },
   ];
 
@@ -91,4 +95,20 @@ export class BillManageComponent implements OnInit {
   }
 
   autoComplete() {}
+  openSemanal() {
+    this.Semanal = true;
+    this.Anual = false;
+    this.Mensual = false;
+  }
+
+  openMensual() {
+    this.Semanal = false;
+    this.Anual = false;
+    this.Mensual = true;
+  }
+  openAnual() {
+    this.Semanal = false;
+    this.Anual = true;
+    this.Mensual = false;
+  }
 }

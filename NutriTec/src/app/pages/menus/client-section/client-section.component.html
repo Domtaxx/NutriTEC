@@ -17,13 +17,13 @@
     </div>
 <!--Productos que componen la receta-->
     <div class="scrollCardContainer">
-        <div *ngFor='let product of myclients' class="card productCard">
-            <div style="width:20%;" class="text inputText">{{product.primerNom}} {{product.primerApellido}} {{product.segApellido}}</div>
-            <div  class="text inputText mailContainer" matTooltip="{{product.correo}}">{{product.correo}}</div>
+        <div *ngFor='let client of myclients' class="card productCard">
+            <div style="width:20%;" class="text inputText">{{client.primerNom}} {{client.primerApellido}} {{client.segApellido}}</div>
+            <div  class="text inputText mailContainer" matTooltip="{{client.correo}}">{{client.correo}}</div>
 
-            <mat-icon class="inputText cancelButton" matTooltip="Historial de comidas" (click)="openClientMealHistory()">event</mat-icon>
-            <mat-icon class="inputText cancelButton" matTooltip="Historial de mediciones" (click)="openClientMeasureHistory()">straighten</mat-icon>
-            <mat-icon class="inputText cancelButton" matTooltip="Desasociar cliente" (click)="removeClient(product)">cancel</mat-icon>
+            <mat-icon class="inputText cancelButton" matTooltip="Historial de comidas" (click)="openClientMealHistory(client)">event</mat-icon>
+            <mat-icon class="inputText cancelButton" matTooltip="Historial de mediciones" (click)="openClientMeasureHistory(client)">straighten</mat-icon>
+            <mat-icon class="inputText cancelButton" matTooltip="Desasociar cliente" (click)="removeClient(client)">cancel</mat-icon>
             
         </div>
     </div>

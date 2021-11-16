@@ -1,7 +1,8 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BackendService } from 'src/app/services/backend-service.service';
 import { SwalService } from 'src/app/services/swalService';
+import { UserService } from 'src/app/services/userService';
 
 @Component({
   selector: 'app-measures',
@@ -32,18 +33,32 @@ export class MeasuresComponent implements OnInit {
   constructor(
     public me: MatDialogRef<MeasuresComponent>,
     private swal: SwalService,
-    private backend: BackendService
+    private backend: BackendService,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public uServ: UserService
   ) {}
 
   ngOnInit(): void {
-    const user = JSON.parse(localStorage.getItem('user') as string)[0];
+    if (this.uServ.doctor) {
+      this.today = false;
+      this.history = true;
+    }
+
+    let user;
+    if (!this.data.user)
+      user = JSON.parse(localStorage.getItem('user') as string)[0];
+    else user = this.data.user;
     const data = {
       correo: user.correo,
     };
+
+    console.log(data);
+
     this.backend
       .get_request('Cliente/Medidas/Todas', data)
       .subscribe((result) => {
         this.measures = result;
+        console.log(result);
 
         this.measures.forEach((value) => {
           const dateString: string = (value.fecha as Date).toString();
@@ -59,7 +74,11 @@ export class MeasuresComponent implements OnInit {
     );
   }
   submit() {
-    const user = JSON.parse(localStorage.getItem('user') as string)[0];
+    let user;
+    if (!this.data.user)
+      user = JSON.parse(localStorage.getItem('user') as string)[0];
+    else user = this.data.user;
+
     const data = {
       fecha: this.randomDate(),
       peso: this.peso,

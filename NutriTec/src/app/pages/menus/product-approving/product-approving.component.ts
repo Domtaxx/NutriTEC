@@ -27,9 +27,12 @@ export class ProductApprovingComponent implements OnInit {
 
   ngOnInit(): void {
     this.autoComplete();
-    this.backend.get_request('Recetas', null).subscribe((response) => {
-      this.products = response;
-    });
+    this.backend
+      .get_request('Producto/buscar/Todos', null)
+      .subscribe((response) => {
+        this.products = response;
+        console.log(response);
+      });
   }
 
   submit() {

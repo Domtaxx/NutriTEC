@@ -57,10 +57,12 @@ export class ClientSectionComponent implements OnInit {
     this.searching = true;
   }
 
-  openClientMealHistory() {
-    this.com.homeComp.openNutriPlan();
+  openClientMealHistory(client: any) {
+    this.com.homeComp.openNutriPlanDoctor(client);
   }
-  openClientMeasureHistory() {}
+  openClientMeasureHistory(client: any) {
+    this.com.homeComp.openMeasuresDoctor(client);
+  }
   autoComplete() {}
 
   searchUser() {

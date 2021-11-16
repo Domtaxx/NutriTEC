@@ -49,30 +49,46 @@ export class LoginComponent implements OnInit {
       ) {
         this.backend
           .get_request('Login/Nutricionista', info)
-          .subscribe((admin) => {
+          .subscribe((doctor) => {
             if (
-              admin === null ||
-              admin === undefined ||
-              JSON.stringify(admin) === JSON.stringify([])
+              doctor === null ||
+              doctor === undefined ||
+              JSON.stringify(doctor) === JSON.stringify([])
             ) {
-              this.swal.showError(
-                'Oops',
-                'El usuario no se encuentra en la base de datos '
-              );
-              return;
+              this.backend
+                .get_request('Login/Admin', info)
+                .subscribe((admin) => {
+                  if (
+                    admin === null ||
+                    admin === undefined ||
+                    JSON.stringify(admin) === JSON.stringify([])
+                  ) {
+                    this.swal.showError(
+                      'Oops',
+                      'El usuario no se encuentra en la base de datos '
+                    );
+                    return;
+                  } else {
+                    this.userService.user = false;
+                    this.userService.doctor = false;
+                    this.userService.admin = true;
+                    localStorage.setItem('user', JSON.stringify(admin));
+                    localStorage.setItem('admin', 'true');
+                    this.router.navigateByUrl('pages');
+                  }
+                });
             } else {
               this.userService.user = false;
-              this.userService.admin = false;
               this.userService.doctor = true;
-              localStorage.setItem('user', JSON.stringify(admin));
-              localStorage.setItem('admin', 'true');
+              localStorage.setItem('user', JSON.stringify(doctor));
+              localStorage.setItem('doctor', 'true');
               this.router.navigateByUrl('pages');
             }
           });
       } else {
         this.userService.user = true;
-        this.userService.admin = false;
         this.userService.doctor = false;
+        this.userService.admin = false;
         localStorage.setItem('user', JSON.stringify(user));
         this.router.navigateByUrl('pages');
       }
@@ -90,6 +106,12 @@ export class LoginComponent implements OnInit {
       this.userId = 'Fernando03@gmail.com';
       this.password = '123';
     }
+
+    if (this.devUserindex == 3) {
+      this.userId = 'Admin1@gmail.com';
+      this.password = 'Admin123';
+    }
+
     if (this.devUserindex > 3) this.devUserindex = 1;
   }
 }

@@ -7,21 +7,21 @@
     </div>
     <div class="buttons">
         
-        <div *ngIf="today" class="card menuButton" style=" width: 8vh;">
+        <div *ngIf="today &&!uServ.doctor" class="card menuButton" style=" width: 8vh;">
             <div class="text inputText">Hoy</div>
         </div>
 
-        <div *ngIf="!today" (click)="openToday()" class="card menuButtonDisabled" style=" width: 8vh;">
+        <div *ngIf="!today &&!uServ.doctor" (click)="openToday()" class="card menuButtonDisabled" style=" width: 8vh;">
             <div class="text inputText">Hoy</div>
         </div>
 
 
 
-        <div  *ngIf="history"  class="card menuButton" style=" width: 15vh;">
+        <div  *ngIf="history &&!uServ.doctor"  class="card menuButton" style=" width: 15vh;">
             <div class="text inputText">Historial</div>
         </div>
 
-        <div  *ngIf="!history" (click)="openHistory()" class="card menuButtonDisabled" style=" width: 15vh;">
+        <div  *ngIf="!history &&!uServ.doctor" (click)="openHistory()" class="card menuButtonDisabled" style=" width: 15vh;">
             <div class="text inputText">Historial</div>
         </div>
         

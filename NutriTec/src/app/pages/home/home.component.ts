@@ -95,6 +95,35 @@ export class HomeComponent implements OnInit {
   }
 
   /**
+   * def opens Nutriplan dialog
+   */
+  openNutriPlanDoctor(user: any) {
+    this.dialogIsOpen = true;
+    let dialogRef = this.dialog.open(NutriPlanComponent, {
+      width: '80%',
+      data: { user: user },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.dialogIsOpen = false;
+    });
+  }
+
+  /**
+   * def opens measures dialog
+   */
+  openMeasuresDoctor(user: any) {
+    this.dialogIsOpen = true;
+    let dialogRef = this.dialog.open(MeasuresComponent, {
+      width: '40%',
+      data: { user: user },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.dialogIsOpen = false;
+    });
+  }
+  /**
    * def opens measures dialog
    */
   openMeasures() {

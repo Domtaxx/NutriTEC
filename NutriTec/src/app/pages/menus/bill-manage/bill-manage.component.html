@@ -6,7 +6,38 @@
         <div><mat-icon class="icon">card</mat-icon></div>
         
     </div>
+    <div class="buttons">
+        
+        <div *ngIf="Semanal " class="card menuButton" style=" width: 15vh;">
+            <div class="text inputText">Semanal</div>
+        </div>
 
+        <div *ngIf="!Semanal " (click)=" openSemanal()" class="card menuButtonDisabled" style=" width: 15vh;">
+            <div class="text inputText">Semanal</div>
+        </div>
+
+
+
+        <div  *ngIf="Mensual"  class="card menuButton" style=" width: 15vh;">
+            <div class="text inputText">Mensual</div>
+        </div>
+
+        <div  *ngIf="!Mensual" (click)="openMensual()" class="card menuButtonDisabled" style=" width: 15vh;">
+            <div class="text inputText">Mensual</div>
+        </div>
+        
+
+        
+        <div *ngIf="Anual" class="card menuButton" style=" width: 15vh;">
+            <div class="text inputText">Anual</div>
+        </div>
+
+        <div *ngIf="!Anual" (click)="openAnual()" class="card menuButtonDisabled" style=" width: 15vh;">
+            <div class="text inputText">Anual</div>
+        </div>
+
+
+    </div>
     <div class="spacer"></div>
 
 <!--Encabezados-->
@@ -21,46 +52,46 @@
 
     <div class="scrollCardContainer">
 
-        <div class="separatorCard">
+        <div *ngIf="Semanal" class="separatorCard">
             <div class="inputText text">Semanal</div>
         </div>
-
-        <div *ngFor='let doctor of semanalDoctors' class="card doctorCard">
+<div *ngIf="Semanal">
+        <div  *ngFor='let doctor of semanalDoctors' class="card doctorCard">
             <div style="width: 30%;" class="text inputText">{{doctor.name}}</div>
             <div style="width: 20%;" class="text inputText">{{doctor.billType}}</div>
             <div style="width: 15%;" class="text inputText">{{doctor.pacients}}</div>
             <div style="width: 15%;" class="text inputText">{{doctor.descount}}%</div>
             <div style="width: 20%;" class="text inputText">{{doctor.total}}</div>
         </div>
-
-        <div class="separatorCard">
+ </div>
+        <div *ngIf="Mensual" class="separatorCard">
             <div class="inputText text">Mensual</div>
         </div>
 
 
-       
+        <div *ngIf="Mensual">
 
-        <div *ngFor='let doctor of mensualDoctors' class="card doctorCard">
-            <div style="width: 30%;" class="text inputText">{{doctor.name}}</div>
-            <div style="width: 20%;" class="text inputText">{{doctor.billType}}</div>
-            <div style="width: 15%;" class="text inputText">{{doctor.pacients}}</div>
-            <div style="width: 15%;" class="text inputText">{{doctor.descount}}%</div>
-            <div style="width: 20%;" class="text inputText">{{doctor.total}}</div>
+            <div  *ngFor='let doctor of mensualDoctors' class="card doctorCard">
+                <div style="width: 30%;" class="text inputText">{{doctor.name}}</div>
+                <div style="width: 20%;" class="text inputText">{{doctor.billType}}</div>
+                <div style="width: 15%;" class="text inputText">{{doctor.pacients}}</div>
+                <div style="width: 15%;" class="text inputText">{{doctor.descount}}%</div>
+                <div style="width: 20%;" class="text inputText">{{doctor.total}}</div>
+            </div>
         </div>
 
-
-        <div class="separatorCard">
+        <div *ngIf="Anual" class="separatorCard">
             <div class="inputText text">Anual</div>
         </div>
-        
-        <div *ngFor='let doctor of anualDoctors' class="card doctorCard">
-            <div style="width: 30%;" class="text inputText">{{doctor.name}}</div>
-            <div style="width: 20%;" class="text inputText">{{doctor.billType}}</div>
-            <div style="width: 15%;" class="text inputText">{{doctor.pacients}}</div>
-            <div style="width: 15%;" class="text inputText">{{doctor.descount}}%</div>
-            <div style="width: 20%;" class="text inputText">{{doctor.total}}</div>
+        <div  *ngIf="Anual">
+            <div *ngFor='let doctor of anualDoctors' class="card doctorCard">
+                <div style="width: 30%;" class="text inputText">{{doctor.name}}</div>
+                <div style="width: 20%;" class="text inputText">{{doctor.billType}}</div>
+                <div style="width: 15%;" class="text inputText">{{doctor.pacients}}</div>
+                <div style="width: 15%;" class="text inputText">{{doctor.descount}}%</div>
+                <div style="width: 20%;" class="text inputText">{{doctor.total}}</div>
+            </div>
         </div>
-
 
     </div>
         

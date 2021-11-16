@@ -1,9 +1,9 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BackendService } from 'src/app/services/backend-service.service';
 import { SwalService } from 'src/app/services/swalService';
 import { UserService } from 'src/app/services/userService';
-
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-nutri-plan',
   templateUrl: './nutri-plan.component.html',
@@ -62,7 +62,9 @@ export class NutriPlanComponent implements OnInit {
     public me: MatDialogRef<NutriPlanComponent>,
     private swal: SwalService,
     public uServ: UserService,
-    public backend: BackendService
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public backend: BackendService,
+    private datePipe: DatePipe
   ) {}
 
   ngOnInit(): void {
@@ -101,7 +103,22 @@ export class NutriPlanComponent implements OnInit {
     );
     this.me.close();
   }
+  commentReport(report: any) {
+    const data = {
+      identification: this.data.user.correo,
+      date: this.datePipe.transform(report.fecha, 'yyyy-MM-dd'),
+      description: report.feedBack,
+    };
 
+    this.backend
+      .post_request2(
+        'https://nutritecmongoapi.azurewebsites.net/api/notes',
+        data
+      )
+      .subscribe((result) => {
+        this.swal.showSuccess('exito', 'modificación realizada');
+      });
+  }
   /**
    * Report a daily report to db
    */
@@ -110,7 +127,10 @@ export class NutriPlanComponent implements OnInit {
 
     this.tFoods.meals.forEach((tiempoDeComida: any) => {
       tiempoDeComida.foods.forEach((recetaConsumida: any) => {
-        const user = JSON.parse(localStorage.getItem('user') as string)[0];
+        let user;
+        if (!this.data.user)
+          user = JSON.parse(localStorage.getItem('user') as string)[0];
+        else user = this.data.user;
 
         const data = {
           nombreReceta: recetaConsumida.nombre,
@@ -132,7 +152,7 @@ export class NutriPlanComponent implements OnInit {
     this.currentTfood = tfood;
   }
 
-  searchmenu() {
+  searchProduct() {
     const data = {
       creator: '',
       name: this.search,
@@ -143,11 +163,11 @@ export class NutriPlanComponent implements OnInit {
     });
   }
 
-  selectSearchmenu(menu: any) {
+  selectSearchProduct(menu: any) {
     this.currentTfood.foods.push(menu);
     this.searching = false;
   }
-  removemenu(menu: any, tfood: any) {
+  removeProduct(menu: any, tfood: any) {
     tfood.foods.splice(this.selectedmenus.indexOf(menu, 0), 1);
   }
 
@@ -228,7 +248,11 @@ export class NutriPlanComponent implements OnInit {
    */
   getPlan() {
     ///OBTENEMOS EL PLAN DE ALIMENTACION
-    const user = JSON.parse(localStorage.getItem('user') as string)[0];
+
+    let user;
+    if (!this.data.user)
+      user = JSON.parse(localStorage.getItem('user') as string)[0];
+    else user = this.data.user;
 
     this.backend
       .get_request('Nutricionista/Clientes/plan', {
@@ -290,7 +314,10 @@ export class NutriPlanComponent implements OnInit {
    * Obtiene el historial de consumo
    */
   getReports() {
-    const user = JSON.parse(localStorage.getItem('user') as string)[0];
+    let user: any;
+    if (!this.data.user)
+      user = JSON.parse(localStorage.getItem('user') as string)[0];
+    else user = this.data.user;
     this.backend
       .get_request('Reportes/Recetas', { Correo_cliente: user.correo })
       .subscribe((result) => {

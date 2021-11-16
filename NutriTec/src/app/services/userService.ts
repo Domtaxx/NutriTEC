@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
   user: boolean = false;
-  admin: boolean = false;
-  doctor: boolean = true;
+  admin: boolean = true;
+  doctor: boolean = false;
 
   swithUserType() {
     if (this.user) {

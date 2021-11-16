@@ -55,7 +55,7 @@
 }
 
 .dataText {
-  font-size: 142%;
+  font-size: 1vw;
   font-weight: 200;
   color: var(--itemColor);
   width: auto;
@@ -85,7 +85,7 @@
   background-color: var(--buttonColor) !important;
   width: 100%;
   align-items: center;
-  min-height: 172px;
+  min-height: auto;
   margin-bottom: 3vh;
   display: flex;
   flex-direction: column;

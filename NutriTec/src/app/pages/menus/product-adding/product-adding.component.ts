@@ -54,18 +54,16 @@ export class ProductAddingComponent implements OnInit {
       calcio: this.calcio,
       tamano: this.tamano,
       vitaminas: 1,
-      estado: 'asdasd',
     };
+    console.log(data);
 
-    this.backend
-      .post_request('Cliente/Producto', data)
-      .subscribe((response) => {
-        this.swal.showSuccess(
-          'Producto registrado!',
-          'Prontamente, un administrador se encargará de validar este producto'
-        );
-        this.me.close();
-      });
+    this.backend.post_request('Producto/buscar', data).subscribe((response) => {
+      this.swal.showSuccess(
+        'Producto registrado!',
+        'Prontamente, un administrador se encargará de validar este producto'
+      );
+      this.me.close();
+    });
   }
 
   autoComplete() {
