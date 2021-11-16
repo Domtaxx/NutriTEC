@@ -1,7 +1,14 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SwalService } from 'src/app/services/swalService';
-
+import { jsPDF } from 'jspdf';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-bill-manage',
   templateUrl: './bill-manage.component.html',
@@ -70,22 +77,23 @@ export class BillManageComponent implements OnInit {
 
   constructor(
     public me: MatDialogRef<BillManageComponent>,
-    private swal: SwalService
+    private swal: SwalService,
+    private datePipe: DatePipe
   ) {}
 
   ngOnInit(): void {}
-
+  @ViewChild('content')
+  content!: ElementRef;
   submit() {
-    if (false) {
-      this.swal.showError(
-        'Error al ingresar los datos',
-        'Datos ingresados insuficientes'
-      );
-      return;
-    }
+    (document.getElementById('content') as HTMLElement).style.display = '';
+    const doc = new jsPDF('p', 'pt', 'a4');
+    doc.html(document.getElementById('content') as HTMLElement, {
+      callback: function (doc) {
+        doc.save();
+      },
+    });
 
-    const data = {};
-    /**backend call here */
+    console.log(this.content);
 
     this.swal.showSuccess(
       'Cobros generados',
@@ -110,5 +118,9 @@ export class BillManageComponent implements OnInit {
     this.Semanal = false;
     this.Anual = true;
     this.Mensual = false;
+  }
+
+  getDate() {
+    return this.datePipe.transform(new Date(), 'yyyy-MM-dd');
   }
 }

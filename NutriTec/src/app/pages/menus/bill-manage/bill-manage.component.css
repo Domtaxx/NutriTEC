@@ -141,3 +141,51 @@
   cursor: pointer;
   filter: invert(0.3);
 }
+
+.reportView {
+  top: 0;
+  background: white;
+  position: absolute;
+  width: 21cm;
+  height: 29.7cm;
+}
+.reportContainer {
+  width: 80%;
+  margin: 5% 2% 1% 2%;
+}
+.reportText {
+  font-size: 10px;
+  user-select: none;
+  font-weight: 100;
+  width: 50vh;
+  font-weight: 100;
+  white-space: nowrap;
+  text-align: start;
+
+  text-indent: 40px;
+}
+.reportTitleText {
+  font-size: 13px;
+  user-select: none;
+  font-weight: 150;
+  width: 50vh;
+  font-weight: 100;
+  white-space: nowrap;
+  text-align: start;
+  text-indent: 40px;
+}
+.reportBox {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.reportLine {
+  width: 100%;
+  border-bottom: 0.1px solid #0c0c0c;
+}
+
+.reportLineThin {
+  width: 100%;
+  border-bottom: 0.01px solid #cfcfcf;
+}

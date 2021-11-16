@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { BackendService } from 'src/app/services/backend-service.service';
 import { SwalService } from 'src/app/services/swalService';
 import { DatePipe } from '@angular/common';
+import { jsPDF } from 'jspdf';
 @Component({
   selector: 'app-my-advance',
   templateUrl: './my-advance.component.html',
@@ -51,7 +52,8 @@ export class MyAdvanceComponent implements OnInit {
         .subscribe((reports: any) => {
           reports.forEach((report: any) => {
             const rep = {
-              fecha: report.fecha,
+              fecha: this.datePipe.transform(report.fecha, 'yyyy-MM-dd'),
+
               cintura: report.cintura,
               porcentajeMusculo: report.porcentajeMusculo,
               porcentajeGrasa: report.porcentajeGrasa,
@@ -61,7 +63,18 @@ export class MyAdvanceComponent implements OnInit {
         });
     }
   }
-  download() {}
+  download() {
+    (document.getElementById('content') as HTMLElement).style.display = '';
+    const doc = new jsPDF('p', 'pt', 'a4');
+    doc.html(document.getElementById('content') as HTMLElement, {
+      callback: function (doc) {
+        doc.save();
+      },
+    });
+
+    (document.getElementById('content') as HTMLElement).style.display =
+      'hidden';
+  }
 
   async autoComplete() {
     const data = {
@@ -71,5 +84,12 @@ export class MyAdvanceComponent implements OnInit {
     this.backend.get_request('Producto/buscar', data).subscribe((result) => {
       this.reports = result;
     });
+  }
+
+  getDates() {
+    return {
+      FechaI: this.datePipe.transform(this.from, 'yyyy-MM-dd'),
+      FechaF: this.datePipe.transform(this.to, 'yyyy-MM-dd'),
+    };
   }
 }

@@ -10,7 +10,7 @@
 }
 .icon {
   color: var(--itemColor);
-  font-size: 8vw;
+  font-size: 4vw;
   margin-top: 50%;
   text-align: center;
   display: flex;
@@ -212,4 +212,9 @@
 }
 .lp {
   margin-bottom: 1vh;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
 }

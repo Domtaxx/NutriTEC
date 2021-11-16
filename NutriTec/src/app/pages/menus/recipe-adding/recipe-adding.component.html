@@ -18,16 +18,16 @@
         <div class="text inputText" style=" width:20%">Nombre</div>
         <div class="text inputText" style=" width:25%">tamaño  (g/ml) </div>
         <div class="text inputText" style=" width:25%">energía (Kcal)</div>
-        <div class="text inputText" style=" width:25%">grasa  (g)</div>
+        <div class="text inputText" style=" width:25%">proteina  (g)</div>
     </div>
 <!--Productos que componen la receta-->
     <div class="scrollCardContainer">
-        <div *ngFor='let product of selectedProducts' class="card productCard">
-            <div style="width: 21%;  overflow: hidden;
+        <div *ngFor='let product of selectedProducts' class="card productCard container">
+            <div style="width: 30%;  overflow: hidden;
             white-space: nowrap;" matTooltip="{{product.descripcion}}" class="text inputText">{{product.descripcion}}</div>
-            <div style="width: 16%;" class="text inputText">{{product.tamano}}</div>
-            <div style="width: 13%;" class="text inputText">{{product.energia}}</div>
-            <div style="width: 18%;" class="text inputText">{{product.grasa}}</div>
+            <div style="width: 25%;" class="text inputText container">{{product.tamano}}</div>
+            <div style="width: 25%;" class="text inputText container">{{product.energia}}</div>
+            <div style="width: 25%;" class="text inputText container">{{product.proteina}}</div>
             <mat-icon class="inputText cancelButton" (click)="removeProduct(product)">cancel</mat-icon>
         </div>
     </div>

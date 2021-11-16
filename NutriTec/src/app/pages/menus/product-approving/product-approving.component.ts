@@ -27,14 +27,15 @@ export class ProductApprovingComponent implements OnInit {
 
   ngOnInit(): void {
     this.autoComplete();
-    this.backend
-      .get_request('Producto/buscar/Todos', null)
-      .subscribe((response) => {
-        this.products = response;
-        console.log(response);
-      });
+    this.getProductos();
   }
-
+  getProductos() {
+    this.products = [];
+    this.backend.get_request('Productos', null).subscribe((response) => {
+      this.products = response;
+      console.log(response);
+    });
+  }
   submit() {
     if (false) {
       this.swal.showError(
@@ -55,7 +56,16 @@ export class ProductApprovingComponent implements OnInit {
   }
 
   aprove(thing: any) {
-    this.products.splice(this.products.indexOf(thing), 1);
+    let user = JSON.parse(localStorage.getItem('user') as string)[0];
+
+    thing.correoAdmin = user.correo;
+    thing.estado = 'Disponible';
+    console.log(thing);
+
+    this.backend.put_request('Productos', thing).subscribe((result) => {
+      this.swal.showSuccess('Exito', 'El producto ser ha aprobado');
+      this.getProductos();
+    });
   }
   disaprove(thing: any) {
     this.products.splice(this.products.indexOf(thing), 1);

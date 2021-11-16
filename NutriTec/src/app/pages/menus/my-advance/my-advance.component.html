@@ -50,3 +50,36 @@
         </div>
 
 </div>
+<div id="content"  class="reportView" style="display: none;">
+
+    <div class="reportContainer">
+        <div style="width: 15%; font-size: 3vw; margin-bottom: 20px; text-indent: 40px;" class="text reportText">Reporte de avance</div>
+
+        <div style="width: 15%; font-size: 0.9vw; margin-bottom: 20px;" class="text reportText">Nutritec Mi avance</div>
+        <div style="width: 15%; font-size: 0.9vw; margin-bottom: 20px;" class="text reportText">Rango de Fechas: {{getDates().FechaI}}  a  {{getDates().FechaF}}  </div>
+
+        <div class="reportLine"></div>
+            <div class="reportBox">
+                <div class="text inputText" style=" width:20%">Fecha</div>
+                <div class="text inputText" style=" width:25%">Estatura  (cm) </div>
+                <div class="text inputText" style=" width:25%">peso (Kg)</div>
+                <div class="text inputText" style=" width:25%">%grasa</div>
+            </div>
+
+            <div class="reportLineThin"></div>
+            <div class="reportBox">
+                <div class="reportTitleText">Semanal</div>
+            </div>
+            <div class="reportLineThin"></div>
+            <div >
+                <div *ngFor='let report of reports' class="reportBox">
+                    <div style="width: 21%;  overflow: hidden;
+                    white-space: nowrap;" matTooltip="{{report.descripcion}}" class="text inputText">{{report.fecha}}</div>
+                    <div style="width: 16%;" class="text inputText">{{report.cintura}}</div>
+                    <div style="width: 13%;" class="text inputText">{{report.porcentajeMusculo}}</div>
+                    <div style="width: 18%;" class="text inputText">{{report.porcentajeGrasa}}</div>
+                </div>
+            </div>
+
+    </div>
+</div>
