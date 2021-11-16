@@ -1,15 +1,30 @@
 package ac.cr.tec.NutriTec.fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.HashMap;
+
+import ac.cr.tec.NutriTec.Const.Const;
 import ac.cr.tec.NutriTec.R;
+import ac.cr.tec.NutriTec.network.NetworkCommunicator;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,9 +47,12 @@ public class ProfileFragment extends Fragment {
     private TextView HipsText;
     private TextView IMCText;
     private TextView NapeText;
-    private final String heightUnit="m";
+    private TextView userView;
+    private final String heightUnit="";
     private final String bodyMeasureUnits="cm";
     private final String weightMeasureUnits="kg";
+    private String username;
+    private String fullName;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -72,15 +90,61 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_profile, container, false);
         getInstances(view);
+        SharedPreferences preferences= PreferenceManager.getDefaultSharedPreferences(getContext());
+        username=preferences.getString(Const.user,"");
+        fullName=preferences.getString(Const.fullName,"");
+        userView.setText(fullName);
+        HashMap<String,String> requestParams=new HashMap<>();
+        requestParams.put(Const.measureEmail,username);
+        NetworkCommunicator.get(Const.measuresUrl, requestParams, new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                String textResponse=response.body().source().readUtf8();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try{
+
+                            JSONArray jsonArray=new JSONArray(textResponse);
+                            JSONObject jsonResponse=jsonArray.getJSONObject(0);
+                            updateHeightText(jsonResponse.getString(Const.measureMusclePercentage));
+                            updateWaistText(jsonResponse.getString(Const.measureWaist));
+                            updateWeightText(jsonResponse.getString(Const.measureWeight));
+                            updateHipsText(jsonResponse.getString(Const.measureHips));
+                            updateIMCText(jsonResponse.getString(Const.measureIMC));
+                            updateNapeText(jsonResponse.getString(Const.measureNape));
+                        }
+                        catch (Exception e){
+                            String message=e.getMessage();
+                        }
+                    }
+                });
+
+            }
+        });
         return view;
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+    }
+
     public void getInstances(View view){
-        HeightText=view.findViewById(R.id.profile_height);
+        HeightText=view.findViewById(R.id.profile_fat_percentage);
         WaistText=view.findViewById(R.id.profile_waist_size);
         WeightText=view.findViewById(R.id.profile_weight);
         HipsText=view.findViewById(R.id.profile_hips);
         IMCText=view.findViewById(R.id.profile_IMC);
         NapeText=view.findViewById(R.id.profile_nape);
+        userView=view.findViewById(R.id.profile_username);
     }
     public void updateHeightText(String heightMeasure){
         String newText= getString(R.string.profile_height)+" "+heightMeasure+heightUnit;
@@ -91,7 +155,7 @@ public class ProfileFragment extends Fragment {
         WaistText.setText(newText);
     }
     public void updateWeightText(String weight){
-        String newText= getString(R.string.profile_weight)+" "+weight+weight;
+        String newText= getString(R.string.profile_weight)+" "+weight+weight+weightMeasureUnits;
         WeightText.setText(newText);
     }
     public void updateHipsText(String hipsMeasure){
@@ -104,7 +168,7 @@ public class ProfileFragment extends Fragment {
     }
     public void updateNapeText(String napeMeasure){
         String newText= getString(R.string.profile_nape)+" "+napeMeasure+bodyMeasureUnits;
-        IMCText.setText(newText);
+        NapeText.setText(newText);
     }
 
 

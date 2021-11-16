@@ -24,7 +24,7 @@
     <string name="lunch">Almuerzo</string>
     <string name="evening_snack">Merienda Tarde</string>
     <string name="dinner">Cena</string>
-    <string name="profile_height">Altura:</string>
+    <string name="profile_height">%Musculo:</string>
     <string name="profile_waist">Cintura:</string>
     <string name="profile_weight">Peso:</string>
     <string name="profile_hips">Cadera:</string>

@@ -78,9 +78,16 @@ public class Login extends AppCompatActivity {
                         try {
                             JSONArray jsonResponse=new JSONArray(textResponse);
                             if(jsonResponse.length()!=0){
+                                JSONObject object=jsonResponse.getJSONObject(0);
+                                String name=object.getString(Const.firstName);
+                                String secondName=object.getString(Const.secondName);
+                                String lastName=object.getString(Const.lastName);
+                                String secondLastName=object.getString(Const.secondLastName);
+                                String fullName=name+" "+secondName+" "+lastName+" "+secondLastName;
                                 SharedPreferences preferences=PreferenceManager.getDefaultSharedPreferences(currentClass);
                                 SharedPreferences.Editor editor=preferences.edit();
                                 editor.putString(Const.user,user);
+                                editor.putString(Const.fullName,fullName);
                                 editor.commit();
                                 Intent intent=new Intent(currentClass, MainView.class);
                                 startActivity(intent);

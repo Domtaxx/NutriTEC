@@ -298,7 +298,7 @@ public class ProductsGroupingFragment extends Fragment {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(productsSelected.size()>0){
+                if(productsSelected.size()>0 || recipesSelected.size()>0){
                     HashMap<String,ArrayList<String>> hash=new HashMap<>();
                     hash.put(Const.productKey,productsSelected);
                     hash.put(Const.recipeKey,recipesSelected);
