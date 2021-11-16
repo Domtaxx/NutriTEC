@@ -13,6 +13,7 @@ CREATE Table [PRODUCTO](
 	Correo_admin varchar(320),
 	primary key(Codigo_barras)
 );
+
 Create table [ADMINISTRADOR](
 	Correo varchar(320),
 	Contra varchar(128),
@@ -33,6 +34,7 @@ Create table [REGISTRO_MEDIDAS](
 	Cuello float,
 	Cintura float,
 	IMC float,
+	Peso float,
 	Fecha date
 	primary key(Correo_cliente,Fecha)
 );
@@ -42,12 +44,11 @@ Create table [CLIENTE](
 	Direccion varchar(Max),
 	Primer_nom varchar(64),
 	Seg_nom varchar(64),
+	IMC float,
 	Primer_apellido varchar(64),
 	Seg_apellido varchar(64),
 	Max_calorias float,
 	Fecha_nace date,
-	Peso float,
-	IMC float,
 	Correo_nutri varchar(320),
 	primary key(Correo)
 );
@@ -71,6 +72,8 @@ Create table [NUTRICIONISTA](
 Create Table [PLAN_ALIMENTACION](
 	Nombre varchar(128),
 	Correo_nutri varchar(320),
+	tiempo_inicial date,
+	tiempo_final date
 	primary key(Nombre)
 );
 Create Table [MENU](
@@ -104,6 +107,7 @@ Create Table [MENU_PRODUCTO](
 	Nombre_plan_alimentacion varchar(128),
 	Nombre_menu varchar(128),
 	Codigo_barras varchar(128),
+	cantidad int,
 	primary key(Nombre_plan_alimentacion, Nombre_menu, Codigo_barras)
 );
 

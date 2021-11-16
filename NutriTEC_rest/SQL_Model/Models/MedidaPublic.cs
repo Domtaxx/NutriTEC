@@ -13,5 +13,7 @@ namespace NutriTEC_rest.SQL_Model.Models
         public double? Cuello { get; set; }
         public double? Cintura { get; set; }
         public DateTime Fecha { get; set; }
+        public double? Peso { get; set; }
+        public double? Imc { get; set; }
     }
 }

@@ -18,7 +18,6 @@ namespace NutriTEC_rest.Controllers
         [HttpGet]
         public ActionResult Get(string PlanName,string menuName)
         {
-
             try
             {
                 var Response = Db.Menus.Where(menu => menu.NombrePlanAlimentacion == PlanName).Where(menu=>menu.Nombre==menuName);
@@ -28,8 +27,6 @@ namespace NutriTEC_rest.Controllers
             {
                 return BadRequest(e.Message);
             }
-
-
         }
         [Route("productos")]
         [HttpPost]

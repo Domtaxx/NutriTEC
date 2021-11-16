@@ -13,14 +13,14 @@ insert into ADMINISTRADOR(Correo,Contra)values('Admin2@gmail.com','e64b78fc3bc91
 insert into ADMINISTRADOR(Correo,Contra)values('Admin3@gmail.com','e64b78fc3bc91bcbc7dc232ba8ec59e0');
 
 insert into CLIENTE
-	(Correo,Contra,Direccion,Primer_nom,Seg_nom,Primer_apellido,Seg_apellido,Max_calorias,Fecha_nace,Peso,IMC,Correo_nutri)
-values('mangel12412@gmail.com','202cb962ac59075b964b07152d234b70','Casa #160 Residencial Casas Bonitas,Cartago, Cartago','Miguel','Angel','Calderon','Torres',4500,'2000-03-05',78,21.8,'Lau01@gmail.com');
+	(Correo,Contra,Direccion,Primer_nom,Seg_nom,Primer_apellido,Seg_apellido,Max_calorias,Fecha_nace,IMC,Correo_nutri)
+values('mangel12412@gmail.com','202cb962ac59075b964b07152d234b70','Casa #160 Residencial Casas Bonitas,Cartago, Cartago','Miguel','Angel','Calderon','Torres',4500,'2000-03-05',21.8,'Lau01@gmail.com');
 insert into CLIENTE
-	(Correo,Contra,Direccion,Primer_nom,Seg_nom,Primer_apellido,Seg_apellido,Max_calorias,Fecha_nace,Peso,IMC,Correo_nutri)
-values('manuel0123@gmail.com','8fc1d6a987a35725bc67e42a45b46d81','Casa #161 Residencial Casas Bonitas,Cartago, Cartago','Manuel','','Arce','Quesada',3000,'1990-05-09',88,24,'Pablo02@gmail.com');
+	(Correo,Contra,Direccion,Primer_nom,Seg_nom,Primer_apellido,Seg_apellido,Max_calorias,Fecha_nace,IMC,Correo_nutri)
+values('manuel0123@gmail.com','8fc1d6a987a35725bc67e42a45b46d81','Casa #161 Residencial Casas Bonitas,Cartago, Cartago','Manuel','','Arce','Quesada',3000,'1990-05-09',24,'Pablo02@gmail.com');
 insert into CLIENTE
-	(Correo,Contra,Direccion,Primer_nom,Seg_nom,Primer_apellido,Seg_apellido,Max_calorias,Fecha_nace,Peso,IMC,Correo_nutri)
-values('Antonio40123@gmail.com','bcb7e9e73ce1771a23777b05bd8d3ea9','Casa #162 Residencial Casas Bonitas,Cartago, Cartago','Antonio','Manuel','Castro','Medina',3000,'1998-09-08',98,24.5,'Fernando03@gmail.com');
+	(Correo,Contra,Direccion,Primer_nom,Seg_nom,Primer_apellido,Seg_apellido,Max_calorias,Fecha_nace,IMC,Correo_nutri)
+values('Antonio40123@gmail.com','bcb7e9e73ce1771a23777b05bd8d3ea9','Casa #162 Residencial Casas Bonitas,Cartago, Cartago','Antonio','Manuel','Castro','Medina',3000,'1998-09-08',24.5,'Fernando03@gmail.com');
 
 insert into PRODUCTO
 	(Codigo_barras,Sodio,Energia,Carbohidratos,Tamano,Vitaminas,Descripcion,Estado,Hierro,Calcio,Proteina,Correo_admin)
@@ -52,7 +52,7 @@ values('7501000608058',2.5,100,70.8,450,4,'GALLETA SALADITA GAMESA 450GR','Dispo
 
 insert into PRODUCTO
 	(Codigo_barras,Sodio,Energia,Carbohidratos,Tamano,Vitaminas,Descripcion,Estado,Hierro,Calcio,Proteina,Correo_admin)
-values('7501000664221',2.5,100,70.8,186,4,'GALLETA SALADITA GAMESA 186GR','Agotado',2,3.1,0.4,'Admin1@gmail.com');
+values('7501000664221',2.5,100,70.8,186,4,'GALLETA SALADITA GAMESA 186GR','Inhabilitados',2,3.1,0.4,'Admin1@gmail.com');
 
 insert into RECETA(Nombre,Correo_admin,Aprobado,Correo_creador)values('Galletas Sabrosas','Admin1@gmail.com',1,'mangel12412@gmail.com');
 insert into RECETA(Nombre,Correo_admin,Aprobado,Correo_creador)values('Galletas Exquisitas','Admin2@gmail.com',1,'mangel12412@gmail.com');
@@ -60,38 +60,38 @@ insert into RECETA(Nombre,Correo_admin,Aprobado,Correo_creador)values('Galletas 
 insert into RECETA(Nombre,Correo_admin,Aprobado,Correo_creador)values('Gallo Pinto','Admin1@gmail.com',1,'manuel0123@gmail.com');
 insert into RECETA(Nombre,Correo_admin,Aprobado,Correo_creador)values('Merienda Tardes','Admin1@gmail.com',1,'Antonio40123@gmail.com');
 
-insert into REGISTRO_MEDIDAS(Correo_cliente,Cadera,Porcentaje_grasa,Porcentaje_musculo,Cuello,Cintura,Fecha,IMC)
-values('mangel12412@gmail.com',60,19,40,35,63,'2020-05-07',21);
-insert into REGISTRO_MEDIDAS(Correo_cliente,Cadera,Porcentaje_grasa,Porcentaje_musculo,Cuello,Cintura,Fecha,IMC)
-values('Antonio40123@gmail.com',72,23,44,38,75,'2020-08-10',21);
-insert into REGISTRO_MEDIDAS(Correo_cliente,Cadera,Porcentaje_grasa,Porcentaje_musculo,Cuello,Cintura,Fecha,IMC)
-values('manuel0123@gmail.com',62,20,42,36,67,'2020-04-12',21);
+insert into REGISTRO_MEDIDAS(Correo_cliente,Cadera,Porcentaje_grasa,Peso,Porcentaje_musculo,Cuello,Cintura,Fecha,IMC)
+values('mangel12412@gmail.com',60,19,16,40,35,63,'2020-05-07',21);
+insert into REGISTRO_MEDIDAS(Correo_cliente,Cadera,Porcentaje_grasa,Peso,Porcentaje_musculo,Cuello,Cintura,Fecha,IMC)
+values('Antonio40123@gmail.com',72,23,16,44,38,75,'2020-08-10',21);
+insert into REGISTRO_MEDIDAS(Correo_cliente,Cadera,Porcentaje_grasa,Peso,Porcentaje_musculo,Cuello,Cintura,Fecha,IMC)
+values('manuel0123@gmail.com',62,20,15,42,36,67,'2020-04-12',21);
 
-insert into PLAN_ALIMENTACION(Nombre,Correo_nutri)values('Plan de alimentacion Antonio','Fernando03@gmail.com');
-insert into PLAN_ALIMENTACION(Nombre,Correo_nutri)values('Plan de alimentacion Manuel','Pablo02@gmail.com');
-insert into PLAN_ALIMENTACION(Nombre,Correo_nutri)values('Plan de alimentacion Miguel','Lau01@gmail.com');
+insert into PLAN_ALIMENTACION(Nombre,Correo_nutri,tiempo_final,tiempo_inicial)values('Plan de alimentacion Antonio','Fernando03@gmail.com','8-5-2020','10-5-2022');
+insert into PLAN_ALIMENTACION(Nombre,Correo_nutri,tiempo_final,tiempo_inicial)values('Plan de alimentacion Manuel','Pablo02@gmail.com','9-5-2020','10-5-2022');
+insert into PLAN_ALIMENTACION(Nombre,Correo_nutri,tiempo_final,tiempo_inicial)values('Plan de alimentacion Miguel','Lau01@gmail.com','10-5-2020','10-5-2022');
 
-insert into MENU(Nombre_plan_alimentacion,Nombre)values('Plan de alimentacion Antonio','Menu#1 Antonio');
-insert into MENU(Nombre_plan_alimentacion,Nombre)values('Plan de alimentacion Manuel','Menu#1 Manuel');
-insert into MENU(Nombre_plan_alimentacion,Nombre)values('Plan de alimentacion Miguel','Menu#1 Miguel');
+insert into MENU(Nombre_plan_alimentacion,Nombre)values('Plan de alimentacion Antonio','Desayuno');
+insert into MENU(Nombre_plan_alimentacion,Nombre)values('Plan de alimentacion Manuel','Desayuno');
+insert into MENU(Nombre_plan_alimentacion,Nombre)values('Plan de alimentacion Miguel','Desayuno');
 
-insert into MENU_PRODUCTO(Nombre_plan_alimentacion,Nombre_menu,Codigo_barras)
-values('Plan de alimentacion Antonio','Menu#1 Antonio','7501000608249');
-insert into MENU_PRODUCTO(Nombre_plan_alimentacion,Nombre_menu,Codigo_barras)
-values('Plan de alimentacion Antonio','Menu#1 Antonio','7501000608058');
-insert into MENU_PRODUCTO(Nombre_plan_alimentacion,Nombre_menu,Codigo_barras)
-values('Plan de alimentacion Manuel','Menu#1 Manuel','7501000664221');
-insert into MENU_PRODUCTO(Nombre_plan_alimentacion,Nombre_menu,Codigo_barras)
-values('Plan de alimentacion Manuel','Menu#1 Manuel','7501000608058');
-insert into MENU_PRODUCTO(Nombre_plan_alimentacion,Nombre_menu,Codigo_barras)
-values('Plan de alimentacion Miguel','Menu#1 Miguel','7501000608249');
-insert into MENU_PRODUCTO(Nombre_plan_alimentacion,Nombre_menu,Codigo_barras)
-values('Plan de alimentacion Miguel','Menu#1 Miguel','7501000664221');
+insert into MENU_PRODUCTO(Nombre_plan_alimentacion,Nombre_menu,Codigo_barras,cantidad)
+values('Plan de alimentacion Antonio','Desayuno','7501000608249',1);
+insert into MENU_PRODUCTO(Nombre_plan_alimentacion,Nombre_menu,Codigo_barras,cantidad)
+values('Plan de alimentacion Antonio','Desayuno','7501000608058',1);
+insert into MENU_PRODUCTO(Nombre_plan_alimentacion,Nombre_menu,Codigo_barras,cantidad)
+values('Plan de alimentacion Manuel','Desayuno','7501000664221',1);
+insert into MENU_PRODUCTO(Nombre_plan_alimentacion,Nombre_menu,Codigo_barras,cantidad)
+values('Plan de alimentacion Manuel','Desayuno','7501000608058',1);
+insert into MENU_PRODUCTO(Nombre_plan_alimentacion,Nombre_menu,Codigo_barras,cantidad)
+values('Plan de alimentacion Miguel','Desayuno','7501000608249',1);
+insert into MENU_PRODUCTO(Nombre_plan_alimentacion,Nombre_menu,Codigo_barras,cantidad)
+values('Plan de alimentacion Miguel','Desayuno','7501000664221',1);
 
-insert into MENU_RECETA(Nombre_plan_alimentacion,Nombre_menu,Nombre_receta,Correo_creador)values('Plan de alimentacion Antonio','Menu#1 Antonio','Galletas Sabrosas','mangel12412@gmail.com');
-insert into MENU_RECETA(Nombre_plan_alimentacion,Nombre_menu,Nombre_receta,Correo_creador)values('Plan de alimentacion Manuel','Menu#1 Manuel','Galletas Sabrosas','mangel12412@gmail.com');
-insert into MENU_RECETA(Nombre_plan_alimentacion,Nombre_menu,Nombre_receta,Correo_creador)values('Plan de alimentacion Manuel','Menu#1 Manuel','Galletas Exquisitas','mangel12412@gmail.com');
-insert into MENU_RECETA(Nombre_plan_alimentacion,Nombre_menu,Nombre_receta,Correo_creador)values('Plan de alimentacion Miguel','Menu#1 Miguel','Galletas Increibles','mangel12412@gmail.com');
+insert into MENU_RECETA(Nombre_plan_alimentacion,Nombre_menu,Nombre_receta,Correo_creador)values('Plan de alimentacion Antonio','Desayuno','Galletas Sabrosas','mangel12412@gmail.com');
+insert into MENU_RECETA(Nombre_plan_alimentacion,Nombre_menu,Nombre_receta,Correo_creador)values('Plan de alimentacion Manuel','Desayuno','Galletas Sabrosas','mangel12412@gmail.com');
+insert into MENU_RECETA(Nombre_plan_alimentacion,Nombre_menu,Nombre_receta,Correo_creador)values('Plan de alimentacion Manuel','Desayuno','Galletas Exquisitas','mangel12412@gmail.com');
+insert into MENU_RECETA(Nombre_plan_alimentacion,Nombre_menu,Nombre_receta,Correo_creador)values('Plan de alimentacion Miguel','Desayuno','Galletas Increibles','mangel12412@gmail.com');
 
 insert into CLIENTE_PLAN(Nombre_plan,Correo_cliente,Inicio,Final)values('Plan de alimentacion Antonio','Antonio40123@gmail.com','2021-03-10','2021-12-10');
 insert into CLIENTE_PLAN(Nombre_plan,Correo_cliente,Inicio,Final)values('Plan de alimentacion Manuel','manuel0123@gmail.com','2021-04-10','2022-01-10');

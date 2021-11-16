@@ -23,4 +23,3 @@ as
     Delete from PLAN_ALIMENTACION where Nombre = (select deleted.Nombre from deleted);
 GO
 
-delete from PLAN_ALIMENTACION where Nombre = 'Prueba';

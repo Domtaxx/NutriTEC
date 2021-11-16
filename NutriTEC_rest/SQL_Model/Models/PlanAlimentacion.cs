@@ -15,6 +15,8 @@ namespace NutriTEC_rest.SQL_Model.Models
 
         public string Nombre { get; set; }
         public string CorreoNutri { get; set; }
+        public DateTime? TiempoInicial { get; set; }
+        public DateTime? TiempoFinal { get; set; }
 
         public virtual Nutricionistum CorreoNutriNavigation { get; set; }
         public virtual ICollection<ClientePlan> ClientePlans { get; set; }

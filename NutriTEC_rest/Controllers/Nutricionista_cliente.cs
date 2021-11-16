@@ -36,14 +36,13 @@ namespace NutriTEC_rest.Controllers
             try
             {
                 ClientePlan temp = Db.ClientePlans.Where(CP=>CP.CorreoCliente == Correo_cliente).Single();
-                var res = Db.PlanAlimentacions.Find(temp.NombrePlan);
+                var res = Db.Menus.Where(M=>M.NombrePlanAlimentacion == temp.NombrePlan).Include(M=>M.MenuProductos).ThenInclude(MP => MP.CodigoBarrasNavigation).Include(M=>M.MenuReceta);
                 return Ok(res);
             }
             catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
-
         }
 
         [HttpPost]
@@ -60,7 +59,6 @@ namespace NutriTEC_rest.Controllers
             {
                 return BadRequest(e.Message);
             }
-
         }
         [Route("especifico")]
         [HttpGet]
@@ -77,10 +75,8 @@ namespace NutriTEC_rest.Controllers
             }
 
         }
-
-        [HttpDelete]
         [Route("Plan/delete")]
-        [HttpGet]
+        [HttpDelete]
         public ActionResult Delete(string nombre_plan)
         {
             try
@@ -94,7 +90,6 @@ namespace NutriTEC_rest.Controllers
             {
                 return BadRequest(e.Message);
             }
-
         }
 
     }

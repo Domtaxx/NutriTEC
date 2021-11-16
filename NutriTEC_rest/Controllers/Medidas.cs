@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using NutriTEC_rest.SQL_Model.Models;
 using NutriTEC_rest.DB_Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace NutriTEC_rest.Controllers
 {
@@ -61,8 +62,22 @@ namespace NutriTEC_rest.Controllers
         {
             try
             {
-                var medidas = Db.RegistroMedidas.Where(M => M.CorreoCliente == correo);
-                return Ok(medidas.ToList());
+                var medidas = Db.RegistroMedidas.FromSqlInterpolated($"exec spGetMedidasReciente {correo}");
+                return Ok(medidas);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+        [Route("Periodo")]
+        [HttpGet]
+        public ActionResult Get(string correo,DateTime FechaI, DateTime FechaF)
+        {
+            try
+            {
+                var medidas = Db.RegistroMedidas.FromSqlInterpolated($"exec spGetMedidaPeriodo {correo},{FechaI},{FechaF}");
+                return Ok(medidas);
             }
             catch (Exception e)
             {

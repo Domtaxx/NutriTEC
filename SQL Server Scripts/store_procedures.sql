@@ -233,13 +233,13 @@ AS
     end
 GO
 
-create procedure dbo.spGetRecetas
+alter procedure dbo.spGetRecetas
 @email_creator varchar(320),
 @name varchar(128)
 AS
     Begin
         SET NOCOUNT ON;
-	    SELECT * from dbo.RECETA where (Nombre like concat('%',concat(@name,'%')) or @email_creator like concat('%',concat(Correo_creador,'%'))and RECETA.Aprobado = 1)
+	    SELECT * from dbo.RECETA where RECETA.Aprobado = 1 and (Nombre like concat('%',concat(@name,'%')) or @email_creator like concat('%',concat(Correo_creador,'%')))
     end
 GO
 
@@ -287,4 +287,69 @@ AS
     end
 Go
 
-create procedure
+create procedure dbo.spGetMedidasReciente
+@cliente varchar(320)
+as
+    begin
+        SET NOCOUNT ON;
+        select * from REGISTRO_MEDIDAS where (Fecha = (select MAX(t.fecha) from dbo.REGISTRO_MEDIDAS t where t.Correo_cliente = @cliente)) and @cliente = Correo_cliente
+    end
+GO
+
+create procedure dbo.spGetReportRecetasPeriodo
+@Client_email varchar(320),
+@Fecha_ini date,
+@Fecha_Fi date
+as
+    begin
+        SET NOCOUNT ON;
+        select distinct RP.Correo_cliente,
+                        RP.Nombre,
+                        RP.Correo_creador,
+                        RP.Fecha,
+                        RP.Tiempo,
+                        RP.Tamano,
+                        (select sum(Calcio) from receta_public t1 where t1.Correo_creador = RP.Correo_creador and t1.Correo_cliente = RP.Correo_cliente and t1.Nombre = RP.Nombre)[Calcio],
+                        (select sum(Hierro) from receta_public t1 where t1.Correo_creador = RP.Correo_creador and t1.Correo_cliente = RP.Correo_cliente and t1.Nombre = RP.Nombre)[Hierro],
+                        (select sum(Energia) from receta_public t1 where t1.Correo_creador = RP.Correo_creador and t1.Correo_cliente = RP.Correo_cliente and t1.Nombre = RP.Nombre)[Energia],
+                        (select sum(Sodio) from receta_public t1 where t1.Correo_creador = RP.Correo_creador and t1.Correo_cliente = RP.Correo_cliente and t1.Nombre = RP.Nombre)[Sodio],
+                        (select sum(Carbohidratos) from receta_public t1 where t1.Correo_creador = RP.Correo_creador and t1.Correo_cliente = RP.Correo_cliente and t1.Nombre = RP.Nombre)[Carbohidratos],
+                        (select sum(Proteina) from receta_public t1 where t1.Correo_creador = RP.Correo_creador and t1.Correo_cliente = RP.Correo_cliente and t1.Nombre = RP.Nombre)[Proteina],
+                        (select sum(Vitaminas) from receta_public t1 where t1.Correo_creador = RP.Correo_creador and t1.Correo_cliente = RP.Correo_cliente and t1.Nombre = RP.Nombre)[Vitaminas]
+        from receta_public RP where Correo_cliente = @Client_email and RP.Fecha >= @Fecha_ini and RP.Fecha<= @Fecha_Fi;
+    end
+GO
+
+create procedure dbo.spGetReportProductosPeriodo
+@Client_email varchar(320),
+@Fecha_ini date,
+@Fecha_Fi date
+as
+    begin
+        SET NOCOUNT ON;
+        select * from Cliente_producto_public where Correo_cliente = @Client_email and Fecha>=@Fecha_ini and Fecha<=@Fecha_Fi
+    end
+GO
+
+create procedure dbo.spGetMedidaPeriodo
+@Client_email varchar(320),
+@Fecha_ini date,
+@Fecha_Fi date
+as
+    begin
+        SET NOCOUNT ON;
+        select * from REGISTRO_MEDIDAS where Correo_cliente = @Client_email and Fecha>=@Fecha_ini and Fecha<=@Fecha_Fi
+    end
+GO
+
+alter procedure dbo.spLoginAdmin
+@email varchar(320),
+@contra varchar(128)
+as
+    begin
+        SET NOCOUNT ON;
+        select * from ADMINISTRADOR where @email = Correo and @contra = Contra
+    end
+GO
+
+GetPaymentAmount 'Fernando03@gmail.com'

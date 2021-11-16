@@ -14,7 +14,6 @@ namespace NutriTEC_rest.SQL_Model.Models
         public string SegApellido { get; set; }
         public double? MaxCalorias { get; set; }
         public DateTime? FechaNace { get; set; }
-        public double? Peso { get; set; }
         public double? Imc { get; set; }
         public string CorreoNutri { get; set; }
     }

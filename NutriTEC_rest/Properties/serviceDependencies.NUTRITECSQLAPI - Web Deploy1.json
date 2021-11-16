@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "apis1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ApiManagement/service/NutriTECAPIManagement/apis/echo-api",
+      "type": "apis.azure"
+    },
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/nutritec/databases/NUTRITECSQLDB",
+      "type": "mssql.azure",
+      "connectionId": "JUSTCON",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

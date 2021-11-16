@@ -21,12 +21,11 @@ namespace NutriTEC_rest.SQL_Model.Models
         public string Direccion { get; set; }
         public string PrimerNom { get; set; }
         public string SegNom { get; set; }
+        public double? Imc { get; set; }
         public string PrimerApellido { get; set; }
         public string SegApellido { get; set; }
         public double? MaxCalorias { get; set; }
         public DateTime? FechaNace { get; set; }
-        public double? Peso { get; set; }
-        public double? Imc { get; set; }
         public string CorreoNutri { get; set; }
 
         public virtual Nutricionistum CorreoNutriNavigation { get; set; }
