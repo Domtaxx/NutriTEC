@@ -67,20 +67,47 @@ AS
 Begin
 
     Declare @discount as float(2)=0;
-    Declare @tipo_cobro as char;
+    Declare @tipo_cobro as varchar(32);
     Select @tipo_cobro = (select Tipo_cobro from NUTRICIONISTA where NUTRICIONISTA.Correo=@email)
-    if (@tipo_cobro='a')begin
+    if (@tipo_cobro='Semanal')begin
         select @discount=0.0
     end
-    if (@tipo_cobro='b')begin
+    if (@tipo_cobro='Mensual')begin
         select @discount=5.0
     end
-    if(@tipo_cobro='c')begin
+    if(@tipo_cobro='Anual')begin
         select @discount=10.0
     end
     return @discount
 
 end
+GO
+
+create function dbo.ftipo_cobro
+(@email varchar(320))
+returns varchar(32)
+    AS
+    begin
+
+        declare @tipo_cobro As varchar(32);
+        Select @tipo_cobro= Tipo_cobro
+        From NUTRICIONISTA
+        WHERE Correo=@email;
+        return @tipo_cobro;
+    end
+GO
+create function dbo.fpagos
+(@email varchar(320))
+returns float
+    AS
+    begin
+        Declare @discount As Float(2);
+        Set @discount =dbo.GetDiscount(@email);
+        Declare @atendend as integer=dbo.GetAttendedClient(@email);
+        Declare @payment as FLOAT
+        set @payment =(100-@discount)* @atendend /100;
+        return @payment
+    end
 GO
 Create FUNCTION dbo.GetAttendedClient
 (@email varchar(320))
@@ -98,27 +125,23 @@ GO
 
 
 create PROCEDURE dbo.GetPaymentAmount
-@email varchar(320)
-AS
+@tipo varchar(32)
+    AS
     Begin
         SET NOCOUNT ON;
         Create Table #temp(
             correo varchar(320),
             atendidos int,
             pago float,
-            descuento float
+            descuento float,
+            tipo_cobro varchar(32)
         )
-        Declare @discount As Float(2);
-        Set @discount =dbo.GetDiscount(@email);
-        Declare @atendend as integer=dbo.GetAttendedClient(@email);
-        Declare @payment as FLOAT
-        set @payment =(100-@discount)* @atendend /100;
-        insert into #temp (correo,atendidos,pago,descuento)
-        values(@email,@atendend,ROUND(@payment,2),@discount);
-        select * from #temp;
+        insert into #temp (correo,atendidos,pago,descuento,tipo_cobro) select distinct Correo,dbo.GetAttendedClient(Correo), dbo.fpagos(Correo),dbo.GetDiscount(Correo),dbo.ftipo_cobro(Correo) from NUTRICIONISTA;
+        select * from #temp where tipo_cobro = @tipo;
         drop table #temp;
     end
 GO
+
 
 Create PROCEDURE dbo.spAddPlan
 @plan_name varchar(128),
@@ -155,7 +178,6 @@ as
             if(@not_exist_menu=0)begin
                 insert into MENU(nombre_plan_alimentacion, nombre)
                 values(@plan_name,@menu_name)
-
             end
         end
         select MENU.Nombre_plan_alimentacion,MENU.Nombre
@@ -352,4 +374,19 @@ as
     end
 GO
 
-GetPaymentAmount 'Fernando03@gmail.com'
+create procedure dbo.GetRecetaSum
+as
+    begin
+        SET NOCOUNT ON;
+        select distinct RP.Nombre,
+                        RP.Correo_creador,
+                        (select sum(Calcio) from receta_admin_public t1 where t1.Correo_creador = RP.Correo_creador and t1.Nombre = RP.Nombre)[Calcio],
+                        (select sum(Hierro) from receta_admin_public t1 where t1.Correo_creador = RP.Correo_creador  and t1.Nombre = RP.Nombre)[Hierro],
+                        (select sum(Energia) from receta_admin_public t1 where t1.Correo_creador = RP.Correo_creador  and t1.Nombre = RP.Nombre)[Energia],
+                        (select sum(Sodio) from receta_admin_public t1 where t1.Correo_creador = RP.Correo_creador  and t1.Nombre = RP.Nombre)[Sodio],
+                        (select sum(Carbohidratos) from receta_admin_public t1 where t1.Correo_creador = RP.Correo_creador  and t1.Nombre = RP.Nombre)[Carbohidratos],
+                        (select sum(Proteina) from receta_admin_public t1 where t1.Correo_creador = RP.Correo_creador  and t1.Nombre = RP.Nombre)[Proteina],
+                        (select sum(Vitaminas) from receta_admin_public t1 where t1.Correo_creador = RP.Correo_creador  and t1.Nombre = RP.Nombre)[Vitaminas]
+        from receta_admin_public RP where RP.Aprobado != 1;
+    end
+go

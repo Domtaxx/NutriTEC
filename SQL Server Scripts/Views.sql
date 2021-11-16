@@ -10,5 +10,7 @@ create view receta_public as select CR.Correo_cliente,Nombre,R.Correo_creador,Fe
 GO
 create view Cliente_producto_public as select CP.Correo_cliente,CP.Tiempo,CP.Fecha ,CP.Codigo_barras, Sodio, Energia, Carbohidratos, Tamano, Vitaminas, Descripcion, Hierro, Calcio, Proteina from (CLIENTE_PRODUCTO CP join PRODUCTO P on CP.codigo_barras = P.Codigo_barras);
 GO
-create view Reporte_cobro as select RP.Correo_creador[correo],RP.cantidad[atendidos],CAST(RP.cantidad as Float)[pago],CAST(RP.cantidad as Float)[descuento] from RECETA_PRODUCTO RP
+create view Reporte_cobro as select RP.Correo_creador[correo],RP.cantidad[atendidos],CAST(RP.cantidad as Float)[pago],CAST(RP.cantidad as Float)[descuento],CAST(RP.Correo_creador as varchar(32))[tipo_cobro] from RECETA_PRODUCTO RP
 GO
+create view receta_admin_public as select Nombre,Aprobado,R.Correo_creador,(Calcio*cantidad)[Calcio], (cantidad*Hierro)[Hierro],(cantidad*energia)[Energia],(cantidad*Sodio)[Sodio],(cantidad*Carbohidratos)[Carbohidratos],(cantidad*Proteina)[Proteina],(cantidad*Vitaminas)[Vitaminas],Descripcion from RECETA R join RECETA_PRODUCTO RP on (R.Nombre = RP.Nombre_receta and R.Correo_creador = RP.Correo_creador) join PRODUCTO P on RP.Codigo_barras = P.Codigo_barras
+Go

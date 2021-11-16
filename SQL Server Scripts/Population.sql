@@ -1,12 +1,12 @@
 ﻿insert into NUTRICIONISTA
 	(Correo,Contra,Codigo,Primer_nom,Seg_nom,Primer_apellido,Seg_apellido,Num_tarjeta,Fecha_nace,Tipo_cobro,Direccion,IMC,Peso,foto)
-values('Lau01@gmail.com','58907c27b5ac1ad7289a6a56657b9e90','3996404838','Laura','Susana','Torres','Acosta','1862698798741876','1983-06-05','a','Casa #180 Residencial Casas Bonitas,Cartago, Cartago',21,68,'‪D:\NutriTEC_images\Lau01@gmail.com.png');
+values('Lau01@gmail.com','58907c27b5ac1ad7289a6a56657b9e90','3996404838','Laura','Susana','Torres','Acosta','1862698798741876','1983-06-05','Semanal','Casa #180 Residencial Casas Bonitas,Cartago, Cartago',21,68,'‪D:\NutriTEC_images\Lau01@gmail.com.png');
 insert into NUTRICIONISTA
 	(Correo,Contra,Codigo,Primer_nom,Seg_nom,Primer_apellido,Seg_apellido,Num_tarjeta,Fecha_nace,Tipo_cobro,Direccion,IMC,Peso,foto)
-values('Pablo02@gmail.com','2e6edb52fa0ea8167a5a621d31937c41','3996404839','Pablo','Felipe','Mendez','Quesada','1962698798694876','1982-06-09','a','Casa #181 Residencial Casas Bonitas,Cartago, Cartago',21.5,78,'‪D:\NutriTEC_images\Pablo02@gmail.com.png');
+values('Pablo02@gmail.com','2e6edb52fa0ea8167a5a621d31937c41','3996404839','Pablo','Felipe','Mendez','Quesada','1962698798694876','1982-06-09','Mensual','Casa #181 Residencial Casas Bonitas,Cartago, Cartago',21.5,78,'‪D:\NutriTEC_images\Pablo02@gmail.com.png');
 insert into NUTRICIONISTA
 	(Correo,Contra,Codigo,Primer_nom,Seg_nom,Primer_apellido,Seg_apellido,Num_tarjeta,Fecha_nace,Tipo_cobro,Direccion,IMC,Peso,foto)
-values('Fernando03@gmail.com','202cb962ac59075b964b07152d234b70','2396403836','Fernando','Felipe','Quesada','Arce','1962693168694876','1972-02-01','b','Casa #182 Residencial Casas Bonitas,Cartago, Cartago',19.7,68,'‪D:\NutriTEC_images\Fernando03@gmail.com.png');
+values('Fernando03@gmail.com','202cb962ac59075b964b07152d234b70','2396403836','Fernando','Felipe','Quesada','Arce','1962693168694876','1972-02-01','Anual','Casa #182 Residencial Casas Bonitas,Cartago, Cartago',19.7,68,'‪D:\NutriTEC_images\Fernando03@gmail.com.png');
 
 insert into ADMINISTRADOR(Correo,Contra)values('Admin1@gmail.com','e64b78fc3bc91bcbc7dc232ba8ec59e0');
 insert into ADMINISTRADOR(Correo,Contra)values('Admin2@gmail.com','e64b78fc3bc91bcbc7dc232ba8ec59e0');
@@ -79,9 +79,9 @@ values('Antonio40123@gmail.com',72,23,16,44,38,75,'2020-08-10',21);
 insert into REGISTRO_MEDIDAS(Correo_cliente,Cadera,Porcentaje_grasa,Peso,Porcentaje_musculo,Cuello,Cintura,Fecha,IMC)
 values('manuel0123@gmail.com',62,20,15,42,36,67,'2020-04-12',21);
 
-insert into PLAN_ALIMENTACION(Nombre,Correo_nutri,tiempo_final,tiempo_inicial)values('Plan de alimentacion Antonio','Fernando03@gmail.com','8-5-2020','10-5-2022');
-insert into PLAN_ALIMENTACION(Nombre,Correo_nutri,tiempo_final,tiempo_inicial)values('Plan de alimentacion Manuel','Pablo02@gmail.com','9-5-2020','10-5-2022');
-insert into PLAN_ALIMENTACION(Nombre,Correo_nutri,tiempo_final,tiempo_inicial)values('Plan de alimentacion Miguel','Lau01@gmail.com','10-5-2020','10-5-2022');
+insert into PLAN_ALIMENTACION(Nombre,Correo_nutri)values('Plan de alimentacion Antonio','Fernando03@gmail.com');
+insert into PLAN_ALIMENTACION(Nombre,Correo_nutri)values('Plan de alimentacion Manuel','Pablo02@gmail.com');
+insert into PLAN_ALIMENTACION(Nombre,Correo_nutri)values('Plan de alimentacion Miguel','Lau01@gmail.com');
 
 insert into MENU(Nombre_plan_alimentacion,Nombre)values('Plan de alimentacion Antonio','Desayuno');
 insert into MENU(Nombre_plan_alimentacion,Nombre)values('Plan de alimentacion Manuel','Desayuno');

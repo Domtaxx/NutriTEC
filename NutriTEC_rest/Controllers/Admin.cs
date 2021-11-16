@@ -18,7 +18,7 @@ namespace NutriTEC_rest.Controllers
         {
             try
             {
-                var res = Db.Receta.Where(R => R.Aprobado == false);
+                var res = Db.RecetaPublics.FromSqlInterpolated($"GetRecetaSum");
                 return Ok(res);
             }
             catch (Exception e)
@@ -47,7 +47,7 @@ namespace NutriTEC_rest.Controllers
         {
             try
             {
-                var res = Db.Productos.Where(R => R.Estado == "Inhabilitado");
+                var res = Db.Productos.Where(R => R.Estado == "Inhabilitado" || R.Estado == null);
                 return Ok(res);
             }
             catch (Exception e)
@@ -72,11 +72,11 @@ namespace NutriTEC_rest.Controllers
         }
         [Route("ReporteCobro")]
         [HttpGet]
-        public ActionResult Get23(string Correo_nutri)
+        public ActionResult Get23(string tipo)
         {
             try
             {
-                var res = Db.ReporteCobros.FromSqlInterpolated($"exec GetPaymentAmount {Correo_nutri}");
+                var res = Db.ReporteCobros.FromSqlInterpolated($"exec GetPaymentAmount {tipo}");
                 return Ok(res);
             }
             catch (Exception e)

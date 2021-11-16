@@ -87,7 +87,7 @@
         "parameters": [
           {
             "in": "query",
-            "name": "Correo_nutri",
+            "name": "tipo",
             "type": "string"
           }
         ],
@@ -1331,14 +1331,6 @@
           "type": "string"
         },
         "correoNutri": {
-          "type": "string"
-        },
-        "tiempoInicial": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "tiempoFinal": {
-          "format": "date-time",
           "type": "string"
         },
         "correoNutriNavigation": {

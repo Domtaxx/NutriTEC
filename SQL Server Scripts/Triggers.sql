@@ -1,7 +1,6 @@
 Create Trigger TR_insert_product on PRODUCTO after insert
 as
 begin
-
     declare @est varchar(64),
             @C_admin varchar(320),
             @C_barras varchar(128)
@@ -22,4 +21,3 @@ as
     delete from CLIENTE_PLAN where Nombre_plan =(select deleted.Nombre from deleted);
     Delete from PLAN_ALIMENTACION where Nombre = (select deleted.Nombre from deleted);
 GO
-
